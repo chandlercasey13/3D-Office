@@ -16,11 +16,15 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 
+import { MeshStandardMaterial, Color } from 'three';
+
 
 
 const Skyscrapers = ({secondaryModelUrl, ...props }) => {
     
     const secondaryScene  = useGLTF(secondaryModelUrl);
+
+    console.log(secondaryScene)
    
     
     const buildingRef = useRef(null);
@@ -30,8 +34,8 @@ const Skyscrapers = ({secondaryModelUrl, ...props }) => {
   
    
     
-    const [screenPosition, setScreenPosition] = useState(new THREE.Vector3(-0.09495129436254501,0.930014729499817,4.181510925292969
-    ));
+    
+    
   
    
   
@@ -41,10 +45,27 @@ const Skyscrapers = ({secondaryModelUrl, ...props }) => {
       <>
 
 
-      <primitive object= {secondaryScene.scene} position= {[10,-8,-3]} scale={[.4, .5, .5]}  />
-      <primitive object= {secondaryScene.scene.clone()} rotation = {[0,Math.PI,0]}position= {[-10,-8,-10]} scale={[.4, .5, .5]}  />
-      <primitive object= {secondaryScene.scene.clone()} rotation = {[0,Math.PI,0]}position= {[-23,-10,-10]} scale={[.4, .5, .5]}  />
+      <primitive object= {secondaryScene.scene} position= {[17,-10,-3]} scale={[.6, .5, .5]}  />
+      <primitive object= {secondaryScene.scene.clone()} position= {[17,-10,-11]} scale={[.6, .5, .5]}  />
+      <primitive object= {secondaryScene.scene.clone()} rotation = {[0,Math.PI,0]}position= {[-17,-10,-10]} scale={[.6, .5, .5]}  />
+      <primitive object= {secondaryScene.scene.clone()} rotation = {[0,Math.PI,0]}position= {[-17,-10,-18]} scale={[.6, .5, .5]}  />
+      <primitive object= {secondaryScene.scene.clone()} rotation = {[0,Math.PI,0]}position= {[-13,-10,-31]} scale={[.6, .5, .5]}  />
+      <primitive object= {secondaryScene.scene.clone()} position= {[12.5,-10,-24]} scale={[.6, .5, .5]}  />
+      
+      
+      {/* <primitive object= {secondaryScene.scene.clone()} rotation = {[0,Math.PI,0]}position= {[-23,-10,-10]} scale={[.4, .5, .5]}  /> */}
       {/* <primitive  object={secondaryScene.nodes.Building_0} {...props} ref={buildingRef}   ></primitive> */}
+      {/* <mesh
+        position={[0, -10, -3.65]} rotation = {[Math.PI/2,0,0]}
+        
+      >
+        <boxGeometry args={[6.5, 100, 0.004]}  />
+        <meshStandardMaterial  color={new Color('#6b6b6b')} transparent
+          opacity={0.9}/>
+          
+      </mesh> */}
+      
+      
       </>
     );
   };

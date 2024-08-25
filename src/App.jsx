@@ -9,7 +9,6 @@ import {
   Html,
   useGLTF,
   useAnimations,
-  
 } from "@react-three/drei";
 import * as THREE from "three";
 import { SpotLightHelper } from "three";
@@ -17,145 +16,13 @@ import { SpotLightHelper } from "three";
 import ComputerScreenHTML from "./htmloverlay/computerscreen";
 import Skyscrapers from "./skyscraper";
 
-const ModelWithAnimation = ({
-  url,
-  secondaryModelUrl,
-  HTMLPosition,
-  HTMLRotation,
-  ...props
-}) => {
-  const { scene, animations, nodes } = useGLTF(url);
-  const secondaryScene = useGLTF(secondaryModelUrl);
-  const { actions } = useAnimations(animations, scene);
-  const monitorRef = useRef(null);
-  const floorRef = useRef(null);
-  const lightRef = useRef(null);
-
-  console.log(nodes);
-
- 
-
-  // const defaultScreenRotation = new THREE.Euler(-0.3, 0.47, 0.145);
-  // const defaultScreenPosition = new THREE.Vector3(0.025, 0.41, 2.16);
-
-  const [screenPosition, setScreenPosition] = useState(
-    new THREE.Vector3(
-      -0.09495129436254501,
-      0.930014729499817,
-      4.181510925292969
-    )
-  );
-
-  useEffect(() => {
-    if (actions) {
-      actions[Object.keys(actions)[0]].play(); // Play the first animation
-    }
-  }, [actions]);
-
-
-  useEffect(() => {
-    if (lightRef.current) {
-      console.log(lightRef)
-      lightRef.current.lookAt(new THREE.Vector3(0, -10, 0));
-      
-    }
-  }, []);
+import Roads from "./Roads";
+import Othermodel from "../public/Othermodel";
 
 
 
-  
-
-  return (
-    <>
-      <group>
-        <ambientLight intensity={0.1} />
-        <object3D ref={floorRef} position={[0, -0, 20]} />
-        
-        
-        
-        <primitive object={scene} {...props}></primitive>
-        <primitive
-          object={nodes.Cube009}
-          {...props}
-          ref={monitorRef}
-          position={screenPosition}
-        >
-          <ComputerScreenHTML
-            HTMLRotation={HTMLRotation}
-            HTMLPosition={HTMLPosition}
-          />
-        </primitive>
-
-        <primitive
-          object={nodes.Cube002}
-          {...props}
-          position={[
-            -0.022806406021118164, 2.8019936084747314, 5,
-          ]}
-        >
-          {/* <spotLight intensity={10} position={[0,3,7]}  angle={Math.PI / 5} /> */}
-          <rectAreaLight ref={lightRef}   width={3}               // Width of the rectangular l#fae978ight area
-        height={.5}  position={[
-          0,-10,0
-        ]}  color = '#fae978' intensity={10} />
-
-        
-          {/* Target at the center of the scene */}
-         
-        </primitive>
-       
 
 
-        <primitive
-          // ref={floorRef}
-          object={nodes.Cube016}
-          position={[
-            -7.000472068786621, -0.6388371169567108, 3.2493808269500732,
-          ]}
-        ></primitive>
-
-        <mesh position={[-3.92, 1.2, 3.9]}>
-          <boxGeometry args={[1.55, 2.075, 0.1]} />
-          <meshBasicMaterial color="black" />
-        </mesh>
-
-
-        <mesh position={[3.9,2.58,3.87]} rotation-x={Math.PI / 2}>
-<cylinderGeometry  args={[.3,.3,.045]} />
-<meshBasicMaterial color="black" />
-<Html>
-  
-</Html>
-
-        </mesh>
-        <mesh position={[3.92, 1.2, 3.9]}>
-          <boxGeometry args={[1.55, 2.075, 0.1]} />
-          <meshBasicMaterial color={new THREE.Color("rgb(0, 0, 0)")} />
-        </mesh>
-
-        {/* <mesh position={[0,1.25,10]}>
-          <boxGeometry args={[20, 3.5, 0.1]}/>
-          <meshBasicMaterial color={new THREE.Color("rgb(0, 0, 0)")} />
-
-
-      </mesh> */}
-      </group>
-
-      {/* <primitive  object={secondaryScene.nodes.Building_0} {...props} ref={buildingRef}   ></primitive> */}
-    </>
-  );
-};
-
-const Sky = () => {
-  const radius = 100; // Size of the sky sphere
-
-  return (
-    <mesh>
-      <sphereGeometry args={[radius, 32, 32]} />
-      <meshBasicMaterial color="#0f0f0f" side={THREE.BackSide} />
-    </mesh>
-  );
-};
 
 const CameraShift = ({ targetPosition, targetRotation }) => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -204,11 +71,27 @@ const CameraShift = ({ targetPosition, targetRotation }) => {
   return null;
 };
 
+
+const Sky = ({daynighttogglestate}) => {
+  const radius = 100; // Size of the sky sphere
+
+  return (
+    <mesh>
+      <sphereGeometry args={[radius, 32, 32]} />
+      <meshBasicMaterial  color ={daynighttogglestate ? "#0f0f0f" : "#87CEEB"}  side={THREE.BackSide} />
+    </mesh>
+  );
+};
+
+
+
 function App() {
   const [targetPosition, setTargetPosition] = useState(null);
   const [targetRotation, setTargetRotation] = useState(null);
   const [HTMLRotation, setHTMLRotation] = useState([0, 0, 0]);
   const [HTMLPosition, setHTMLPosition] = useState([-0.008, -0.124, 0.025]);
+
+  const [daynighttoggle, setDaynighttoggle] = useState(true);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -229,6 +112,15 @@ function App() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+
+  const handleDayNightToggle = () => {
+    setDaynighttoggle(!daynighttoggle);
+    console.log(daynighttoggle);
+  };
+
+
+
 
   const handleButtonClick = () => {
     setTargetPosition(new THREE.Vector3(0.15, 1.1, 4.75)); // Define the target position for the camera shift
@@ -287,21 +179,28 @@ function App() {
             Back
           </button>
         </div>
-        <Canvas
+        <Canvas shadows
           camera={{
-            position: new THREE.Vector3(0, 1.5, 9), // default z 9
+            position: new THREE.Vector3(0, 2.5, 9), // default z 9
           }}
         >
           <Suspense fallback={null}>
-            <ModelWithAnimation
+          <ambientLight intensity={.1} />
+            {/* <ModelWithAnimation 
               url="/othermodel.glb"
               secondaryModelUrl="/buildings.gltf"
               position={[0, -1, 0]}
-              HTMLPosition={HTMLPosition}
+              
+
+            /> */}
+
+            <Othermodel HTMLPosition={HTMLPosition}
               HTMLRotation={HTMLRotation}
-            />
+              handleDayNightToggle = {handleDayNightToggle}
+              daynighttogglestate = {daynighttoggle}/>
+            <Roads RoadsUrl={'/road.gltf'}/>
             <Skyscrapers secondaryModelUrl="/buildings.gltf" />
-            <Sky />
+            <Sky daynighttogglestate={daynighttoggle} />
             <OrbitControls
               enableRotate={true}
               enablePan={true}
@@ -311,7 +210,7 @@ function App() {
             <Environment preset="city">
               <mesh>
                 <sphereGeometry args={[100, 32, 32]} />
-                <meshStandardMaterial color="#444445" side={1} />
+                <meshStandardMaterial color ={daynighttoggle ? "#0f0f0f" : "#fff3d1"} side={1} />
               </mesh>
             </Environment>
             <CameraShift
