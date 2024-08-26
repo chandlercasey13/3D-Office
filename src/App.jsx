@@ -14,10 +14,11 @@ import * as THREE from "three";
 import { SpotLightHelper } from "three";
 
 import ComputerScreenHTML from "./htmloverlay/computerscreen";
-import Skyscrapers from "./skyscraper";
+
 
 import Roads from "./Roads";
 import Othermodel from "../public/Othermodel";
+import Model from "../public/Rvised";
 
 
 
@@ -78,7 +79,7 @@ const Sky = ({daynighttogglestate}) => {
   return (
     <mesh>
       <sphereGeometry args={[radius, 32, 32]} />
-      <meshBasicMaterial  color ={daynighttogglestate ? "#0f0f0f" : "#87CEEB"}  side={THREE.BackSide} />
+      <meshBasicMaterial  color ={daynighttogglestate ? "#0f0f0f" : "#D9BB97"}  side={THREE.BackSide} />
     </mesh>
   );
 };
@@ -91,7 +92,7 @@ function App() {
   const [HTMLRotation, setHTMLRotation] = useState([0, 0, 0]);
   const [HTMLPosition, setHTMLPosition] = useState([-0.008, -0.124, 0.025]);
 
-  const [daynighttoggle, setDaynighttoggle] = useState(true);
+  const [daynighttoggle, setDaynighttoggle] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -181,11 +182,11 @@ function App() {
         </div>
         <Canvas shadows
           camera={{
-            position: new THREE.Vector3(0, 2.5, 9), // default z 9
+            position: new THREE.Vector3(-7, 1.5, 7), // default z 9
           }}
         >
           <Suspense fallback={null}>
-          <ambientLight intensity={.1} />
+          <ambientLight intensity={4} />
             {/* <ModelWithAnimation 
               url="/othermodel.glb"
               secondaryModelUrl="/buildings.gltf"
@@ -194,12 +195,9 @@ function App() {
 
             /> */}
 
-            <Othermodel HTMLPosition={HTMLPosition}
-              HTMLRotation={HTMLRotation}
-              handleDayNightToggle = {handleDayNightToggle}
-              daynighttogglestate = {daynighttoggle}/>
-            <Roads RoadsUrl={'/road.gltf'}/>
-            <Skyscrapers secondaryModelUrl="/buildings.gltf" />
+           
+            
+            <Model/>
             <Sky daynighttogglestate={daynighttoggle} />
             <OrbitControls
               enableRotate={true}
@@ -210,7 +208,7 @@ function App() {
             <Environment preset="city">
               <mesh>
                 <sphereGeometry args={[100, 32, 32]} />
-                <meshStandardMaterial color ={daynighttoggle ? "#0f0f0f" : "#fff3d1"} side={1} />
+                <meshStandardMaterial color ={daynighttoggle ? "#0f0f0f" : "#ffffff"} side={1} />
               </mesh>
             </Environment>
             <CameraShift
