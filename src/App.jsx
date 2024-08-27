@@ -18,7 +18,8 @@ import ComputerScreenHTML from "./htmloverlay/computerscreen";
 
 import Roads from "./Roads";
 import Othermodel from "../public/Othermodel";
-import Model from "../public/Rvised";
+import OfficeModel from "./OfficeModel";
+
 
 
 
@@ -94,6 +95,26 @@ function App() {
 
   const [daynighttoggle, setDaynighttoggle] = useState(false);
 
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Update mouse position
+  const handlePointerMove = (event) => {
+    setMousePosition({
+      x: event.clientX / window.innerWidth,
+      y: event.clientY / window.innerHeight,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('mousemove', handlePointerMove);
+    return () => {
+      window.removeEventListener('mousemove', handlePointerMove);
+    };
+  }, []);
+
+
+
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "ArrowUp") {
@@ -124,8 +145,8 @@ function App() {
 
 
   const handleButtonClick = () => {
-    setTargetPosition(new THREE.Vector3(0.15, 1.1, 4.75)); // Define the target position for the camera shift
-    setTargetRotation(new THREE.Euler(-0.4, 0.6, 0.225));
+    setTargetPosition(new THREE.Vector3(-7, 1.5, 7)); // Define the target position for the camera shift
+    // setTargetRotation(new THREE.Euler(-0.4, 0.6, 0.225));
     //setHTMLRotation(new THREE.Euler(-0.30255377056249727,  0.48176162984942383,  0.14362979953155677))
     // setScreenPosition(new THREE.Vector3(0.2445, 0.8985, 4.25))
   };
@@ -146,6 +167,10 @@ function App() {
     setTargetRotation(new THREE.Euler(0, 0, 0));
     //  setHTMLPosition(new THREE.Vector3(0,0,0))
   };
+
+
+
+  
 
   return (
     <>
@@ -182,11 +207,12 @@ function App() {
         </div>
         <Canvas shadows
           camera={{
-            position: new THREE.Vector3(-7, 1.5, 7), // default z 9
+            position: new THREE.Vector3(0, 3.5, 9), // default z 9
           }}
         >
           <Suspense fallback={null}>
-          <ambientLight intensity={4} />
+          <ambientLight intensity={5.5} /> 
+          <directionalLight castShadow position={[-2,10,3]} intensity={[2.5]}  />
             {/* <ModelWithAnimation 
               url="/othermodel.glb"
               secondaryModelUrl="/buildings.gltf"
@@ -197,14 +223,22 @@ function App() {
 
            
             
-            <Model/>
+            <OfficeModel mousePosition={mousePosition} />
+            <mesh position={[0,-.95,0]} rotation-x={[-Math.PI/2]} scale={[400,400,1]} receiveShadow>
+            <planeGeometry args={[1,1]}/>
+            <meshStandardMaterial  color={"#D9BB97"}/>
+            </mesh>
+            <mesh position={[0,-.95,0]} rotation-x={[-Math.PI/2]} scale={[400,400,1]} receiveShadow>
+            <planeGeometry args={[1,1]}/>
+            <shadowMaterial  opacity={.2}/>
+            </mesh>
             <Sky daynighttogglestate={daynighttoggle} />
-            <OrbitControls
+            {/* <OrbitControls
               enableRotate={true}
               enablePan={true}
               enableZoom={true}
-            />
-            {/* <FlyControls movementSpeed={5} rollSpeed={0.5} /> */}
+            /> */}
+            <FlyControls movementSpeed={5} rollSpeed={0.5} dragToLook={true} />
             <Environment preset="city">
               <mesh>
                 <sphereGeometry args={[100, 32, 32]} />
