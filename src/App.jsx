@@ -152,8 +152,11 @@ function App() {
   };
 
   const handleBackClick = () => {
-    setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
-    setTargetPosition(new THREE.Vector3(0, 1.5, 9));
+     setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
+    // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
+     setTargetPosition(new THREE.Vector3(0, 1.5, 8));
+    //setTargetPosition(new THREE.Vector3(0,4.5, 9));
+    
     setHTMLPosition(new THREE.Vector3(-0.008, -0.124, 0.025));
   };
 
@@ -174,29 +177,17 @@ function App() {
 
   return (
     <>
-      <div className="App flex justify-center items-center relative">
+      <div className="App">
+      
+
+      <div className="TextOverlay">
+          
+          <h1 className="Text" ></h1>
+          <h1 className="Text" >Chandler's Office</h1>
+          
+        </div>
         <div className="flex justify-around w-1/3 absolute bottom-2">
-          <button
-            className="bg-black/60 rounded-lg p-4 text-white   "
-            onClick={handleProjectClick}
-            style={{ zIndex: 1 }}
-          >
-            Projects
-          </button>
-          <button
-            className="bg-black/60 rounded-lg p-4 text-white    "
-            onClick={handleButtonClick}
-            style={{ zIndex: 1 }}
-          >
-            About Me
-          </button>
-          <button
-            className="bg-black/60 rounded-lg p-4 text-white   "
-            onClick={handleContactClick}
-            style={{ zIndex: 1 }}
-          >
-            Contact Me
-          </button>
+          
           <button
             className="bg-black/60 rounded-lg p-4 text-white   "
             onClick={handleBackClick}
@@ -204,6 +195,7 @@ function App() {
           >
             Back
           </button>
+          
         </div>
         <Canvas shadows
           camera={{
@@ -213,18 +205,12 @@ function App() {
           <Suspense fallback={null}>
           <ambientLight intensity={5.5} /> 
           <directionalLight castShadow position={[-2,10,3]} intensity={[2.5]}  />
-            {/* <ModelWithAnimation 
-              url="/othermodel.glb"
-              secondaryModelUrl="/buildings.gltf"
-              position={[0, -1, 0]}
-              
-
-            /> */}
+            
 
            
             
             <OfficeModel mousePosition={mousePosition} />
-            <mesh position={[0,-.95,0]} rotation-x={[-Math.PI/2]} scale={[400,400,1]} receiveShadow>
+            <mesh position={[0,-.95,0]} rotation-x={[-Math.PI/2]} scale={[1,1,1]} receiveShadow>
             <planeGeometry args={[1,1]}/>
             <meshStandardMaterial  color={"#D9BB97"}/>
             </mesh>
@@ -241,7 +227,8 @@ function App() {
             <FlyControls movementSpeed={5} rollSpeed={0.5} dragToLook={true} />
             <Environment preset="city">
               <mesh>
-                <sphereGeometry args={[100, 32, 32]} />
+                
+                <boxGeometry args={[100, 32, 32]} />
                 <meshStandardMaterial color ={daynighttoggle ? "#0f0f0f" : "#ffffff"} side={1} />
               </mesh>
             </Environment>

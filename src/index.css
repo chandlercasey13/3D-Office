@@ -8,6 +8,36 @@
 .App {
   width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.TextOverlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 45%;
+  height: 90vh;
+  position: absolute;
+  z-index: 1;
+  color: white;
+ 
+
+}
+
+.Text {
+  height: 20%;
+  font-size: 80px;
+  font-weight: 300;
+  
+  font-family: "Noto Sans";
+  text-shadow: 
+  -.5px -.5px 0 #000, /* Top-left shadow */
+   .5px -.5px 0 #000, /* Top-right shadow */
+  -.5px  .5px 0 #000, /* Bottom-left shadow */
+   .5px  .5px 0 #000; /* Bottom-right shadow */
 }
 
 /* iframe {
