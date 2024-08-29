@@ -4,6 +4,8 @@ Command: npx gltfjsx@6.5.0 rvised.glb --shadows --exportdefault
 */
 
 import React from 'react'
+import { Html } from '@react-three/drei';
+
 import { useGLTF } from '@react-three/drei'
 
 export default function Model(props) {
@@ -24,7 +26,18 @@ export default function Model(props) {
             <mesh castShadow receiveShadow geometry={nodes.tvpCube1_tvcorpo2_tv_0.geometry} material={materials['Material.035']} />
             <mesh castShadow receiveShadow geometry={nodes.tvpCube1_tvcorpo_da_tv_0.geometry} material={materials['Material.035']} />
             <mesh castShadow receiveShadow geometry={nodes.tvpCube1_tvpes_da_tv1_0.geometry} material={materials['Material.035']} />
-            <mesh castShadow receiveShadow geometry={nodes.tvpCube1_tvtela_da_tv_0.geometry} material={materials['tvtela_da_tv.002']} />
+            <mesh castShadow receiveShadow geometry={nodes.tvpCube1_tvtela_da_tv_0.geometry} material={materials['tvtela_da_tv.002']} >
+            <Html position={[.00,-.17,-.6]} scale={[.32,.55,1]} transform occlude> <div style=
+            {{ width: '100%', height: 0, paddingBottom: '178%', position: 'relative', zIndex:1, 
+              transform: 'rotate(90deg)' }}><iframe 
+        src="https://giphy.com/embed/39lWTXEdmp4qnZtHIK"
+        width="100%" height="100%" style={{position:'absolute'}} frameBorder="0" className="giphy-embed" 
+        allowFullScreen></iframe></div><p>
+          <a style={{color: 'rgba(0,0,0,0)'}} href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW">via GIPHY</a></p>
+          
+         
+          </Html>
+            </mesh>
           </group> 
         </group>
       </group>
@@ -138,21 +151,25 @@ export default function Model(props) {
       <mesh castShadow receiveShadow geometry={nodes.Cylinder011.geometry} material={materials['Material.023']} position={[-1.976, 0.117, 2.956]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-0.574, -0.019, -0.574]} /> 
         <group position={[0.049, 1.433, 2.116]} scale={[0.144, 1.676, 1.873]}>
 //this one below
-        <mesh castShadow receiveShadow geometry={nodes.Cube002_1.geometry} material={materials['Material.007']} material-roughness={1} material-metalness={1} />
+        <mesh castShadow receiveShadow geometry={nodes.Cube002_1.geometry} material={materials['Material.007']} material-roughness={1} material-metalness={.9} />
         
         <mesh castShadow receiveShadow geometry={nodes.Cube002_2.geometry} material={materials['Material.001']} />
         <mesh castShadow receiveShadow geometry={nodes.Cube002_3.geometry} material={materials['Material.023']} />
         <mesh castShadow receiveShadow geometry={nodes.Cube002_4.geometry} material={materials['Material.035']} />
          {/* <mesh castShadow receiveShadow geometry={nodes.Plane005_1.geometry} material={nodes.Plane005_1.material} position={[-0.001, 0.01, 0.997]} rotation={[-Math.PI / 2, 1.57, 0]} scale={[0.99, 0.05, 0.992]} /> */}
       </group>
-      <mesh castShadow receiveShadow geometry={nodes.Plane002.geometry} material={nodes.Plane002.material} position={[-1.825, -0.303, 3.992]} rotation={[Math.PI / 2, 0, 0]} scale={[2.02, 0.094, 0.101]} />
+      <mesh castShadow receiveShadow geometry={nodes.Plane002.geometry} material={nodes.Plane002.material} position={[-1.825, -0.303, 3.992]} rotation={[Math.PI / 2, 0, 0]} scale={[2.02, 0.094, 0.101]}
+      material-roughness={0} material-metalness={.97} >
+      </mesh>
       <mesh castShadow receiveShadow geometry={nodes.Plane003.geometry} material={nodes.Plane003.material} position={[-3.844, -0.303, 1.972]} rotation={[Math.PI / 2, 0, Math.PI / 2]} scale={[2.02, 0.094, 0.101]} />
       <mesh castShadow receiveShadow geometry={nodes.Plane004.geometry} material={nodes.Plane004.material} position={[0.038, 1.453, 3.99]} rotation={[Math.PI / 2, -Math.PI / 2, 0]} scale={[1.653, 0.094, 0.141]} />
       <mesh castShadow receiveShadow geometry={nodes.Plane001.geometry} material={nodes.Plane001.material} position={[-1.83, 3.112, 0.097]} rotation={[0, -1.571, 0]} scale={[0.143, 1, 2.01]} />
       <mesh castShadow receiveShadow geometry={nodes.Plane006.geometry} material={nodes.Plane006.material} position={[0.05, 3.11, 2.11]} scale={[0.143, 1, 1.87]} /> 
        <group position={[-1.835, 1.435, 0.115]} rotation={[0, -Math.PI / 2, 0]} scale={[0.124, 1.676, 2.003]}>
        
-        <mesh castShadow receiveShadow geometry={nodes.Cube004_1.geometry} material={materials['Material.005']}  material-roughness={1} material-metalness={1} />
+        <mesh castShadow receiveShadow geometry={nodes.Cube004_1.geometry} material={materials['Material.005']}  material-roughness={1} material-metalness={1} >
+          <meshStandardMaterial color={"#0f383b"}/>
+        </mesh>
        
         <mesh castShadow receiveShadow geometry={nodes.Cube004_2.geometry} material={materials['Material.009']} />
         <mesh castShadow receiveShadow geometry={nodes.Cube004_3.geometry} material={materials['Material.010']} />

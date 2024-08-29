@@ -1,6 +1,13 @@
 import { useState, useRef, Suspense, useEffect } from "react";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+
+import * as Switch from '@radix-ui/react-switch';
+
+
+gsap.registerPlugin(useGSAP);
 
 import {
   Environment,
@@ -33,7 +40,7 @@ const CameraShift = ({ targetPosition, targetRotation }) => {
   useFrame(({ camera }) => {
     if (isAnimating && targetPosition && targetRotation) {
       const elapsedTime = Date.now() - animationStartTime;
-      const duration = 2000; // Duration of the animation in milliseconds
+      const duration = 10000; //was at 2000 Duration of the animation in milliseconds
       const t = Math.min(elapsedTime / duration, 0.1);
 
       camera.position.lerpVectors(camera.position.clone(), targetPosition, t);
@@ -80,7 +87,7 @@ const Sky = ({daynighttogglestate}) => {
   return (
     <mesh>
       <sphereGeometry args={[radius, 32, 32]} />
-      <meshBasicMaterial  color ={daynighttogglestate ? "#0f0f0f" : "#D9BB97"}  side={THREE.BackSide} />
+      <meshBasicMaterial  color ={daynighttogglestate ? "#0f383b" : "#D9BB97"}  side={THREE.BackSide} />
     </mesh>
   );
 };
@@ -93,9 +100,12 @@ function App() {
   const [HTMLRotation, setHTMLRotation] = useState([0, 0, 0]);
   const [HTMLPosition, setHTMLPosition] = useState([-0.008, -0.124, 0.025]);
 
-  const [daynighttoggle, setDaynighttoggle] = useState(false);
+  const [daynighttoggle, setDaynighttoggle] = useState(true);
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+
+  const chandlersoffice = useRef()
 
   // Update mouse position
   const handlePointerMove = (event) => {
@@ -144,15 +154,19 @@ function App() {
 
 
 
-  const handleButtonClick = () => {
-    setTargetPosition(new THREE.Vector3(-7, 1.5, 7)); // Define the target position for the camera shift
-    // setTargetRotation(new THREE.Euler(-0.4, 0.6, 0.225));
-    //setHTMLRotation(new THREE.Euler(-0.30255377056249727,  0.48176162984942383,  0.14362979953155677))
-    // setScreenPosition(new THREE.Vector3(0.2445, 0.8985, 4.25))
-  };
+  // const handleButtonClick = () => {
+  //   setTargetPosition(new THREE.Vector3(-7, 1.5, 7)); // Define the target position for the camera shift
+  //   // setTargetRotation(new THREE.Euler(-0.4, 0.6, 0.225));
+  //   //setHTMLRotation(new THREE.Euler(-0.30255377056249727,  0.48176162984942383,  0.14362979953155677))
+  //   // setScreenPosition(new THREE.Vector3(0.2445, 0.8985, 4.25))
+  // };
+  // useEffect(() => {
+  //   setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
+  //   setTargetPosition(new THREE.Vector3(0, 1.5, 8));
+  // }, []);
 
   const handleBackClick = () => {
-     setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
+    setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
     // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
      setTargetPosition(new THREE.Vector3(0, 1.5, 8));
     //setTargetPosition(new THREE.Vector3(0,4.5, 9));
@@ -160,19 +174,40 @@ function App() {
     setHTMLPosition(new THREE.Vector3(-0.008, -0.124, 0.025));
   };
 
-  const handleProjectClick = () => {
-    setTargetPosition(new THREE.Vector3(-3.95, 1.5, 6.05));
-    setTargetRotation(new THREE.Euler(0, 0, 0));
-  };
+  // const handleProjectClick = () => {
+  //   setTargetPosition(new THREE.Vector3(-3.95, 1.5, 6.05));
+  //   setTargetRotation(new THREE.Euler(0, 0, 0));
+  // };
 
-  const handleContactClick = () => {
-    setTargetPosition(new THREE.Vector3(3.95, 1.5, 6.05));
-    setTargetRotation(new THREE.Euler(0, 0, 0));
-    //  setHTMLPosition(new THREE.Vector3(0,0,0))
-  };
+  // const handleContactClick = () => {
+  //   setTargetPosition(new THREE.Vector3(3.95, 1.5, 6.05));
+  //   setTargetRotation(new THREE.Euler(0, 0, 0));
+  //   //  setHTMLPosition(new THREE.Vector3(0,0,0))
+  // };
 
 
-
+  useGSAP(
+    () => {
+        // gsap code here...
+        gsap.to('.title-text', { y:10,
+          
+          
+          duration:1,
+          ease: 'power1.in',
+          opacity: 2,
+          delay:1,
+         }); // <-- automatically reverted
+         gsap.to('.subtitle-text', { x:10,
+          
+          
+          duration:1.5,
+          ease: 'power1.in',
+          opacity: 2,
+          
+         });
+    },
+   
+); // <-- scope is for selector text 
   
 
   return (
@@ -180,26 +215,32 @@ function App() {
       <div className="App">
       
 
-      <div className="TextOverlay">
+      <div className="html-overlay">
           
-          <h1 className="Text" ></h1>
-          <h1 className="Text" >Chandler's Office</h1>
-          
+          <div className="overlay-text-container">
+          <h1  className="subtitle-text" >Welcome to</h1>
+          <h1  className="title-text" >Chandler's Office</h1>
+          </div>
+
+
+
         </div>
         <div className="flex justify-around w-1/3 absolute bottom-2">
+       
           
-          <button
+          {/* <button
             className="bg-black/60 rounded-lg p-4 text-white   "
             onClick={handleBackClick}
             style={{ zIndex: 1 }}
           >
             Back
-          </button>
+          </button> */}
           
         </div>
-        <Canvas shadows
+        <div className="canvas-container">
+        <Canvas shadows antialias={true}
           camera={{
-            position: new THREE.Vector3(0, 3.5, 9), // default z 9
+            position: new THREE.Vector3(0, 1.5, 8), rotation: new THREE.Euler(-0.16514867741462677, 0, 0)  // default z 9
           }}
         >
           <Suspense fallback={null}>
@@ -238,6 +279,7 @@ function App() {
             />
           </Suspense>
         </Canvas>
+        </div>
       </div>
     </>
   );
