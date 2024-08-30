@@ -18,14 +18,12 @@ import {
   useAnimations,
 } from "@react-three/drei";
 import * as THREE from "three";
-import { SpotLightHelper } from "three";
-
-import ComputerScreenHTML from "./htmloverlay/computerscreen";
 
 
-import Roads from "./Roads";
-import Othermodel from "../public/Othermodel";
+
+
 import OfficeModel from "./OfficeModel";
+import DarkModeSwitch from "./Switch";
 
 
 
@@ -91,6 +89,10 @@ const Sky = ({daynighttogglestate}) => {
     </mesh>
   );
 };
+
+
+
+
 
 
 
@@ -185,6 +187,8 @@ function App() {
   //   //  setHTMLPosition(new THREE.Vector3(0,0,0))
   // };
 
+  
+
 
   useGSAP(
     () => {
@@ -205,6 +209,16 @@ function App() {
           opacity: 2,
           
          });
+        gsap.from('.arrow-down', {
+          y:-10,
+          repeat:-1,
+          duration:.75,
+          ease: 'power1.in',
+          yoyo:true,
+          delay:2,
+          opacity:1,
+          
+        }) 
     },
    
 ); // <-- scope is for selector text 
@@ -218,8 +232,15 @@ function App() {
       <div className="html-overlay">
           
           <div className="overlay-text-container">
-          <h1  className="subtitle-text" >Welcome to</h1>
-          <h1  className="title-text" >Chandler's Office</h1>
+          <h1  className={`subtitle-text ${daynighttoggle ? 'text-white' : 'text-black'}`}  >Welcome to</h1>
+          <h1  className={`title-text ${daynighttoggle ? 'text-white' : 'text-black'}`} >Chandler's Office</h1>
+          </div>
+
+          <div className="arrow-down">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAWZJREFUaEPtltFtwzAMRI+bJJs0mzSTNJ2k3aTtJt2EtYAYUA1Z4pkUggD0ryX63h0pS/Dkjzy5fiTAoxPMBDIBpwPZQk4D3dszAbeFzgKZwJ6Bqqr1OxGZYtaUokV4AhhnIxPIGTC2yt6ybKFsoWyhAw6o6ouIfPe2sj8yVT2JyC8rhx5iVf0A8ArgKiKfETNQDAHwtdS6LVeOdwaCAqjEr9/YhbAmUIlfa1IQZgBVLa6/AThtHGpCWAAa4tfSZ2s7mQHuF7QCUECGECOAjvjLaL7+3XKZfmMgegBR4oseKoEVdhE3TGIPIFL8YQBLEi2AaPEugBEEgHLc1s/lflRuu5bq+e3mQy1UF+m0k2W8XOLdCRhmogfhFh8GMGinFkSI+FAAAiJMfDiAASJU/BSADkS4+GkADYgp4qcCVBA/zN3GcvbWa9z/AfaD0esTINpRtl4mwDoWvT4TiHaUrZcJsI5Fr/8DSu3FMVjd7H8AAAAASUVORK5CYII="/>
+          </div>
+          <div className="dark-mode-switch">
+          <DarkModeSwitch handleDayNightToggle = {handleDayNightToggle}/>
           </div>
 
 
@@ -238,19 +259,19 @@ function App() {
           
         </div>
         <div className="canvas-container">
-        <Canvas shadows antialias={true}
+        <Canvas shadows antialias
           camera={{
             position: new THREE.Vector3(0, 1.5, 8), rotation: new THREE.Euler(-0.16514867741462677, 0, 0)  // default z 9
           }}
         >
           <Suspense fallback={null}>
-          <ambientLight intensity={5.5} /> 
+          <ambientLight intensity={daynighttoggle? 4.5 : 5.5} /> 
           <directionalLight castShadow position={[-2,10,3]} intensity={[2.5]}  />
             
 
            
             
-            <OfficeModel mousePosition={mousePosition} />
+            <OfficeModel  mousePosition={mousePosition} />
             <mesh position={[0,-.95,0]} rotation-x={[-Math.PI/2]} scale={[1,1,1]} receiveShadow>
             <planeGeometry args={[1,1]}/>
             <meshStandardMaterial  color={"#D9BB97"}/>
@@ -260,17 +281,13 @@ function App() {
             <shadowMaterial  opacity={.2}/>
             </mesh>
             <Sky daynighttogglestate={daynighttoggle} />
-            {/* <OrbitControls
-              enableRotate={true}
-              enablePan={true}
-              enableZoom={true}
-            /> */}
+            
             <FlyControls movementSpeed={5} rollSpeed={0.5} dragToLook={true} />
             <Environment preset="city">
               <mesh>
                 
                 <boxGeometry args={[100, 32, 32]} />
-                <meshStandardMaterial color ={daynighttoggle ? "#0f0f0f" : "#ffffff"} side={1} />
+                <meshStandardMaterial color ={daynighttoggle ? "#0f0f0f" : "#c4c4c4"} side={1} />
               </mesh>
             </Environment>
             <CameraShift

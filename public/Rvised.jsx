@@ -182,7 +182,8 @@ export default function Model(props) {
          //<mesh castShadow receiveShadow geometry={nodes.Cube006_4.geometry} material={materials['Material.038']} />  */}
       </group>
        <mesh castShadow receiveShadow geometry={nodes.Plane007.geometry} material={nodes.Plane007.material} position={[-3.842, 1.453, 0.095]} rotation={[-Math.PI, 0, Math.PI / 2]} scale={[1.653, 0.094, 0.141]} /> 
-       <mesh castShadow receiveShadow geometry={nodes.Cube.geometry} material={materials['Material.004']} position={[-1.854, -0.297, 1.994]} scale={[1.969, 0.095, 1.997]} /> 
+       <mesh castShadow receiveShadow geometry={nodes.Cube.geometry} material={materials['Material.004']} position={[-1.854, -0.297, 1.994]} scale={[1.969, 0.095, 1.997]} >
+        <meshStandardMaterial color={'#ffffff'} roughness={.3} metalness={1} /> </mesh> 
     </group>
   )
 }

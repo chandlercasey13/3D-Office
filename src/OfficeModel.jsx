@@ -16,18 +16,38 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import Model from "../public/Rvised";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 
 
 const OfficeModel = ({mousePosition}) => {
     const modelRef = useRef();
+    const [animationStarted, setAnimationStarted] = useState(false);
+   
+
+    // Set a delay before starting the animation
+    useGSAP(
+        () => {
+            gsap.from(modelRef.current.rotation, { y: .2, duration: 1 })
+            
+        },
+       
+    ); 
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setAnimationStarted(true);
+        }, 1000); // Delay of 1 second
     
+        return () => clearTimeout(timeout); // Cleanup to prevent memory leaks
+    }, []);
   
     // Update rotation based on mouse position
     useFrame(() => {
-      if (modelRef.current) {
+      if (modelRef.current && animationStarted ) {
         // console.log(modelRef.current.rotation.y)
-        const sensitivity = 0.05;
+        const sensitivity = 0.03;
         const lerpFactor = 0.02; // Adjust sensitivity as needed
         modelRef.current.rotation.y = THREE.MathUtils.lerp(
           modelRef.current.rotation.y,
