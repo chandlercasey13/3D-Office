@@ -21,7 +21,7 @@ import { useGSAP } from "@gsap/react";
 
 
 
-const OfficeModel = ({mousePosition}) => {
+const OfficeModel = ({mousePosition , handleSetDeskChairTransparent, deskchairtransparent}) => {
     const modelRef = useRef();
     const [animationStarted, setAnimationStarted] = useState(false);
    
@@ -69,7 +69,7 @@ const OfficeModel = ({mousePosition}) => {
       <>
         {/* Model with mouse-based rotation effect */}
         <group ref={modelRef} >
-          <Model />
+          <Model handleSetDeskChairTransparent ={handleSetDeskChairTransparent} deskchairtransparent = {deskchairtransparent} />
         </group>
       </>
     );

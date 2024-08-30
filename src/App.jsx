@@ -3,11 +3,14 @@ import { useState, useRef, Suspense, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
 
 import * as Switch from '@radix-ui/react-switch';
 
 
 gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger)
 
 import {
   Environment,
@@ -79,6 +82,8 @@ const CameraShift = ({ targetPosition, targetRotation }) => {
 };
 
 
+
+
 const Sky = ({daynighttogglestate}) => {
   const radius = 100; // Size of the sky sphere
 
@@ -99,8 +104,7 @@ const Sky = ({daynighttogglestate}) => {
 function App() {
   const [targetPosition, setTargetPosition] = useState(null);
   const [targetRotation, setTargetRotation] = useState(null);
-  const [HTMLRotation, setHTMLRotation] = useState([0, 0, 0]);
-  const [HTMLPosition, setHTMLPosition] = useState([-0.008, -0.124, 0.025]);
+ const [deskchairtransparent, setdeskchairtransparent] =useState(false)
 
   const [daynighttoggle, setDaynighttoggle] = useState(true);
 
@@ -154,26 +158,21 @@ function App() {
   };
 
 
+const handleSetDeskChairTransparent = () => {
+  setdeskchairtransparent(!deskchairtransparent)
+}
 
 
-  // const handleButtonClick = () => {
-  //   setTargetPosition(new THREE.Vector3(-7, 1.5, 7)); // Define the target position for the camera shift
-  //   // setTargetRotation(new THREE.Euler(-0.4, 0.6, 0.225));
-  //   //setHTMLRotation(new THREE.Euler(-0.30255377056249727,  0.48176162984942383,  0.14362979953155677))
-  //   // setScreenPosition(new THREE.Vector3(0.2445, 0.8985, 4.25))
-  // };
-  // useEffect(() => {
-  //   setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
-  //   setTargetPosition(new THREE.Vector3(0, 1.5, 8));
-  // }, []);
+ 
 
   const handleBackClick = () => {
-    setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
+    setTargetRotation(new THREE.Euler(-0.05, .8, 0.0375));
     // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
-     setTargetPosition(new THREE.Vector3(0, 1.5, 8));
+     setTargetPosition(new THREE.Vector3(0.2, 0.18, 0.0));
+     handleSetDeskChairTransparent()
     //setTargetPosition(new THREE.Vector3(0,4.5, 9));
     
-    setHTMLPosition(new THREE.Vector3(-0.008, -0.124, 0.025));
+    
   };
 
   // const handleProjectClick = () => {
@@ -222,8 +221,33 @@ function App() {
     },
    
 ); // <-- scope is for selector text 
-  
+const scrollTriggerRef = useRef(null);
+const CameraControl = () => {  const { camera } = useThree(); // Access the Three.js camera
+ 
 
+  useEffect(() => {
+      if (camera) {
+          // Create ScrollTrigger to control camera position
+          ScrollTrigger.create({
+              trigger: scrollTriggerRef.current,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: true, // Smooth scrolling effect
+              markers: true, // Optional: Add markers for debugging
+              onUpdate: (self) => {
+                  // Calculate camera position based on scroll
+                  const progress = self.progress;
+                  camera.position.z = 5 - progress * 10; // Adjust camera position
+                  camera.lookAt(0, 0, 0); // Keep the camera looking at the origin
+              }
+          });
+      }
+
+     
+  }, [camera]);
+
+ 
+};
   return (
     <>
       <div className="App">
@@ -231,7 +255,7 @@ function App() {
 
       <div className="html-overlay">
           
-          <div className="overlay-text-container">
+          <div ref={scrollTriggerRef} className="overlay-text-container">
           <h1  className={`subtitle-text ${daynighttoggle ? 'text-white' : 'text-black'}`}  >Welcome to</h1>
           <h1  className={`title-text ${daynighttoggle ? 'text-white' : 'text-black'}`} >Chandler's Office</h1>
           </div>
@@ -249,17 +273,18 @@ function App() {
         <div className="flex justify-around w-1/3 absolute bottom-2">
        
           
-          {/* <button
+           <button
             className="bg-black/60 rounded-lg p-4 text-white   "
             onClick={handleBackClick}
             style={{ zIndex: 1 }}
           >
             Back
-          </button> */}
+          </button> 
           
         </div>
+       
         <div className="canvas-container">
-        <Canvas shadows antialias
+        <Canvas  shadows antialias
           camera={{
             position: new THREE.Vector3(0, 1.5, 8), rotation: new THREE.Euler(-0.16514867741462677, 0, 0)  // default z 9
           }}
@@ -270,12 +295,9 @@ function App() {
             
 
            
-            
-            <OfficeModel  mousePosition={mousePosition} />
-            <mesh position={[0,-.95,0]} rotation-x={[-Math.PI/2]} scale={[1,1,1]} receiveShadow>
-            <planeGeometry args={[1,1]}/>
-            <meshStandardMaterial  color={"#D9BB97"}/>
-            </mesh>
+           {/* <CameraControl />  */}
+            <OfficeModel deskchairtransparent= {deskchairtransparent} handleSetDeskChairTransparent={handleSetDeskChairTransparent} mousePosition={mousePosition} />
+           
             <mesh position={[0,-.95,0]} rotation-x={[-Math.PI/2]} scale={[400,400,1]} receiveShadow>
             <planeGeometry args={[1,1]}/>
             <shadowMaterial  opacity={.2}/>
@@ -297,7 +319,8 @@ function App() {
           </Suspense>
         </Canvas>
         </div>
-      </div>
+        </div>
+      
     </>
   );
 }

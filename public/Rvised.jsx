@@ -8,10 +8,10 @@ import { Html } from '@react-three/drei';
 
 import { useGLTF } from '@react-three/drei'
 
-export default function Model(props) {
+export default function Model({deskchairtransparent,handleSetDeskChairTransparent}, props) {
   const { nodes, materials } = useGLTF('/rvised.glb')
   return (
-    <group {...props} dispose={null} position={[0,0,-1]} rotation-y={[.775]} scale={[1,1,1]}>
+    <group {...props} dispose={null} position={[0,-.4,-2]} rotation-y={[.775]} scale={[.55,.6,.55]}>
       <group position={[-2.237, 0.576, 0.969]} rotation={[-Math.PI / 2, 0, 0]} scale={12.089}>
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
            <group position={[0, 0.171, 0]}>
@@ -27,7 +27,7 @@ export default function Model(props) {
             <mesh castShadow receiveShadow geometry={nodes.tvpCube1_tvcorpo_da_tv_0.geometry} material={materials['Material.035']} />
             <mesh castShadow receiveShadow geometry={nodes.tvpCube1_tvpes_da_tv1_0.geometry} material={materials['Material.035']} />
             <mesh castShadow receiveShadow geometry={nodes.tvpCube1_tvtela_da_tv_0.geometry} material={materials['tvtela_da_tv.002']} >
-            <Html position={[.00,-.17,-.6]} scale={[.32,.55,1]} transform occlude> <div style=
+            {/* <Html className='computer-monitor' position={[.00,-.17,-.6]} scale={[.32,.55,1]} transform occlude> <div style=
             {{ width: '100%', height: 0, paddingBottom: '178%', position: 'relative', zIndex:1, 
               transform: 'rotate(90deg)' }}><iframe 
         src="https://giphy.com/embed/39lWTXEdmp4qnZtHIK"
@@ -36,7 +36,7 @@ export default function Model(props) {
           <a style={{color: 'rgba(0,0,0,0)'}} href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW">via GIPHY</a></p>
           
          
-          </Html>
+          </Html> */}
             </mesh>
           </group> 
         </group>
@@ -78,7 +78,7 @@ export default function Model(props) {
           </mesh>
         </group>
          <group position={[3.452, -3.853, 1.647]} rotation={[0, 0, -1.551]} scale={0.805}>
-           <mesh castShadow receiveShadow geometry={nodes.Cube006_0.geometry} material={materials['Material.031']} position={[-0.631, -4.385, 0.537]} />
+           <mesh  geometry={nodes.Cube006_0.geometry} material={materials['Material.031']} position={[-0.631, -4.385, 0.537]} />
           {/* <mesh castShadow receiveShadow geometry={nodes.Cube006_1_1.geometry} material={materials['Material.030']} position={[-0.631, -4.385, 0.537]} />  */}
         {/* <mesh castShadow receiveShadow geometry={nodes.Cube006_2_1.geometry} material={materials['Material.001']} position={[-0.631, -4.385, 0.537]} /> */}
           {/* <mesh castShadow receiveShadow geometry={nodes.Cube006_3_1.geometry} material={materials['Material.008']} position={[-0.631, -4.385, 0.537]} />  */}
@@ -113,6 +113,7 @@ export default function Model(props) {
         <group position={[-7.169, -0.043, -0.621]} scale={0.422}>
           <mesh castShadow receiveShadow geometry={nodes.Cube020_1.geometry} material={materials['Material.024']} position={[12.239, -6.918, 1.63]} scale={[0.249, 0.666, 0.322]} />
         </group>
+        {!deskchairtransparent && (
         <group position={[-2.139, -1.498, 0.048]} rotation={[0, 0, -1.175]} scale={0.31}>
           <mesh castShadow receiveShadow geometry={nodes.Cube021_0.geometry} material={materials['Material.034']} />
           <mesh castShadow receiveShadow geometry={nodes.Cube021_1.geometry} material={materials['Material.032']} />
@@ -121,6 +122,7 @@ export default function Model(props) {
           <mesh castShadow receiveShadow geometry={nodes.Cube021_4.geometry} material={materials['Material.017']} />
           <mesh castShadow receiveShadow geometry={nodes.Cube021_5.geometry} material={materials['Material.018']} />
         </group> 
+        )}
          <group position={[-0.346, -3.712, 0.162]} rotation={[0, 0, -1.559]} scale={0.232}>
           <mesh castShadow receiveShadow geometry={nodes.Cube023_3.geometry} material={materials['Material.030']} position={[-0.01, -0.826, 0]}>
             <mesh castShadow receiveShadow geometry={nodes.Cube023_6.geometry} material={materials['Material.016']}>
@@ -153,9 +155,9 @@ export default function Model(props) {
 //this one below
         <mesh castShadow receiveShadow geometry={nodes.Cube002_1.geometry} material={materials['Material.007']} material-roughness={1} material-metalness={.9} />
         
-        <mesh castShadow receiveShadow geometry={nodes.Cube002_2.geometry} material={materials['Material.001']} />
-        <mesh castShadow receiveShadow geometry={nodes.Cube002_3.geometry} material={materials['Material.023']} />
-        <mesh castShadow receiveShadow geometry={nodes.Cube002_4.geometry} material={materials['Material.035']} />
+        <mesh  geometry={nodes.Cube002_2.geometry} material={materials['Material.001']} />
+        <mesh  geometry={nodes.Cube002_3.geometry} material={materials['Material.023']} />
+        <mesh geometry={nodes.Cube002_4.geometry} material={materials['Material.035']} />
          {/* <mesh castShadow receiveShadow geometry={nodes.Plane005_1.geometry} material={nodes.Plane005_1.material} position={[-0.001, 0.01, 0.997]} rotation={[-Math.PI / 2, 1.57, 0]} scale={[0.99, 0.05, 0.992]} /> */}
       </group>
       <mesh castShadow receiveShadow geometry={nodes.Plane002.geometry} material={nodes.Plane002.material} position={[-1.825, -0.303, 3.992]} rotation={[Math.PI / 2, 0, 0]} scale={[2.02, 0.094, 0.101]}
