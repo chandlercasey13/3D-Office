@@ -27,16 +27,16 @@ export default function Model({deskchairtransparent,handleSetDeskChairTransparen
             <mesh castShadow receiveShadow geometry={nodes.tvpCube1_tvcorpo_da_tv_0.geometry} material={materials['Material.035']} />
             <mesh castShadow receiveShadow geometry={nodes.tvpCube1_tvpes_da_tv1_0.geometry} material={materials['Material.035']} />
             <mesh castShadow receiveShadow geometry={nodes.tvpCube1_tvtela_da_tv_0.geometry} material={materials['tvtela_da_tv.002']} >
-            {/* <Html className='computer-monitor' position={[.00,-.17,-.6]} scale={[.32,.55,1]} transform occlude> <div style=
+            <Html className='computer-monitor' position={[.00,-.17,-.6]} scale={[.32,.55,1]} transform occlude> <div style=
             {{ width: '100%', height: 0, paddingBottom: '178%', position: 'relative', zIndex:1, 
-              transform: 'rotate(90deg)' }}><iframe 
+              transform: 'rotate(90deg)', }}><iframe 
         src="https://giphy.com/embed/39lWTXEdmp4qnZtHIK"
         width="100%" height="100%" style={{position:'absolute'}} frameBorder="0" className="giphy-embed" 
-        allowFullScreen></iframe></div><p>
+        ></iframe></div><p>
           <a style={{color: 'rgba(0,0,0,0)'}} href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW">via GIPHY</a></p>
           
          
-          </Html> */}
+          </Html>
             </mesh>
           </group> 
         </group>
@@ -153,7 +153,7 @@ export default function Model({deskchairtransparent,handleSetDeskChairTransparen
       <mesh castShadow receiveShadow geometry={nodes.Cylinder011.geometry} material={materials['Material.023']} position={[-1.976, 0.117, 2.956]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-0.574, -0.019, -0.574]} /> 
         <group position={[0.049, 1.433, 2.116]} scale={[0.144, 1.676, 1.873]}>
 //this one below
-        <mesh castShadow receiveShadow geometry={nodes.Cube002_1.geometry} material={materials['Material.007']} material-roughness={1} material-metalness={.9} />
+        <mesh  geometry={nodes.Cube002_1.geometry} material={materials['Material.007']} material-roughness={1} material-metalness={.9} />
         
         <mesh  geometry={nodes.Cube002_2.geometry} material={materials['Material.001']} />
         <mesh  geometry={nodes.Cube002_3.geometry} material={materials['Material.023']} />

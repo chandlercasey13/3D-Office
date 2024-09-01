@@ -98,9 +98,6 @@ const Sky = ({daynighttogglestate}) => {
 
 
 
-
-
-
 function App() {
   const [targetPosition, setTargetPosition] = useState(null);
   const [targetRotation, setTargetRotation] = useState(null);
@@ -109,7 +106,7 @@ function App() {
   const [daynighttoggle, setDaynighttoggle] = useState(true);
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
+  const scrollTriggerRef = useRef(null);
 
   const chandlersoffice = useRef()
 
@@ -154,7 +151,7 @@ function App() {
 
   const handleDayNightToggle = () => {
     setDaynighttoggle(!daynighttoggle);
-    console.log(daynighttoggle);
+    
   };
 
 
@@ -165,20 +162,23 @@ const handleSetDeskChairTransparent = () => {
 
  
 
-  const handleBackClick = () => {
+  const handleScroll = () => {
     setTargetRotation(new THREE.Euler(-0.05, .8, 0.0375));
     // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
      setTargetPosition(new THREE.Vector3(0.2, 0.18, 0.0));
      handleSetDeskChairTransparent()
+     console.log('triggered')
     //setTargetPosition(new THREE.Vector3(0,4.5, 9));
     
     
   };
 
-  // const handleProjectClick = () => {
-  //   setTargetPosition(new THREE.Vector3(-3.95, 1.5, 6.05));
-  //   setTargetRotation(new THREE.Euler(0, 0, 0));
-  // };
+
+  const handleBackScroll = () => {
+    setTargetPosition(new THREE.Vector3(0, 1.5, 8));
+    setTargetRotation( new THREE.Euler(-0.16514867741462677, 0, 0));
+    handleSetDeskChairTransparent()
+  };
 
   // const handleContactClick = () => {
   //   setTargetPosition(new THREE.Vector3(3.95, 1.5, 6.05));
@@ -186,11 +186,11 @@ const handleSetDeskChairTransparent = () => {
   //   //  setHTMLPosition(new THREE.Vector3(0,0,0))
   // };
 
-  
 
 
   useGSAP(
     () => {
+      
         // gsap code here...
         gsap.to('.title-text', { y:10,
           
@@ -217,38 +217,25 @@ const handleSetDeskChairTransparent = () => {
           delay:2,
           opacity:1,
           
-        }) 
+        }) ;
+
+
+        ScrollTrigger.create({
+          trigger: '.title-text',
+          start: "top top", // When the top of the trigger element reaches the top of the viewport
+          end: "bottom top", // Optional: If you want to reset or animate back when scrolling back up
+          scrub: 1, // Smooth animation linked to scroll
+           // Trigger only once
+          onEnter: () => handleScroll(),
+          onLeaveBack: () => handleBackScroll(),
+      });
+       
     },
    
-); // <-- scope is for selector text 
-const scrollTriggerRef = useRef(null);
-const CameraControl = () => {  const { camera } = useThree(); // Access the Three.js camera
- 
+); 
 
-  useEffect(() => {
-      if (camera) {
-          // Create ScrollTrigger to control camera position
-          ScrollTrigger.create({
-              trigger: scrollTriggerRef.current,
-              start: 'top top',
-              end: 'bottom bottom',
-              scrub: true, // Smooth scrolling effect
-              markers: true, // Optional: Add markers for debugging
-              onUpdate: (self) => {
-                  // Calculate camera position based on scroll
-                  const progress = self.progress;
-                  camera.position.z = 5 - progress * 10; // Adjust camera position
-                  camera.lookAt(0, 0, 0); // Keep the camera looking at the origin
-              }
-          });
-      }
 
-     
-  }, [camera]);
-
- 
-};
-  return (
+return (
     <>
       <div className="App">
       
@@ -257,6 +244,7 @@ const CameraControl = () => {  const { camera } = useThree(); // Access the Thre
           
           <div ref={scrollTriggerRef} className="overlay-text-container">
           <h1  className={`subtitle-text ${daynighttoggle ? 'text-white' : 'text-black'}`}  >Welcome to</h1>
+          
           <h1  className={`title-text ${daynighttoggle ? 'text-white' : 'text-black'}`} >Chandler's Office</h1>
           </div>
 
@@ -269,22 +257,24 @@ const CameraControl = () => {  const { camera } = useThree(); // Access the Thre
 
 
 
-        </div>
+      </div>
         <div className="flex justify-around w-1/3 absolute bottom-2">
        
           
-           <button
+           {/* <button
             className="bg-black/60 rounded-lg p-4 text-white   "
             onClick={handleBackClick}
             style={{ zIndex: 1 }}
           >
             Back
-          </button> 
+          </button>  */}
           
         </div>
-       
+          <div className="canvas-scroll-track">
+
+          
         <div className="canvas-container">
-        <Canvas  shadows antialias
+        <Canvas  shadows antialias='true'
           camera={{
             position: new THREE.Vector3(0, 1.5, 8), rotation: new THREE.Euler(-0.16514867741462677, 0, 0)  // default z 9
           }}
@@ -296,6 +286,11 @@ const CameraControl = () => {  const { camera } = useThree(); // Access the Thre
 
            
            {/* <CameraControl />  */}
+              <CameraShift
+              targetPosition={targetPosition}
+              targetRotation={targetRotation}
+            /> 
+            
             <OfficeModel deskchairtransparent= {deskchairtransparent} handleSetDeskChairTransparent={handleSetDeskChairTransparent} mousePosition={mousePosition} />
            
             <mesh position={[0,-.95,0]} rotation-x={[-Math.PI/2]} scale={[400,400,1]} receiveShadow>
@@ -312,12 +307,10 @@ const CameraControl = () => {  const { camera } = useThree(); // Access the Thre
                 <meshStandardMaterial color ={daynighttoggle ? "#0f0f0f" : "#c4c4c4"} side={1} />
               </mesh>
             </Environment>
-            <CameraShift
-              targetPosition={targetPosition}
-              targetRotation={targetRotation}
-            />
+          
           </Suspense>
         </Canvas>
+        </div>
         </div>
         </div>
       
