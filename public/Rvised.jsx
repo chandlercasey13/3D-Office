@@ -13,6 +13,7 @@ export default function Model(
   props
 ) {
   const { nodes, materials } = useGLTF("/rvised.glb");
+  
   return (
     <group
       {...props}
@@ -93,13 +94,13 @@ export default function Model(
             >
               <Html
                 className="computer-monitor"
-                position={[0.005, -0.2, -0.7]}
-                scale={[0.32, 0.57, 1]}
+                position={[0.364, 0.32, -0.7]}
+                scale={[0.080, 0.1425, .01]}
                 transform
                 occlude
               >
                 
-                <div
+                <div className="monitor-screen"
                   style={{
                     width: "100%",
                     height: 0,
@@ -111,8 +112,8 @@ export default function Model(
                 >
                   <iframe
                     src="https://giphy.com/embed/39lWTXEdmp4qnZtHIK"
-                    width="100%"
-                    height="100%"
+                    width="400%"
+                    height="400%"
                     style={{ position: "absolute" }}
                     frameBorder="0"
                     className="giphy-embed"
@@ -202,13 +203,8 @@ export default function Model(
           rotation={[0, 0, -1.423]}
           scale={0.055}
         >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Cube001_0.geometry}
-            material={materials["Material.031"]}
-            position={[2.198, 14.784, -9.766]}
-          />
+          
+          
           <mesh
             castShadow
             receiveShadow
@@ -293,6 +289,13 @@ export default function Model(
             />
           </mesh>
         </group>
+
+
+
+        //setIsAnimating
+
+
+        
         <group
           position={[3.452, -3.853, 1.647]}
           rotation={[0, 0, -1.551]}
@@ -406,29 +409,10 @@ export default function Model(
           rotation={[0, 0, -1.604]}
           scale={0.055}
         >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Cube017_0.geometry}
-            material={materials["Material.031"]}
-            position={[-0.15, 4.535, 0]}
-          >
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Cube017_2.geometry}
-              material={materials["Material.014"]}
-              position={[0.115, 12.914, -9.682]}
-              scale={0.645}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Cube017_3.geometry}
-              material={materials["Material.018"]}
-              position={[0.033, 12.971, -10.251]}
-              scale={0.725}
-            />
+          <mesh>
+          
+            
+           
           </mesh>
         </group>
         <group position={[-7.169, -0.043, -0.621]} scale={0.422}>
@@ -486,13 +470,12 @@ export default function Model(
           </group>
         )}
         <group
-          position={[-0.346, -3.712, 0.162]}
+          position={[-0.346, -3.7, 0.1]}
           rotation={[0, 0, -1.559]}
           scale={0.232}
         >
           <mesh
-            castShadow
-            receiveShadow
+            
             geometry={nodes.Cube023_3.geometry}
             material={materials["Material.030"]}
             position={[-0.01, -0.826, 0]}
@@ -528,8 +511,7 @@ export default function Model(
                   material={materials["Material.014"]}
                 />
                 <mesh
-                  castShadow
-                  receiveShadow
+                  
                   geometry={nodes.Cube023_5.geometry}
                   material={materials["Material.015"]}
                   position={[0, 0, 0.012]}

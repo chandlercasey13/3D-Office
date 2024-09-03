@@ -7,6 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 import * as Switch from "@radix-ui/react-switch";
 
+
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,7 +22,9 @@ import {
 import * as THREE from "three";
 
 import OfficeModel from "./OfficeModel";
+import Props from './OfficeProps'
 import DarkModeSwitch from "./Switch";
+import HTMLOverlay from "./HTMLOverlay";
 
 const CameraShift = ({ targetPosition, targetRotation }) => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -88,11 +91,12 @@ function App() {
   const [targetPosition, setTargetPosition] = useState(null);
   const [targetRotation, setTargetRotation] = useState(null);
   const [deskchairtransparent, setdeskchairtransparent] = useState(false);
+  const [htmlPresent, sethtmlPresent] = useState(true)
 
   const [daynighttoggle, setDaynighttoggle] = useState(true);
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const scrollTriggerRef = useRef(null);
+
 
 
 
@@ -136,21 +140,32 @@ function App() {
   };
 
   const handleSetDeskChairTransparent = () => {
-    setdeskchairtransparent(!deskchairtransparent);
+    setdeskchairtransparent((prev) => !prev);
   };
 
+  const handleRemoveHTML = () => {
+    sethtmlPresent((prev) => !prev)
+   
+  };
+  console.log(htmlPresent)
   const handleScroll = () => {
     setTargetRotation(new THREE.Euler(-0.05, 0.8, 0.0375));
     // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
     setTargetPosition(new THREE.Vector3(0.2, 0.18, 0.0));
+    
     handleSetDeskChairTransparent();
+    sethtmlPresent(false)
+    
+
     
   };
 
   const handleBackScroll = () => {
     setTargetPosition(new THREE.Vector3(0, 1.5, 8));
     setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
+    
     handleSetDeskChairTransparent();
+    sethtmlPresent(true)
   };
 
   // const handleContactClick = () => {
@@ -161,20 +176,20 @@ function App() {
 
   useGSAP(() => {
     // gsap code here...
-    gsap.to(".title-text", {
-      y: 10,
+    gsap.from(".title-text", {
+      y: 0,
 
       duration: 1,
       ease: "power1.in",
-      opacity: 2,
+      opacity: 0,
       delay: 1,
     }); 
-    gsap.to(".subtitle-text", {
+    gsap.from(".subtitle-text", {
       x: 0,
 
       duration: 1.5,
       ease: "power1.in",
-      opacity: 2,
+      opacity: 0,
     });
     gsap.from(".arrow-down", {
       y: -10,
@@ -183,14 +198,15 @@ function App() {
       ease: "power1.in",
       yoyo: true,
       delay: 2,
-      opacity: 1,
+      opacity: 0,
     });
 
     ScrollTrigger.create({
       trigger: ".title-text",
-      start: 200,
+      start: "top center",
       end: "bottom top", 
-      scrub: 1, 
+      scrub: 1,
+       
       
       onEnter: () => handleScroll(),
       onLeaveBack: () => handleBackScroll(),
@@ -201,40 +217,13 @@ function App() {
     <>
     <div className="App">
       
-          <div className="html-overlay">
-          <div className="html-overlay-organization-container">
-          <div ref={scrollTriggerRef} className="overlay-text-container">
-            <h1
-              className={`subtitle-text ${
-                daynighttoggle ? "text-white" : "text-white"
-              }`}
-            >
-              Welcome to
-            </h1>
-
-            <h1
-              className={`title-text ${
-                daynighttoggle ? "text-white" : "text-white"
-              }`}
-            >
-              Chandler's Office
-            </h1>
-          </div>
-
-          <div className="arrow-down">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAWZJREFUaEPtltFtwzAMRI+bJJs0mzSTNJ2k3aTtJt2EtYAYUA1Z4pkUggD0ryX63h0pS/Dkjzy5fiTAoxPMBDIBpwPZQk4D3dszAbeFzgKZwJ6Bqqr1OxGZYtaUokV4AhhnIxPIGTC2yt6ybKFsoWyhAw6o6ouIfPe2sj8yVT2JyC8rhx5iVf0A8ArgKiKfETNQDAHwtdS6LVeOdwaCAqjEr9/YhbAmUIlfa1IQZgBVLa6/AThtHGpCWAAa4tfSZ2s7mQHuF7QCUECGECOAjvjLaL7+3XKZfmMgegBR4oseKoEVdhE3TGIPIFL8YQBLEi2AaPEugBEEgHLc1s/lflRuu5bq+e3mQy1UF+m0k2W8XOLdCRhmogfhFh8GMGinFkSI+FAAAiJMfDiAASJU/BSADkS4+GkADYgp4qcCVBA/zN3GcvbWa9z/AfaD0esTINpRtl4mwDoWvT4TiHaUrZcJsI5Fr/8DSu3FMVjd7H8AAAAASUVORK5CYII=" />
-          </div>
-          <div className="dark-mode-switch">
-            <DarkModeSwitch handleDayNightToggle={handleDayNightToggle} daynighttoggle={daynighttoggle} />
-          </div>
-          </div>
-          </div>
           
-        
+          <HTMLOverlay htmlPresent={htmlPresent} handleDayNightToggle={handleDayNightToggle} daynighttoggle={daynighttoggle}/>
+          
           <div className="canvas-container">
             <Canvas
               shadows
-              antialias="false"
+              antialias="true"
               camera={{
                 fov: 30,
                 position: new THREE.Vector3(0, 1.5, 8),
@@ -253,13 +242,14 @@ function App() {
                   targetPosition={targetPosition}
                   targetRotation={targetRotation}
                 />
+                {/* <Props/> */}
                 <OfficeModel
                   deskchairtransparent={deskchairtransparent}
                   handleSetDeskChairTransparent={handleSetDeskChairTransparent}
                   mousePosition={mousePosition}
                 />
                 <mesh
-                  position={[0, -0.95, 0]}
+                  position={[0, -0.85, 0]}
                   rotation-x={[-Math.PI / 2]}
                   scale={[400, 400, 1]}
                   receiveShadow
