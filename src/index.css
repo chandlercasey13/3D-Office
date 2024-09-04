@@ -53,7 +53,7 @@
 
 .html-overlay {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,14 +68,12 @@
 
 
 }
-.html-overlay ::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Track color */
-  border-radius: 10px; /* Rounded corners */
-}
+
 .html-overlay-organization-container {
   width: 80%;
-  height: 100vh;
-  position: relative;
+  height: 100%;
+  position:absolute;
+  
   
   display: flex;
   justify-content: center;
@@ -89,8 +87,8 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 12%;
-  top:65%;
+  left: 10%;
+  top:22%;
 
   
   width: 90%;
@@ -126,7 +124,7 @@
 
 
 .arrow-down {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   left: 50%;
   opacity: 1;
@@ -135,7 +133,7 @@
 
 .dark-mode-switch{
 position: absolute;
-top:5%;
+top:3%;
 right: 20%;  
 }
 
@@ -182,13 +180,16 @@ button {
 }
 
 
-/* iframe {
-  zoom: .05;
+.trigger-div-cam-perspective{
+position: absolute;
+top:30%
 }
-#container {
-  width: 10px;
-} */
 
-
+.trigger-div-cam-perspective2{
+  position: absolute;
+  top:30%
+  }
+  
+  
 
 

@@ -80,7 +80,7 @@ const Sky = ({ daynighttogglestate }) => {
     <mesh>
       <sphereGeometry args={[radius, 32, 32]} />
       <meshBasicMaterial
-        color={daynighttogglestate ? "#0f383b" : "#D9BB97"}
+        color={daynighttogglestate ? "#0f383b" : "#b3997b"}
         side={THREE.BackSide}
       />
     </mesh>
@@ -147,8 +147,8 @@ function App() {
     sethtmlPresent((prev) => !prev)
    
   };
-  console.log(htmlPresent)
-  const handleScroll = () => {
+  
+  const handleScroll1 = () => {
     setTargetRotation(new THREE.Euler(-0.05, 0.8, 0.0375));
     // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
     setTargetPosition(new THREE.Vector3(0.2, 0.18, 0.0));
@@ -160,7 +160,7 @@ function App() {
     
   };
 
-  const handleBackScroll = () => {
+  const handleBackScroll1 = () => {
     setTargetPosition(new THREE.Vector3(0, 1.5, 8));
     setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
     
@@ -168,11 +168,32 @@ function App() {
     sethtmlPresent(true)
   };
 
-  // const handleContactClick = () => {
-  //   setTargetPosition(new THREE.Vector3(3.95, 1.5, 6.05));
-  //   setTargetRotation(new THREE.Euler(0, 0, 0));
-  //   //  setHTMLPosition(new THREE.Vector3(0,0,0))
-  // };
+  const handleScroll2 = () => {
+    setTargetPosition(new THREE.Vector3(-.8, .7, .1));
+    setTargetRotation(new THREE.Euler(0, -.8, 0));
+    console.log('working')
+    
+  };
+
+  const handleBackScroll2 = () => {
+    setTargetRotation(new THREE.Euler(-0.05, 0.8, 0.0375));
+    // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
+    setTargetPosition(new THREE.Vector3(0.2, 0.18, 0.0));
+    
+  };
+
+  const handleScroll3 = () => {
+    setTargetPosition(new THREE.Vector3(.3, .6, .03));
+    setTargetRotation(new THREE.Euler(-1.4, 0, -.55));
+    console.log('working')
+    
+  };
+
+  const handleBackScroll3 = () => {
+    setTargetPosition(new THREE.Vector3(-.8, .7, .1));
+    setTargetRotation(new THREE.Euler(0, -.8, 0));
+    
+  };
 
   useGSAP(() => {
     // gsap code here...
@@ -208,10 +229,34 @@ function App() {
       scrub: 1,
        
       
-      onEnter: () => handleScroll(),
-      onLeaveBack: () => handleBackScroll(),
+      onEnter: () => handleScroll1(),
+      onLeaveBack: () => handleBackScroll1(),
     });
+    ScrollTrigger.create({
+      trigger: ".trigger-div-cam-perspective",
+      start: 400,
+      
+      scrub: 1,
+      
+       
+      
+      onEnter: () => handleScroll2(),
+      onLeaveBack: () => handleBackScroll2(),
+    });
+    ScrollTrigger.create({
+      trigger: ".trigger-div-cam-perspective",
+      start: 600,
+      
+      scrub: 1,
+      
+       
+      
+      onEnter: () => handleScroll3(),
+      onLeaveBack: () => handleBackScroll3(),
+    });
+  
   });
+  
 
   return (
     <>
@@ -242,7 +287,7 @@ function App() {
                   targetPosition={targetPosition}
                   targetRotation={targetRotation}
                 />
-                {/* <Props/> */}
+                <Props/>
                 <OfficeModel
                   deskchairtransparent={deskchairtransparent}
                   handleSetDeskChairTransparent={handleSetDeskChairTransparent}

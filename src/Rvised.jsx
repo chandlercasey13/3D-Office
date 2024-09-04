@@ -10,13 +10,15 @@ import { useGLTF } from "@react-three/drei";
 
 export default function Model(
   { deskchairtransparent, handleSetDeskChairTransparent },
-  props
+  
 ) {
-  const { nodes, materials } = useGLTF("/rvised.glb");
+  const { nodes: nodes, materials: materials } = useGLTF('/rvised.glb');
+  const { nodes: nodes2, materials: materials2 } = useGLTF('/OfficeProps.glb');
+  console.log(nodes)
   
   return (
     <group
-      {...props}
+      
       dispose={null}
       position={[0,-.4,-2]}
       rotation-y={[0.775]}
@@ -92,13 +94,15 @@ export default function Model(
               geometry={nodes.tvpCube1_tvtela_da_tv_0.geometry}
               material={materials["tvtela_da_tv.002"]}
             >
-              <Html
-                className="computer-monitor"
-                position={[0.364, 0.32, -0.7]}
-                scale={[0.080, 0.1425, .01]}
-                transform
-                occlude
-              >
+             
+                {!deskchairtransparent? 
+                 <Html
+                 className="computer-monitor"
+                 position={[0.364, 0.32, -0.7]}
+                 scale={[0.080, 0.1425, .01]}
+                 transform
+                 occlude
+               >
                 
                 <div className="monitor-screen"
                   style={{
@@ -111,7 +115,7 @@ export default function Model(
                   }}
                 >
                   <iframe
-                    src="https://giphy.com/embed/39lWTXEdmp4qnZtHIK"
+                    src="http://localhost:5174/"
                     width="400%"
                     height="400%"
                     style={{ position: "absolute" }}
@@ -127,7 +131,44 @@ export default function Model(
                     via GIPHY
                   </a>
                 </p>
-              </Html>
+                
+                </Html>
+                 :  
+                 <Html
+                 className="computer-monitor"
+                 position={[-0.367, 0.34, -0.7]}
+                 scale={[0.1425,.08 , .01]}
+                 transform
+                 occlude
+               >
+                 <div className="monitor-screen"
+                  style={{
+                    width: "100%",
+                    height: 0,
+                    paddingBottom: "178%",
+                    position: "relative",
+                    zIndex: 1,
+                    transform: "rotate(0deg)",
+                  }}
+                >
+                  <iframe
+                    src="http://localhost:5174/"
+                    width="400%"
+                    height="400%"
+                    style={{ position: "absolute" }}
+                    frameBorder="0"
+                    className="giphy-embed"
+                  ></iframe>
+                </div>
+                <p>
+                  <a
+                    style={{ color: "rgba(0,0,0,0)" }}
+                    href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW"
+                  >
+                    via GIPHY
+                  </a>
+                </p> </Html> }
+              
             </mesh>
           </group>
         </group>
@@ -301,11 +342,14 @@ export default function Model(
           rotation={[0, 0, -1.551]}
           scale={0.805}
         >
-          <mesh
-            geometry={nodes.Cube006_0.geometry}
-            material={materials["Material.031"]}
-            position={[-0.631, -4.385, 0.537]}
-          />
+          <group   position={[-.5, -4.4, 0.5]}
+          rotation={[0, 0, 0]}
+          scale={0.805}>
+          <mesh geometry={nodes2.Cube006_0.geometry} material={materials2['Material.031']} />
+          <mesh geometry={nodes2.Cube006_1.geometry} material={materials2['Material.030']} />
+          <mesh geometry={nodes2.Cube006_2.geometry} material={materials2['Material.001']} />
+          <mesh geometry={nodes2.Cube006_3.geometry} material={materials2['Material.002']} />
+        </group>
         </group>
         <group
           position={[-3.853, -0.896, 1.087]}
@@ -558,13 +602,17 @@ export default function Model(
       />
       <mesh
         castShadow
-        receiveShadow
+        
         geometry={nodes.Cylinder011.geometry}
         material={materials["Material.023"]}
         position={[-1.976, 0.117, 2.956]}
         rotation={[-Math.PI, 0, -Math.PI]}
         scale={[-0.574, -0.019, -0.574]}
       />
+       <group position={[-1.9, .2, 2.6]} rotation={[-Math.PI/2, 0, 0]} scale={0.08}>
+          <mesh geometry={nodes2.Cylinder007_0.geometry} material={materials2['Material.027']} />
+          <mesh geometry={nodes2.Cylinder007_1.geometry} material={materials2['Material.026']} />
+        </group>
       <group position={[0.049, 1.433, 2.116]} scale={[0.144, 1.676, 1.873]}>
         <mesh
           geometry={nodes.Cube002_1.geometry}
@@ -572,19 +620,13 @@ export default function Model(
           material-roughness={1}
           material-metalness={0.9}
         />
-
-        <mesh
-          geometry={nodes.Cube002_2.geometry}
-          material={materials["Material.001"]}
-        />
-        <mesh
-          geometry={nodes.Cube002_3.geometry}
-          material={materials["Material.023"]}
-        />
-        <mesh
-          geometry={nodes.Cube002_4.geometry}
-          material={materials["Material.035"]}
-        />
+//corkboard
+<group position={[-2.354, 0.3, -.1]} rotation={[-Math.PI/2,0,-Math.PI/2]} scale={.32}>
+          <mesh geometry={nodes2.Cube11647_0.geometry} material={materials2['Material.035']} />
+          <mesh geometry={nodes2.Cube11647_1.geometry} material={materials2['Material.023']} />
+          <mesh geometry={nodes2.Cube11647_2.geometry} material={materials2['Material.007']} />
+          <mesh geometry={nodes2.Cube11647_3.geometry} material={materials2['Material.001']} />
+        </group>
       </group>
       <mesh
         castShadow
@@ -666,6 +708,11 @@ export default function Model(
           geometry={nodes.Cube004_4.geometry}
           material={materials["Material.011"]}
         />
+         <group position={[2,0.5,0.1]} rotation={[0, Math.PI / 2, 0]} scale={0.5}>
+          <mesh geometry={nodes2.Cylinder_0.geometry} material={materials['Material.031']} />
+          <mesh geometry={nodes2.Cylinder_1.geometry} material={materials['Material.029']} />
+          <mesh geometry={nodes2.Cylinder_2.geometry} material={materials['Material.037']} />
+        </group>
       </group>
       <group
         position={[0.049, 1.433, 2.116]}
@@ -690,6 +737,7 @@ export default function Model(
       >
         <meshStandardMaterial color={"#ffffff"} roughness={0.3} metalness={1} />
       </mesh>
+      
     </group>
   );
 }

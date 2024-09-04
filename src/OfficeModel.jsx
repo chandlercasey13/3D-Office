@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 
 import * as THREE from "three";
-import Model from "../public/Rvised";
+import Model from "./Rvised";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
