@@ -4,7 +4,7 @@
 import DarkModeSwitch from "./Switch"
 
 
-const HTMLOverlay = ({htmlPresent , handleDayNightToggle, daynighttoggle}) => {
+const HTMLOverlay = ({htmlPresent , handleDayNightToggle, daynighttoggle, arrowText, arrowPresent}) => {
 
 
 
@@ -29,7 +29,7 @@ return(
               Chandler's Office
             </h1>
 
-
+            
             
             </>
             
@@ -38,14 +38,18 @@ return(
           )}
           <div className="trigger-div-cam-perspective"></div>
           
-          
+          <div className={`arrow-div ${arrowPresent? `opacity-1`: `opacity-0`} `}>
           <div className="arrow-down">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAWZJREFUaEPtltFtwzAMRI+bJJs0mzSTNJ2k3aTtJt2EtYAYUA1Z4pkUggD0ryX63h0pS/Dkjzy5fiTAoxPMBDIBpwPZQk4D3dszAbeFzgKZwJ6Bqqr1OxGZYtaUokV4AhhnIxPIGTC2yt6ybKFsoWyhAw6o6ouIfPe2sj8yVT2JyC8rhx5iVf0A8ArgKiKfETNQDAHwtdS6LVeOdwaCAqjEr9/YhbAmUIlfa1IQZgBVLa6/AThtHGpCWAAa4tfSZ2s7mQHuF7QCUECGECOAjvjLaL7+3XKZfmMgegBR4oseKoEVdhE3TGIPIFL8YQBLEi2AaPEugBEEgHLc1s/lflRuu5bq+e3mQy1UF+m0k2W8XOLdCRhmogfhFh8GMGinFkSI+FAAAiJMfDiAASJU/BSADkS4+GkADYgp4qcCVBA/zN3GcvbWa9z/AfaD0esTINpRtl4mwDoWvT4TiHaUrZcJsI5Fr/8DSu3FMVjd7H8AAAAASUVORK5CYII=" />
+            <p className="arrow-text">{arrowText}</p>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAORJREFUWEftlMENgzAMRe1jtsgqHaWT0k1gC46pUhEKCOKf2JWoZK6Wrcfzd5hu9vHNeMiBpI24ITckGZDqniE3JBmQ6p4hM0NpniOlNBDzg0OYpMG53tMDrWwZPC4QEwLV05PntwANRBQRqANMbsk/8eQQXpJZCGinX4DSwMCGyl+tmbiA0sI0A9VMfaBTKjlrWtN2jfDKtk2npr7WumG6DFXWV0pwgM8C3mVIyBR0TVfXpgI6ZIrQ066dvhpohSKKyDtj9g5Jg6zqJoasYFRXZgmhfod+BeOGELMeasmSG/o7Q28kfn4l2htz1wAAAABJRU5ErkJggg=="/>
+          </div>
           </div>
           
           <div className="dark-mode-switch">
+          {htmlPresent && (
             <DarkModeSwitch handleDayNightToggle={handleDayNightToggle} daynighttoggle={daynighttoggle} />
-          </div>
+          )}
+            </div>
           </div>
           </div>   
     )}

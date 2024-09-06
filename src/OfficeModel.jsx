@@ -6,6 +6,10 @@ import * as THREE from "three";
 import Model from "./Rvised";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import React from "react";
+import { Html } from "@react-three/drei";
+
+import { useGLTF } from "@react-three/drei";
 
 const OfficeModel = ({
   mousePosition,

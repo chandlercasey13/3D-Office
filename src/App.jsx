@@ -92,20 +92,23 @@ function App() {
   const [targetRotation, setTargetRotation] = useState(null);
   const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   const [htmlPresent, sethtmlPresent] = useState(true)
+  const [arrowPresent, setarrowPresent] = useState(true)
 
   const [daynighttoggle, setDaynighttoggle] = useState(true);
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [arrowText, setArrowText]= useState('About Me')
 
 
 
 
 
   const handlePointerMove = (event) => {
+    {htmlPresent && (
     setMousePosition({
       x: event.clientX / window.innerWidth,
       y: event.clientY / window.innerHeight,
-    });
+    }))}
   };
 
   useEffect(() => {
@@ -113,7 +116,7 @@ function App() {
     return () => {
       window.removeEventListener("mousemove", handlePointerMove);
     };
-  }, []);
+  }, [htmlPresent]);
 
   // useEffect(() => {
   //   const handleKeyDown = (event) => {
@@ -143,18 +146,15 @@ function App() {
     setdeskchairtransparent((prev) => !prev);
   };
 
-  const handleRemoveHTML = () => {
-    sethtmlPresent((prev) => !prev)
-   
-  };
-  
+
   const handleScroll1 = () => {
-    setTargetRotation(new THREE.Euler(-0.05, 0.8, 0.0375));
+    setTargetRotation(new THREE.Euler(-0.0585, 0.78, 0.0375));
     // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
-    setTargetPosition(new THREE.Vector3(0.2, 0.18, 0.0));
+    setTargetPosition(new THREE.Vector3(0.1, 0.276, -0.1));
     
     handleSetDeskChairTransparent();
     sethtmlPresent(false)
+    setArrowText('Projects')
     
 
     
@@ -164,35 +164,37 @@ function App() {
     setTargetPosition(new THREE.Vector3(0, 1.5, 8));
     setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
     
+    setTimeout(() => sethtmlPresent(true), 500)
     handleSetDeskChairTransparent();
-    sethtmlPresent(true)
+    setArrowText('About Me')
+    
   };
 
   const handleScroll2 = () => {
     setTargetPosition(new THREE.Vector3(-.8, .7, .1));
     setTargetRotation(new THREE.Euler(0, -.8, 0));
-    console.log('working')
+    setArrowText('Contact Me')
     
   };
 
   const handleBackScroll2 = () => {
-    setTargetRotation(new THREE.Euler(-0.05, 0.8, 0.0375));
+    setTargetRotation(new THREE.Euler(-0.0585, 0.78, 0.0375));
     // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
-    setTargetPosition(new THREE.Vector3(0.2, 0.18, 0.0));
-    
+    setTargetPosition(new THREE.Vector3(0.1, 0.276, -0.1));
+    setArrowText('Projects')
   };
 
   const handleScroll3 = () => {
     setTargetPosition(new THREE.Vector3(.3, .6, .03));
     setTargetRotation(new THREE.Euler(-1.4, 0, -.55));
-    console.log('working')
+    setarrowPresent(false)
     
   };
 
   const handleBackScroll3 = () => {
     setTargetPosition(new THREE.Vector3(-.8, .7, .1));
     setTargetRotation(new THREE.Euler(0, -.8, 0));
-    
+    setarrowPresent(true)
   };
 
   useGSAP(() => {
@@ -215,16 +217,26 @@ function App() {
     gsap.from(".arrow-down", {
       y: -10,
       repeat: -1,
-      duration: 0.75,
+      duration: 0.85,
       ease: "power1.in",
       yoyo: true,
       delay: 2,
       opacity: 0,
     });
 
+    gsap.to("header.about-me-header", {
+      y: 100,
+
+      duration: 5,
+      ease: "power1.in",
+      opacity: 0,
+      delay: 1,
+    });
+    
+
     ScrollTrigger.create({
       trigger: ".title-text",
-      start: "top center",
+      start: 50,
       end: "bottom top", 
       scrub: 1,
        
@@ -263,7 +275,7 @@ function App() {
     <div className="App">
       
           
-          <HTMLOverlay htmlPresent={htmlPresent} handleDayNightToggle={handleDayNightToggle} daynighttoggle={daynighttoggle}/>
+          <HTMLOverlay htmlPresent={htmlPresent} handleDayNightToggle={handleDayNightToggle} daynighttoggle={daynighttoggle} arrowText={arrowText} arrowPresent= {arrowPresent}/>
           
           <div className="canvas-container">
             <Canvas
@@ -287,14 +299,14 @@ function App() {
                   targetPosition={targetPosition}
                   targetRotation={targetRotation}
                 />
-                <Props/>
+                
                 <OfficeModel
                   deskchairtransparent={deskchairtransparent}
                   handleSetDeskChairTransparent={handleSetDeskChairTransparent}
                   mousePosition={mousePosition}
                 />
                 <mesh
-                  position={[0, -0.85, 0]}
+                  position={[0, -0.75, 0]}
                   rotation-x={[-Math.PI / 2]}
                   scale={[400, 400, 1]}
                   receiveShadow
@@ -303,11 +315,11 @@ function App() {
                   <shadowMaterial opacity={0.2} />
                 </mesh>
                 <Sky daynighttogglestate={daynighttoggle} />
-                <FlyControls
+                {/* <FlyControls
                   movementSpeed={5}
                   rollSpeed={0.5}
                   dragToLook={true}
-                />
+                /> */}
                 <Environment preset="city">
                   <mesh>
                     <boxGeometry args={[100, 32, 32]} />

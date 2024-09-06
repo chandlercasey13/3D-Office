@@ -6,6 +6,7 @@
 
 *{
   box-sizing: border-box;
+  
 }
 
 
@@ -14,25 +15,26 @@
   max-width: 100vw;
   height: 300vh;
   position: relative;
+ 
   
  
 
 }
-.App::-webkit-scrollbar {
-  width: 12px; /* Width of the vertical scrollbar */
+*::-webkit-scrollbar {
+  width: 2px; /* Width of the vertical scrollbar */
 }
 
-.App::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Track color */
+*::-webkit-scrollbar-track {
+  background: #0f383b; /* Track color */
   border-radius: 10px; /* Rounded corners */
 }
 
-.App::-webkit-scrollbar-thumb {
-  background: #888; /* Handle color */
+*::-webkit-scrollbar-thumb {
+  background: white; /* Handle color */
   border-radius: 10px; /* Rounded corners */
 }
 
-.App::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: #555; /* Handle color on hover */
 }
 
@@ -48,8 +50,130 @@
 
 
 .monitor-screen{
-  pointer-events: none;
+  
 }
+
+.computer-html{
+  height: 20%;
+  width: 100%;
+  
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-image: url('/images/gradient.png'); */
+  /* background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;  */
+  
+}
+
+.html-container{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  
+  
+}
+
+
+
+.picture-column{
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.picture-div{
+  position: relative;
+ height: 80%; 
+ width: 100%;
+}
+
+.chandler-pic{
+  position: absolute;
+  left:28%;
+  top:5%;
+  width: 40%;
+  transform: scale(1.5,.90); 
+  border-radius: 20px;
+  
+ 
+}
+.logos-div{
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  height: 30%;
+  width:100%;
+  padding: 2%;
+}
+.logos-organization{
+  display: flex;
+  position: absolute;
+  flex-wrap: wrap;
+  left:24%;
+  transform: scale(1.4,1);
+  width:60%;
+  gap: 3.5px;
+}
+
+.threejslogo{
+  width: 80px;
+  height: 65px;
+transform: scale(1.5,2);
+padding-left: 30px;
+padding-top: 20px;
+margin-right: 4%;
+
+
+}
+
+.nextjslogo{
+ width: 100px;
+  padding-left: 11px;
+}
+
+.expressjslogo{
+  width: 90px;
+  
+  
+}
+
+.about-me-column{
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  width: 65%;
+  height: 100%;
+  position: relative;
+}
+
+.about-me-header{
+  width: 60%;
+  height: 10%;
+  color: white;
+  font-size: 90px;
+  font-weight: 700;
+  position: absolute;
+  left:15%;
+  top:3%;
+  transform: scale(1.5,1);
+}
+
+.about-me-section{
+  height: 85%;
+  color: white;
+  padding: 2%;
+  font-size: 41px;
+  position: relative;
+  
+  margin-right: 5px;
+}
+
 
 .html-overlay {
   width: 100%;
@@ -61,8 +185,8 @@
   position: absolute;
   z-index: 1;
   
-
-
+  pointer-events: none;
+ 
  
   
 
@@ -78,6 +202,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
  
   
 }
@@ -122,18 +247,40 @@
 }
 
 
-
-.arrow-down {
+.arrow-div{
   position: fixed;
-  bottom: 0px;
-  left: 50%;
+  bottom: 10px;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+ 
+ 
+  
+  
+}
+
+.arrow-text{
+ font-size: 13px;
+ font-weight: 200;
+ font-family: "Frank Ruhl Libre";
+ 
+}
+.arrow-down {
+ 
   opacity: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 
 .dark-mode-switch{
 position: absolute;
-top:3%;
+top:2.5%;
 right: 20%;  
 }
 
