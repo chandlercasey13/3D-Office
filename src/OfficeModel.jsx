@@ -33,7 +33,7 @@ const OfficeModel = ({
 
   useFrame(() => {
     if (modelRef.current && animationStarted) {
-      const sensitivity = 0.03;
+      const sensitivity = 0.05;
       const lerpFactor = 0.02;
       modelRef.current.rotation.y = THREE.MathUtils.lerp(
         modelRef.current.rotation.y,

@@ -4,12 +4,14 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
-
+import { TextPlugin } from "gsap/TextPlugin";
 import * as Switch from "@radix-ui/react-switch";
 
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(TextPlugin);
+
 
 import {
   Environment,
@@ -98,6 +100,7 @@ function App() {
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [arrowText, setArrowText]= useState('About Me')
+  const [arrowTextShadow, setArrowTextShadow] = useState(false)
 
 
 
@@ -118,25 +121,6 @@ function App() {
     };
   }, [htmlPresent]);
 
-  // useEffect(() => {
-  //   const handleKeyDown = (event) => {
-  //     if (event.key === "ArrowUp") {
-  //       handleButtonClick();
-  //     } else if (event.key === "ArrowDown") {
-  //       handleBackClick();
-  //     } else if (event.key === "ArrowLeft") {
-  //       handleProjectClick();
-  //     } else if (event.key === "ArrowRight") {
-  //       handleContactClick();
-  //     }
-  //   };
-
-  //   window.addEventListener("keydown", handleKeyDown);
-
-  //   return () => {
-  //     window.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
 
   const handleDayNightToggle = () => {
     setDaynighttoggle(!daynighttoggle);
@@ -154,10 +138,7 @@ function App() {
     
     handleSetDeskChairTransparent();
     sethtmlPresent(false)
-    setArrowText('Projects')
-    
-
-    
+    setArrowText('Projects') 
   };
 
   const handleBackScroll1 = () => {
@@ -224,16 +205,7 @@ function App() {
       opacity: 0,
     });
 
-    gsap.to("header.about-me-header", {
-      y: 100,
-
-      duration: 5,
-      ease: "power1.in",
-      opacity: 0,
-      delay: 1,
-    });
-    
-
+ 
     ScrollTrigger.create({
       trigger: ".title-text",
       start: 50,
@@ -269,13 +241,53 @@ function App() {
   
   });
   
+  useEffect(() => {
+    // Trigger animation only if the element is visible
+    
+      gsap.to(".about-me-header", {
+        y: 10,
+        text: "Hi, I'm Chandler",
+        
+        
+        duration: 2,
+        
+        
+        opacity: 1,
+        delay: 1,
+      });
+
+      gsap.from(".about-me-section", {
+        y: 10,
+        
+        
+        
+        duration: 2,
+        
+        
+        opacity: 0,
+        delay: 1,
+      });
+      gsap.from(".chandler-pic", {
+        y: 10,
+        text: "Hi, I'm Chandler",
+        
+        
+        duration: 2,
+        
+        
+        opacity: 0,
+        delay: 1,
+      });
+    
+    
+  }); 
 
   return (
     <>
     <div className="App">
       
           
-          <HTMLOverlay htmlPresent={htmlPresent} handleDayNightToggle={handleDayNightToggle} daynighttoggle={daynighttoggle} arrowText={arrowText} arrowPresent= {arrowPresent}/>
+          <HTMLOverlay htmlPresent={htmlPresent} handleDayNightToggle={handleDayNightToggle} daynighttoggle={daynighttoggle} arrowText={arrowText} arrowPresent= {arrowPresent} arrowTextShadow = {arrowTextShadow}/>
           
           <div className="canvas-container">
             <Canvas
