@@ -7,6 +7,7 @@ import React from "react";
 import { Html } from "@react-three/drei";
 
 import { useGLTF } from "@react-three/drei";
+import Corkboard from "../public/Corkboard";
 
 export default function Model(
   { deskchairtransparent, handleSetDeskChairTransparent },
@@ -102,6 +103,7 @@ export default function Model(
                  scale={[0.080, 0.1425, .01]}
                  rotation={[Math.PI ,0,0]}
                  transform
+                 occlude
                  
                >
                 
@@ -135,8 +137,9 @@ export default function Model(
                 
                 </Html>)}
                 <Html
-                 className={`computer-monitor ${deskchairtransparent? "opacity-100" : "opacity-0" } `}
-                 position={[0.478,.428, -0.7]}
+                 className={`computer-monitor`}
+
+                 position={deskchairtransparent? [0.478,.428, -0.7] : [0.478,.428, -0.5]}
                  rotation-y={[Math.PI]}
                  scale={[0.0114, 0.032, .01]}
                  transform
@@ -662,10 +665,7 @@ My journey in software development began with a curiosity for how things work un
         
 //corkboard
 <group position={[-2.354, 0.3, -.1]} rotation={[-Math.PI/2,0,-Math.PI/2]} scale={.32}>
-          <mesh geometry={nodes2.Cube11647_0.geometry} material={materials2['Material.035']} />
-          <mesh geometry={nodes2.Cube11647_1.geometry} material={materials2['Material.023']} />
-          <mesh geometry={nodes2.Cube11647_2.geometry} material={materials2['Material.007']} />
-          <mesh geometry={nodes2.Cube11647_3.geometry} material={materials2['Material.001']} />
+          <Corkboard/>
         </group>
       </group>
       <mesh

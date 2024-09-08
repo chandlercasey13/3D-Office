@@ -1,4 +1,4 @@
-import { useState, useRef, Suspense, useEffect } from "react";
+import { useState, useRef, Suspense, useEffect, useLayoutEffect } from "react";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { gsap } from "gsap";
@@ -23,10 +23,14 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 
+import { useLoader } from '@react-three/fiber';
+
 import OfficeModel from "./OfficeModel";
-import Props from './OfficeProps'
+
 import DarkModeSwitch from "./Switch";
 import HTMLOverlay from "./HTMLOverlay";
+import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
+
 
 const CameraShift = ({ targetPosition, targetRotation }) => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -77,12 +81,18 @@ const CameraShift = ({ targetPosition, targetRotation }) => {
 
 const Sky = ({ daynighttogglestate }) => {
   const radius = 100; 
+  
+ 
+
+
 
   return (
-    <mesh>
+    <mesh position={[0,0,0]} rotation={[0,0,0]}>
       <sphereGeometry args={[radius, 32, 32]} />
-      <meshBasicMaterial
-        color={daynighttogglestate ? "#0f383b" : "#b3997b"}
+       {/* <boxGeometry args={[10,10,0]}/>  */}
+      <meshStandardMaterial 
+       
+         color={daynighttogglestate ? "#0f383b" : "#b3997b"}
         side={THREE.BackSide}
       />
     </mesh>
@@ -90,38 +100,41 @@ const Sky = ({ daynighttogglestate }) => {
 };
 
 function App() {
+  
   const [targetPosition, setTargetPosition] = useState(null);
   const [targetRotation, setTargetRotation] = useState(null);
   const [deskchairtransparent, setdeskchairtransparent] = useState(false);
-  const [htmlPresent, sethtmlPresent] = useState(true)
+  const [htmlPresent, sethtmlPresent] = useState(false)
   const [arrowPresent, setarrowPresent] = useState(true)
 
   const [daynighttoggle, setDaynighttoggle] = useState(true);
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [arrowText, setArrowText]= useState('About Me')
+  const [arrowText, setArrowText]= useState('')
   const [arrowTextShadow, setArrowTextShadow] = useState(false)
 
 
 
 
 
-  const handlePointerMove = (event) => {
-    {htmlPresent && (
-    setMousePosition({
-      x: event.clientX / window.innerWidth,
-      y: event.clientY / window.innerHeight,
-    }))}
-  };
+  // const handlePointerMove = (event) => {
+  //   {htmlPresent && (
+  //   setMousePosition({
+  //     x: event.clientX / window.innerWidth,
+  //     y: event.clientY / window.innerHeight,
+  //   }))}
+  // };
 
-  useEffect(() => {
-    window.addEventListener("mousemove", handlePointerMove);
-    return () => {
-      window.removeEventListener("mousemove", handlePointerMove);
-    };
-  }, [htmlPresent]);
+  // useEffect(() => {
+  //   window.addEventListener("mousemove", handlePointerMove);
+  //   return () => {
+  //     window.removeEventListener("mousemove", handlePointerMove);
+  //   };
+  // }, [htmlPresent]);
 
-
+const handleHTMLPresent = () => {
+  sethtmlPresent((prev) => !prev);
+}
   const handleDayNightToggle = () => {
     setDaynighttoggle(!daynighttoggle);
   };
@@ -135,9 +148,9 @@ function App() {
     setTargetRotation(new THREE.Euler(-0.0585, 0.78, 0.0375));
     // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
     setTargetPosition(new THREE.Vector3(0.1, 0.276, -0.1));
-    
-    handleSetDeskChairTransparent();
     sethtmlPresent(false)
+    handleSetDeskChairTransparent();
+   
     setArrowText('Projects') 
   };
 
@@ -145,14 +158,14 @@ function App() {
     setTargetPosition(new THREE.Vector3(0, 1.5, 8));
     setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
     
-    setTimeout(() => sethtmlPresent(true), 500)
+     sethtmlPresent(true)
     handleSetDeskChairTransparent();
     setArrowText('About Me')
-    
+   
   };
 
   const handleScroll2 = () => {
-    setTargetPosition(new THREE.Vector3(-.8, .7, .1));
+    setTargetPosition(new THREE.Vector3(-.6, .7, .15));
     setTargetRotation(new THREE.Euler(0, -.8, 0));
     setArrowText('Contact Me')
     
@@ -160,7 +173,7 @@ function App() {
 
   const handleBackScroll2 = () => {
     setTargetRotation(new THREE.Euler(-0.0585, 0.78, 0.0375));
-    // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
+    
     setTargetPosition(new THREE.Vector3(0.1, 0.276, -0.1));
     setArrowText('Projects')
   };
@@ -173,12 +186,56 @@ function App() {
   };
 
   const handleBackScroll3 = () => {
-    setTargetPosition(new THREE.Vector3(-.8, .7, .1));
+    setTargetPosition(new THREE.Vector3(-.6, .7, .15));
     setTargetRotation(new THREE.Euler(0, -.8, 0));
     setarrowPresent(true)
   };
 
+
+
   useGSAP(() => {
+
+  // ScrollTrigger.create({
+  //   trigger: ".title-text",
+  //   start: 50,
+  //   end: "bottom top", 
+  //   scrub: 1,
+     
+    
+  //   onEnter: () => handleScroll1(),
+  //   onLeaveBack: () => handleBackScroll1(),
+  // });
+  ScrollTrigger.create({
+    trigger: ".trigger-div-cam-perspective",
+    start: 400,
+    
+    scrub: 1,
+    
+     
+    
+    onEnter: () => handleScroll2(),
+    onLeaveBack: () => handleBackScroll2(),
+  });
+  ScrollTrigger.create({
+    trigger: ".trigger-div-cam-perspective",
+    start: 600,
+    
+    scrub: 1,
+    
+     
+    
+    onEnter: () => handleScroll3(),
+    onLeaveBack: () => handleBackScroll3(),
+  });
+
+
+  })
+
+
+
+  useGSAP(() => {
+
+    
     // gsap code here...
     gsap.from(".title-text", {
       y: 0,
@@ -206,95 +263,93 @@ function App() {
     });
 
  
-    ScrollTrigger.create({
-      trigger: ".title-text",
-      start: 50,
-      end: "bottom top", 
-      scrub: 1,
-       
-      
-      onEnter: () => handleScroll1(),
-      onLeaveBack: () => handleBackScroll1(),
-    });
-    ScrollTrigger.create({
-      trigger: ".trigger-div-cam-perspective",
-      start: 400,
-      
-      scrub: 1,
-      
-       
-      
-      onEnter: () => handleScroll2(),
-      onLeaveBack: () => handleBackScroll2(),
-    });
-    ScrollTrigger.create({
-      trigger: ".trigger-div-cam-perspective",
-      start: 600,
-      
-      scrub: 1,
-      
-       
-      
-      onEnter: () => handleScroll3(),
-      onLeaveBack: () => handleBackScroll3(),
-    });
-  
-  });
-  
-  useEffect(() => {
-    // Trigger animation only if the element is visible
-    
-      gsap.to(".about-me-header", {
-        y: 10,
-        text: "Hi, I'm Chandler",
-        
-        
-        duration: 2,
-        
-        
-        opacity: 1,
-        delay: 1,
-      });
 
-      gsap.from(".about-me-section", {
-        y: 10,
+  
+      // gsap.to(".about-me-header", {
+      //   y: 10,
+      //   scrollTrigger : {
+      //     trigger: ".title-text",
+      //     start: 50,
+          
+          
+      //   },
+      //   text: "Hi, I'm Chandler ",
         
         
-        
-        duration: 2,
-        
-        
-        opacity: 0,
-        delay: 1,
-      });
-      gsap.from(".chandler-pic", {
-        y: 10,
-        text: "Hi, I'm Chandler",
+      //   duration: 1.5,
         
         
-        duration: 2,
+      //   opacity: 1,
+      //   delay: 1,
+      // });
+
+      // gsap.from(".about-me-section", {
+      //   y: 10,
+      //   scrollTrigger : {
+      //     trigger: ".title-text",
+      //     start: 50,
+          
+          
+      //   },
         
         
-        opacity: 0,
-        delay: 1,
-      });
+      //   duration: 2,
+        
+        
+      //   opacity: 0,
+      //   delay: 1,
+      // });
+      // gsap.from(".chandler-pic", {
+      //   y: 10,
+      //   scrollTrigger : {
+      //     trigger: ".title-text",
+      //     start: 50,
+          
+          
+      //   },
+       
+        
+        
+      //   duration: 2,
+        
+        
+      //   opacity: 0,
+      //   delay: 1,
+      // });
     
+   
+
+
+
+
+
+
+  }, { dependencies: [deskchairtransparent], revertOnUpdate: true });
+  
+
+
+ 
+
+
+
+  
+  
     
-  }); 
+  
 
   return (
     <>
     <div className="App">
       
           
-          <HTMLOverlay htmlPresent={htmlPresent} handleDayNightToggle={handleDayNightToggle} daynighttoggle={daynighttoggle} arrowText={arrowText} arrowPresent= {arrowPresent} arrowTextShadow = {arrowTextShadow}/>
+          <HTMLOverlay  htmlPresent={htmlPresent} handleDayNightToggle={handleDayNightToggle} daynighttoggle={daynighttoggle} arrowText={arrowText} arrowPresent= {arrowPresent} arrowTextShadow = {arrowTextShadow}/>
           
           <div className="canvas-container">
             <Canvas
               shadows
               antialias="true"
               camera={{
-                fov: 30,
+                fov: 110,
                 position: new THREE.Vector3(0, 1.5, 8),
                  rotation: new THREE.Euler(-0.16514867741462677, 0, 0), 
                 
@@ -311,8 +366,10 @@ function App() {
                   targetPosition={targetPosition}
                   targetRotation={targetRotation}
                 />
-                
+                 
                 <OfficeModel
+                handleHTMLPresent = {handleHTMLPresent}
+                htmlPresent = {htmlPresent}
                   deskchairtransparent={deskchairtransparent}
                   handleSetDeskChairTransparent={handleSetDeskChairTransparent}
                   mousePosition={mousePosition}
@@ -327,11 +384,11 @@ function App() {
                   <shadowMaterial opacity={0.2} />
                 </mesh>
                 <Sky daynighttogglestate={daynighttoggle} />
-                {/* <FlyControls
+                <FlyControls
                   movementSpeed={5}
                   rollSpeed={0.5}
                   dragToLook={true}
-                /> */}
+                />
                 <Environment preset="city">
                   <mesh>
                     <boxGeometry args={[100, 32, 32]} />
