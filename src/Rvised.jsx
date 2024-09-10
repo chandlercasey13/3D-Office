@@ -8,14 +8,14 @@ import { Html } from "@react-three/drei";
 
 import { useGLTF } from "@react-three/drei";
 import Corkboard from "../public/Corkboard";
-
-export default function Model(
-  { deskchairtransparent, handleSetDeskChairTransparent },
+import { useState, useRef, useEffect } from "react";
+export default function Model( {deskchairtransparent}
+ 
   
 ) {
   const { nodes: nodes, materials: materials } = useGLTF('/rvised.glb');
   const { nodes: nodes2, materials: materials2 } = useGLTF('/OfficeProps.glb');
-  
+ 
   
   return (
     <group
@@ -730,24 +730,9 @@ My journey in software development began with a curiosity for how things work un
           <meshStandardMaterial color={"#0f383b"} />
         </mesh>
 
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube004_2.geometry}
-          material={materials["Material.009"]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube004_3.geometry}
-          material={materials["Material.010"]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube004_4.geometry}
-          material={materials["Material.011"]}
-        />
+        
+       
+       
         //clock
          {/* <group position={[2,0.5,0.1]} rotation={[0, Math.PI / 2, 0]} scale={0.5}>
           <mesh geometry={nodes2.Cylinder_0.geometry} material={materials['Material.031']} />

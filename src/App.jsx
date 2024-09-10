@@ -99,11 +99,18 @@ const Sky = ({ daynighttogglestate }) => {
   );
 };
 
+
+
+
+
+
+
+
 function App() {
   
   const [targetPosition, setTargetPosition] = useState(null);
   const [targetRotation, setTargetRotation] = useState(null);
-  const [deskchairtransparent, setdeskchairtransparent] = useState(false);
+  
   const [htmlPresent, sethtmlPresent] = useState(false)
   const [arrowPresent, setarrowPresent] = useState(true)
 
@@ -113,7 +120,7 @@ function App() {
   const [arrowText, setArrowText]= useState('')
   const [arrowTextShadow, setArrowTextShadow] = useState(false)
 
-
+  const modelRef = useRef();
 
 
 
@@ -139,17 +146,15 @@ const handleHTMLPresent = () => {
     setDaynighttoggle(!daynighttoggle);
   };
 
-  const handleSetDeskChairTransparent = () => {
-    setdeskchairtransparent((prev) => !prev);
-  };
+
 
 
   const handleScroll1 = () => {
     setTargetRotation(new THREE.Euler(-0.0585, 0.78, 0.0375));
     // setTargetRotation(new THREE.Euler(-0.56514867741462677, 0, 0));
     setTargetPosition(new THREE.Vector3(0.1, 0.276, -0.1));
-    sethtmlPresent(false)
-    handleSetDeskChairTransparent();
+    sethtmlPresent(true)
+   
    
     setArrowText('Projects') 
   };
@@ -159,7 +164,7 @@ const handleHTMLPresent = () => {
     setTargetRotation(new THREE.Euler(-0.16514867741462677, 0, 0));
     
      sethtmlPresent(true)
-    handleSetDeskChairTransparent();
+    
     setArrowText('About Me')
    
   };
@@ -192,140 +197,8 @@ const handleHTMLPresent = () => {
   };
 
 
-
-  useGSAP(() => {
-
-  // ScrollTrigger.create({
-  //   trigger: ".title-text",
-  //   start: 50,
-  //   end: "bottom top", 
-  //   scrub: 1,
-     
-    
-  //   onEnter: () => handleScroll1(),
-  //   onLeaveBack: () => handleBackScroll1(),
-  // });
-  ScrollTrigger.create({
-    trigger: ".trigger-div-cam-perspective",
-    start: 400,
-    
-    scrub: 1,
-    
-     
-    
-    onEnter: () => handleScroll2(),
-    onLeaveBack: () => handleBackScroll2(),
-  });
-  ScrollTrigger.create({
-    trigger: ".trigger-div-cam-perspective",
-    start: 600,
-    
-    scrub: 1,
-    
-     
-    
-    onEnter: () => handleScroll3(),
-    onLeaveBack: () => handleBackScroll3(),
-  });
-
-
-  })
-
-
-
-  useGSAP(() => {
-
-    
-    // gsap code here...
-    gsap.from(".title-text", {
-      y: 0,
-
-      duration: 1,
-      ease: "power1.in",
-      opacity: 0,
-      delay: 1,
-    }); 
-    gsap.from(".subtitle-text", {
-      x: 0,
-
-      duration: 1.5,
-      ease: "power1.in",
-      opacity: 0,
-    });
-    gsap.from(".arrow-down", {
-      y: -10,
-      repeat: -1,
-      duration: 0.85,
-      ease: "power1.in",
-      yoyo: true,
-      delay: 2,
-      opacity: 0,
-    });
-
- 
-
   
-      // gsap.to(".about-me-header", {
-      //   y: 10,
-      //   scrollTrigger : {
-      //     trigger: ".title-text",
-      //     start: 50,
-          
-          
-      //   },
-      //   text: "Hi, I'm Chandler ",
-        
-        
-      //   duration: 1.5,
-        
-        
-      //   opacity: 1,
-      //   delay: 1,
-      // });
 
-      // gsap.from(".about-me-section", {
-      //   y: 10,
-      //   scrollTrigger : {
-      //     trigger: ".title-text",
-      //     start: 50,
-          
-          
-      //   },
-        
-        
-      //   duration: 2,
-        
-        
-      //   opacity: 0,
-      //   delay: 1,
-      // });
-      // gsap.from(".chandler-pic", {
-      //   y: 10,
-      //   scrollTrigger : {
-      //     trigger: ".title-text",
-      //     start: 50,
-          
-          
-      //   },
-       
-        
-        
-      //   duration: 2,
-        
-        
-      //   opacity: 0,
-      //   delay: 1,
-      // });
-    
-   
-
-
-
-
-
-
-  }, { dependencies: [deskchairtransparent], revertOnUpdate: true });
-  
 
 
  
@@ -349,7 +222,7 @@ const handleHTMLPresent = () => {
               shadows
               antialias="true"
               camera={{
-                fov: 110,
+                fov: 120,
                 position: new THREE.Vector3(0, 1.5, 8),
                  rotation: new THREE.Euler(-0.16514867741462677, 0, 0), 
                 
@@ -366,14 +239,15 @@ const handleHTMLPresent = () => {
                   targetPosition={targetPosition}
                   targetRotation={targetRotation}
                 />
-                 
+                
+                 <group ref = {modelRef}>
                 <OfficeModel
                 handleHTMLPresent = {handleHTMLPresent}
                 htmlPresent = {htmlPresent}
-                  deskchairtransparent={deskchairtransparent}
-                  handleSetDeskChairTransparent={handleSetDeskChairTransparent}
+                 
                   mousePosition={mousePosition}
                 />
+                </group>
                 <mesh
                   position={[0, -0.75, 0]}
                   rotation-x={[-Math.PI / 2]}
