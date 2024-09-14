@@ -19,21 +19,20 @@ import { TextPlugin } from "gsap/TextPlugin";
 const OfficeModel = ({
   handleHTMLPresent,
   htmlPresent,
-
-  mousePosition,
+  
 }) => {
 
-  gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
 
-
+const [animationEnded, setAnimationEnded] =useState( false)
 const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   const modelRef = useRef();
   const textRef = useRef();
 
-  const tl1 = useRef();
+
 
  
   const { camera } = useThree(); 
@@ -112,12 +111,13 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   );
 
   
-  const handleSetDeskChairTransparent = () => {
-    setdeskchairtransparent(!deskchairtransparent)
-    
-  }
-  console.log(deskchairtransparent)
+
   useGSAP(() => {
+
+
+
+
+    
     const tl1 = gsap.timeline({ paused: false });
     tl1.fromTo(
       modelRef.current.scale,
@@ -130,29 +130,39 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         x: 1, // Double the size along the x-axis
         y: 1, // Double the size along the y-axis
         z: 1, // Double the size along the z-axis
-        duration: 1.25, // Animation duration
+        duration: 1.5, // Animation duration
         ease: "elastic.out", // Easing function
       }
     );
 
-    tl1.to(modelRef.current.position, {
-      x: -5, // Double the size along the x-axis
-      y: 0, // Double the size along the y-axis
-      z: 0, // Double the size along the z-axis
-      duration: 1,
-    });
+    tl1.from(modelRef.current.position,
+      {
+        x: 0, // Double the size along the x-axis
+        y: 0, // Double the size along the y-axis
+        z: 0, // Double the size along the z-axis
+        
+      },
+    0);
+    tl1.to(modelRef.current.position,
+      {
+        x: -4.5, // Double the size along the x-axis
+        y: 0, // Double the size along the y-axis
+        z: 0, // Double the size along the z-axis
+        
+      },
+    1);
 
     const timeout = setTimeout(() => {
       tl1.to(
         ".intro-text",
         {
-          text: "Chandler's Office",
-          ease: "elastic.out",
+          text: "Chandler's Office (in space)",
+          ease: "power1.in",
 
-          duration: 2,
+          duration: .5,
           opacity: 1,
         },
-        0.5
+        
       );
     }, 100);
 
@@ -175,6 +185,10 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         duration: 1.4, // Animation duration
         ease: "power1.inOut", // Easing function
         onComplete: () => {
+          
+            setAnimationEnded(true)
+            
+          
           tl2.kill();
         },
       }
@@ -208,7 +222,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
       0
     );
 
-    tl2.from(
+    tl2.fromTo(
       modelRef.current.position,
       {
         x: -5, // Double the size along the x-axis
@@ -223,7 +237,34 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
           // Play the timeline when the trigger enters the viewport
         },
       },
-      0
+      {
+        x: 0, // Double the size along the x-axis
+        y: -.4, // Double the size along the y-axis
+        z: 0, // Double the size along the z-axis
+        duration: 1,
+        delay: 0,
+
+        
+      },0
+      
+      
+    );
+
+    tl2.to(
+      modelRef.current.position,
+      {
+        
+        y: -10,
+        repeat: -1,
+        duration: 0.85,
+        ease: "power1.in",
+        yoyo: true,
+        delay: 2,
+        opacity: 0,
+      },1
+     
+      
+      
     );
 
     const monitorCamera = gsap.timeline({ paused: true, repeat: 0 });
@@ -246,9 +287,9 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
     monitorCamera.to(
       camera.position,
       {
-        x: 0.1, // Double the size along the x-axis
-        y: 0.276, // Double the size along the y-axis
-        z: -0.1, // Double the size along the z-axis
+        x: 0.15, // Double the size along the x-axis
+        y: 0.0, // Double the size along the y-axis
+        z: 0.3, // Double the size along the z-axis
         duration: 1,
         delay: 0,
       },
@@ -271,9 +312,9 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
     projectsCamera.to(
       camera.position,
       {
-        x: -0.6, // Double the size along the x-axis
-        y: 0.7, // Double the size along the y-axis
-        z: 0.15, // Double the size along the z-axis
+        x: -0.5, // Double the size along the x-axis
+        y: 0.3, // Double the size along the y-axis
+        z: 0.4, // Double the size along the z-axis
         duration: 1,
         delay: 0,
         onComplete: () => {
@@ -299,7 +340,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
     contactCamera.to(
       camera.position,
       {
-        x: 0.3, // Double the size along the x-axis
+        x: 0.1, // Double the size along the x-axis
         y: 0.6, // Double the size along the y-axis
         z: 0.03, // Double the size along the z-axis
         duration: 0.5,
@@ -318,6 +359,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
           tl2.play();
           // Play the timeline when the trigger enters the viewport
         },
+       
         once: true, // Play animation once
       });
 
@@ -330,6 +372,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
          
           disableScroll(), monitorCamera.play();
         },
+        
         onLeaveBack: () => {
           setdeskchairtransparent(false)
           monitorCamera.reverse();
@@ -361,29 +404,11 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
     }, 100);
   }, []);
 
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setAnimationStarted(true);
-  //   }, 1000);
 
-  //   return () => clearTimeout(timeout);
-  // }, []);
-
-  // useFrame(() => {
-  //   if (modelRef.current && animationStarted) {
-  //     const sensitivity = 0.05;
-  //     const lerpFactor = 0.02;
-  //     modelRef.current.rotation.y = THREE.MathUtils.lerp(
-  //       modelRef.current.rotation.y,
-  //       (mousePosition.x - 0.5) * Math.PI * sensitivity,
-  //       lerpFactor
-  //     );
-  //   }
-  // });
 
   function TextMesh({ text }) {
     return (
-      <mesh position={[5.5, 0.5, 0]} rotation={[Math.PI / 2, 0, Math.PI / 2]}>
+      <mesh position={[6, 0.5, 0]} rotation={[Math.PI / 2, 0, Math.PI / 2]}>
         <boxGeometry args={[0, 2]} />
         <meshStandardMaterial
           color="black"
@@ -404,6 +429,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
 
   const [chandlersOfficeTextVisible, setchandlersOfficeTextVisible] =
     useState(true);
+    
 
   return (
     <>

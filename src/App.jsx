@@ -1,4 +1,4 @@
-import { useState, useRef, Suspense, useEffect, useLayoutEffect } from "react";
+import { useState, useRef, Suspense, useEffect, useLayoutEffect, useMemo } from "react";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { gsap } from "gsap";
@@ -6,6 +6,17 @@ import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
 import * as Switch from "@radix-ui/react-switch";
+import { useProgress } from "@react-three/drei";
+
+
+
+
+
+
+import { Text3D } from "@react-three/drei";
+
+
+
 
 
 gsap.registerPlugin(useGSAP);
@@ -32,52 +43,17 @@ import HTMLOverlay from "./HTMLOverlay";
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 
 
-const CameraShift = ({ targetPosition, targetRotation }) => {
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [animationStartTime, setAnimationStartTime] = useState(0);
 
-  useFrame(({ camera }) => {
-    if (isAnimating && targetPosition && targetRotation) {
-      const elapsedTime = Date.now() - animationStartTime;
-      const duration = 10000; 
-      const t = Math.min(elapsedTime / duration, 0.1);
+function Loader() {
+  const { progress } = useProgress();
+  return (
+    <Html center>
+      <div style={{ color: "white" }}>{progress.toFixed(0)}% loaded</div>
+    </Html>
+  );
+}
 
-      camera.position.lerpVectors(camera.position.clone(), targetPosition, t);
-      camera.rotation.x = THREE.MathUtils.lerp(
-        camera.rotation.x,
-        targetRotation.x,
-        t
-      );
-      camera.rotation.y = THREE.MathUtils.lerp(
-        camera.rotation.y,
-        targetRotation.y,
-        t
-      );
-      camera.rotation.z = THREE.MathUtils.lerp(
-        camera.rotation.z,
-        targetRotation.z,
-        t
-      );
 
-      if (t === 1) {
-        setIsAnimating(false);
-        camera.position.copy(targetPosition);
-        camera.rotation.copy(targetRotation);
-      }
-    }
-  });
-
-  const { camera } = useThree();
-
-  useEffect(() => {
-    if (targetPosition && targetRotation) {
-      setAnimationStartTime(Date.now());
-      setIsAnimating(true);
-    }
-  }, [targetPosition, targetRotation]);
-
-  return null;
-};
 
 const Sky = ({ daynighttogglestate }) => {
   const radius = 100; 
@@ -87,20 +63,61 @@ const Sky = ({ daynighttogglestate }) => {
 
 
   return (
-    <mesh position={[0,0,0]} rotation={[0,0,0]}>
-      <sphereGeometry args={[radius, 32, 32]} />
-       {/* <boxGeometry args={[10,10,0]}/>  */}
+    <mesh position={[-0,-2,-4]} rotation={[Math.PI/1.25,0,0]}>
+       <sphereGeometry args={[radius, 50, 50]} />
+       {/* <boxGeometry args={[10,10,0]}/>   */}
+       {/* <planeGeometry args={[200,200,1]}/> */}
       <meshStandardMaterial 
        
-         color={daynighttogglestate ? "#0f383b" : "#b3997b"}
+         color={daynighttogglestate ? "#000000" : "#b3997b"}
         side={THREE.BackSide}
       />
+      
     </mesh>
   );
 };
 
 
+function Stars({ count = 2000 }) {
+  const pointsRef = useRef();
 
+  // Generate random star positions
+  const positions = useMemo(() => {
+    const positions = new Float32Array(count * 3); // 3 values per point (x, y, z)
+    for (let i = 0; i < count; i++) {
+      const x = (Math.random() - 0.5) * 1000; // Spread stars across -500 to 500 units
+      const y = (Math.random() - 0.5) * 1000;
+      const z = (Math.random() - 0.5) * 1000;
+      positions.set([x, y, z], i * 3);
+    }
+    return positions;
+  }, [count]);
+
+  
+  useFrame(({ clock }) => {
+    pointsRef.current.rotation.z += 0.0002; 
+  });
+
+  return (
+    <points ref={pointsRef} position={[0,-4,0]} rotation={[Math.PI/1.25,0,0]} scale={[.1,.06,.02]}>
+      <bufferGeometry rotation={[0,0,0]}>
+        <bufferAttribute
+          attach="attributes-position"
+          count={positions.length / 3}
+          array={positions}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        size={.01} // Size of each star
+        sizeAttenuation
+        color="#ffffff"
+        transparent
+        opacity={0.8}
+      />
+    </points>
+  );
+}
 
 
 
@@ -108,37 +125,21 @@ const Sky = ({ daynighttogglestate }) => {
 
 function App() {
   
-  const [targetPosition, setTargetPosition] = useState(null);
-  const [targetRotation, setTargetRotation] = useState(null);
+  
   
   const [htmlPresent, sethtmlPresent] = useState(false)
   const [arrowPresent, setarrowPresent] = useState(true)
 
   const [daynighttoggle, setDaynighttoggle] = useState(true);
 
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+ 
   const [arrowText, setArrowText]= useState('')
   const [arrowTextShadow, setArrowTextShadow] = useState(false)
 
   const modelRef = useRef();
 
 
-
-  // const handlePointerMove = (event) => {
-  //   {htmlPresent && (
-  //   setMousePosition({
-  //     x: event.clientX / window.innerWidth,
-  //     y: event.clientY / window.innerHeight,
-  //   }))}
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("mousemove", handlePointerMove);
-  //   return () => {
-  //     window.removeEventListener("mousemove", handlePointerMove);
-  //   };
-  // }, [htmlPresent]);
-
+ 
 const handleHTMLPresent = () => {
   sethtmlPresent((prev) => !prev);
 }
@@ -201,10 +202,6 @@ const handleHTMLPresent = () => {
 
 
 
- 
-
-
-
   
   
     
@@ -223,29 +220,27 @@ const handleHTMLPresent = () => {
               antialias="true"
               camera={{
                 fov: 120,
-                position: new THREE.Vector3(0, 1.5, 8),
-                 rotation: new THREE.Euler(-0.16514867741462677, 0, 0), 
+                position: new THREE.Vector3(0, 2.25, 5.55),
+                 rotation: new THREE.Euler(-.4, 0, 0), 
                 
               }}
             >
-              <Suspense fallback={null}>
+              <Suspense fallback={<Loader />}>
                 <ambientLight intensity={daynighttoggle ? 4.5 : 5.5} />
                 <directionalLight
                   castShadow
                   position={[-2, 10, 3]}
                   intensity={[2.5]}
                 />
-                <CameraShift
-                  targetPosition={targetPosition}
-                  targetRotation={targetRotation}
-                />
-                
+              
+                <Stars/>
                  <group ref = {modelRef}>
+                 
                 <OfficeModel
                 handleHTMLPresent = {handleHTMLPresent}
                 htmlPresent = {htmlPresent}
                  
-                  mousePosition={mousePosition}
+                  
                 />
                 </group>
                 <mesh

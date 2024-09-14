@@ -9,38 +9,99 @@ import { Html } from "@react-three/drei";
 import { useGLTF } from "@react-three/drei";
 import Corkboard from "../public/Corkboard";
 import { useState, useRef, useEffect } from "react";
+
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { Text3D } from "@react-three/drei";
+
+import { SelectiveBloom, Selection, Select } from '@react-three/postprocessing'
+
+import { BrightnessContrast } from '@react-three/postprocessing'
+import { Outline } from '@react-three/postprocessing'
+
+
 export default function Model( {deskchairtransparent}
  
   
 ) {
   const { nodes: nodes, materials: materials } = useGLTF('/rvised.glb');
   const { nodes: nodes2, materials: materials2 } = useGLTF('/OfficeProps.glb');
- 
   
+
+
+
+  function GlowingText() {
+    const glowingTextRef = useRef();
+    const modelRef = useRef()
+  
+
+   
+  
+    return (
+
+<>
+
+  <EffectComposer autoClear={false}>
+   <Bloom 
+    
+   luminanceThreshold={2}
+          luminanceSmoothing={1}/>
+           <BrightnessContrast
+    brightness={-.05} // brightness. min: -1, max: 1
+    contrast={0.05} // contrast: min -1, max: 1
+  />
+ 
+  </EffectComposer>
+  
+  <Text3D ref = {glowingTextRef} font={"/fonts/3dfont3.json"} size={.05} scale={[.35,.3,.2]} rotation={[Math.PI/2,0,0]} height={.011} width={.01} curveSegments={10} 
+  position={[-.1, .05, 0.14]}>
+    {`Chandler Casey\nFull-Stack Developer`}
+      
+    <meshStandardMaterial attach="material" color="#fce365" emissive="#fce365"   emissiveIntensity={1} />
+    
+    </Text3D>
+
+ 
+
+
+      
+    </>
+    );
+  }
+ 
   return (
+    <>
     <group
       
       dispose={null}
-      position={[0,-.3,-2]}
-      rotation-y={[0.775]}
-      rotation-x={[-0.0]}
+      position={[-.045,-0,-1 ]}
+       rotation-y={[0.79]}
+      // rotation-x={[.1]}
+      rotation-x ={[0]}
       
-      scale={[.55,.6,.55]}
+      
+      // scale={[.55,.6,.55]}
+      scale={[.35,.4,.35]}
     >
-      <group
+      
+      <group 
         position={[-2.237, 0.576, 0.969]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={12.089}
       >
-        <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+<GlowingText  />
+        
+     
+        <group  rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <group position={[0, 0.171, 0]}>
             <mesh
+             emissive="black"
               castShadow
               receiveShadow
               geometry={nodes.pCube94_corpo_do_teclado_0.geometry}
               material={materials["Material.035"]}
             />
             <mesh
+             emissive="black"
               castShadow
               receiveShadow
               geometry={nodes.pCube94_teclado_0.geometry}
@@ -48,10 +109,12 @@ export default function Model( {deskchairtransparent}
             />
           </group>
           <group
+          
             position={[11.764, 0.189, -0.483]}
             rotation={[-Math.PI, 0, -Math.PI]}
           >
             <mesh
+             emissive="black"
               castShadow
               receiveShadow
               geometry={nodes.pCylinder2_mouse_0.geometry}
@@ -59,6 +122,7 @@ export default function Model( {deskchairtransparent}
               position={[0.767, 0, 0]}
             />
             <mesh
+             emissive="black"
               castShadow
               receiveShadow
               geometry={nodes.pCylinder2_scroll_0001.geometry}
@@ -72,24 +136,28 @@ export default function Model( {deskchairtransparent}
             scale={[9.223, 4.632, 0.268]}
           >
             <mesh
+             emissive="black"
               castShadow
               receiveShadow
               geometry={nodes.tvpCube1_tvcorpo2_tv_0.geometry}
               material={materials["Material.035"]}
             />
             <mesh
+             emissive="black"
               castShadow
               receiveShadow
               geometry={nodes.tvpCube1_tvcorpo_da_tv_0.geometry}
               material={materials["Material.035"]}
             />
             <mesh
+             emissive="black"
               castShadow
               receiveShadow
               geometry={nodes.tvpCube1_tvpes_da_tv1_0.geometry}
               material={materials["Material.035"]}
             />
             <mesh
+             emissive="black"
               castShadow
               receiveShadow
               geometry={nodes.tvpCube1_tvtela_da_tv_0.geometry}
@@ -103,7 +171,7 @@ export default function Model( {deskchairtransparent}
                  scale={[0.080, 0.1425, .01]}
                  rotation={[Math.PI ,0,0]}
                  transform
-                 occlude
+                 
                  
                >
                 
@@ -368,7 +436,7 @@ My journey in software development began with a curiosity for how things work un
 
 
 
-        //setIsAnimating
+       
 
 
         
@@ -733,12 +801,7 @@ My journey in software development began with a curiosity for how things work un
         
        
        
-        //clock
-         {/* <group position={[2,0.5,0.1]} rotation={[0, Math.PI / 2, 0]} scale={0.5}>
-          <mesh geometry={nodes2.Cylinder_0.geometry} material={materials['Material.031']} />
-          <mesh geometry={nodes2.Cylinder_1.geometry} material={materials['Material.029']} />
-          <mesh geometry={nodes2.Cylinder_2.geometry} material={materials['Material.037']} />
-        </group> */}
+      
       </group>
       <group
         position={[0.049, 1.433, 2.116]}
@@ -763,8 +826,36 @@ My journey in software development began with a curiosity for how things work un
       >
         <meshStandardMaterial color={"#ffffff"} roughness={0.3} metalness={1} />
       </mesh>
-      
+    
+     
+
+
     </group>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</>
+
+
+
+
+
+
+
+
+
+
   );
 }
 
