@@ -40,6 +40,53 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   const disableScroll = () => (document.body.style.overflow = "hidden");
   const enableScroll = () => (document.body.style.overflowY = "scroll");
 
+
+  const [animationStarted, setAnimationStarted] = useState(false);
+
+
+
+  // const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  // // Function to handle mouse move and update position
+  // const handleMouseMove = (event) => {
+  //   {htmlPresent && (
+  //   setMousePos({
+  //     x: event.clientX / window.innerWidth,
+  //     y: event.clientY / window.innerHeight,
+  //   }))}
+  // };
+
+  // // Add event listener for mouse movement
+  // useEffect(() => {
+  //   window.addEventListener('mousemove', handleMouseMove);
+  //   return () => window.removeEventListener('mousemove', handleMouseMove);
+  // }, [htmlPresent]);
+
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setAnimationStarted(true);
+  //   }, 1000);
+
+  //   return () => clearTimeout(timeout);
+  // }, []);
+
+  // useFrame(() => {
+  //   if (modelRef.current && animationStarted) {
+  //     const sensitivity = 0.1;
+  //     const lerpFactor = 0.05;
+  //     modelRef.current.rotation.y = THREE.MathUtils.lerp(
+  //       modelRef.current.rotation.y,
+  //       (mousePos.x - 0.5) * Math.PI * sensitivity,
+  //       lerpFactor
+  //     );
+  //   }
+  // });
+
+
+
+
+
+
   useGSAP(
     () => {
       // gsap code here...
@@ -72,7 +119,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         y: 10,
         scrollTrigger: {
           trigger: ".title-text",
-          start: 100,
+          start: 0,
         },
         text: "Hi, I'm Chandler ",
 
@@ -86,7 +133,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         y: 10,
         scrollTrigger: {
           trigger: ".title-text",
-          start: 100,
+          start: 0,
         },
 
         duration: 2,
@@ -98,7 +145,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         y: 10,
         scrollTrigger: {
           trigger: ".title-text",
-          start: 100,
+          start: 0,
         },
 
         duration: 2,
@@ -117,162 +164,16 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
 
 
 
-    
-    const tl1 = gsap.timeline({ paused: false });
-    tl1.fromTo(
-      modelRef.current.scale,
-      {
-        x: 0, // Double the size along the x-axis
-        y: 0, // Double the size along the y-axis
-        z: 0, // Double the size along the z-axis
-      },
-      {
-        x: 1, // Double the size along the x-axis
-        y: 1, // Double the size along the y-axis
-        z: 1, // Double the size along the z-axis
-        duration: 1.5, // Animation duration
-        ease: "elastic.out", // Easing function
-      }
-    );
+   
 
-    tl1.from(modelRef.current.position,
-      {
-        x: 0, // Double the size along the x-axis
-        y: 0, // Double the size along the y-axis
-        z: 0, // Double the size along the z-axis
-        
-      },
-    0);
-    tl1.to(modelRef.current.position,
-      {
-        x: -4.5, // Double the size along the x-axis
-        y: 0, // Double the size along the y-axis
-        z: 0, // Double the size along the z-axis
-        
-      },
-    1);
 
-    const timeout = setTimeout(() => {
-      tl1.to(
-        ".intro-text",
-        {
-          text: "Chandler's Office (in space)",
-          ease: "power1.in",
-
-          duration: .5,
-          opacity: 1,
-        },
-        
-      );
-    }, 100);
-
-    // gsap.from(modelRef.current.rotation, { y: 0.2, duration: 1 })
-
-    const tl2 = gsap.timeline({ paused: true, repeat: 0 });
-    tl2.fromTo(
-      modelRef.current.scale,
-      {
-        x: 1, // Double the size along the x-axis
-        y: 1, // Double the size along the y-axis
-        z: 1, // Double the size along the z-axis
-        duration: 1.4, // Animation duration
-        ease: "power1.inOut", // Easing function
-      },
-      {
-        x: 1.01, // Double the size along the x-axis
-        y: 1.01, // Double the size along the y-axis
-        z: 1.01, // Double the size along the z-axis
-        duration: 1.4, // Animation duration
-        ease: "power1.inOut", // Easing function
-        onComplete: () => {
-          
-            setAnimationEnded(true)
-            
-          
-          tl2.kill();
-        },
-      }
-    );
-
-    tl2.to(
-      modelRef.current.rotation,
-      {
-        x: 0, // Double the size along the x-axis
-        y: -Math.PI * 6, // Double the size along the y-axis
-        z: 0, // Double the size along the z-axis
-        duration: 1, // Animation duration
-        ease: "power1", // Easing function
-        onEnter: () => {
-          tl1.kill(), setchandlersOfficeTextVisible(false);
-          disableScroll(); 
-          
-        },
-      },
-      0
-    );
-
-    tl2.to(
-      camera,
-      {
-        fov: 30, // Target FOV value
-        duration: 1, // Duration of the animation
-        ease: "power1.inOut", // Easing function
-        onUpdate: () => camera.updateProjectionMatrix(), // Update the camera's projection matrix
-      },
-      0
-    );
-
-    tl2.fromTo(
-      modelRef.current.position,
-      {
-        x: -5, // Double the size along the x-axis
-        y: 0, // Double the size along the y-axis
-        z: 0, // Double the size along the z-axis
-        duration: 1,
-        delay: 0,
-
-        onComplete: () => {
-          enableScroll();
-
-          // Play the timeline when the trigger enters the viewport
-        },
-      },
-      {
-        x: 0, // Double the size along the x-axis
-        y: -.4, // Double the size along the y-axis
-        z: 0, // Double the size along the z-axis
-        duration: 1,
-        delay: 0,
-
-        
-      },0
-      
-      
-    );
-
-    tl2.to(
-      modelRef.current.position,
-      {
-        
-        y: -10,
-        repeat: -1,
-        duration: 0.85,
-        ease: "power1.in",
-        yoyo: true,
-        delay: 2,
-        opacity: 0,
-      },1
-     
-      
-      
-    );
 
     const monitorCamera = gsap.timeline({ paused: true, repeat: 0 });
 
     monitorCamera.to(
       camera.rotation,
       {
-        x: -0.0585, // Double the size along the x-axis
+        x: -0.055, // Double the size along the x-axis
         y: 0.78, // Double the size along the y-axis
         z: 0.0375, // Double the size along the z-axis
         duration: 1,
@@ -288,7 +189,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
       camera.position,
       {
         x: 0.15, // Double the size along the x-axis
-        y: 0.0, // Double the size along the y-axis
+        y: 0.025, // Double the size along the y-axis
         z: 0.3, // Double the size along the z-axis
         duration: 1,
         delay: 0,
@@ -340,9 +241,9 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
     contactCamera.to(
       camera.position,
       {
-        x: 0.1, // Double the size along the x-axis
-        y: 0.6, // Double the size along the y-axis
-        z: 0.03, // Double the size along the z-axis
+        x: .2, // Double the size along the x-axis
+        y: 0.5, // Double the size along the y-axis
+        z: 0.35, // Double the size along the z-axis
         duration: 0.5,
         delay: 0,
         onComplete: () => {
@@ -352,28 +253,20 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
       0
     );
     setTimeout(() => {
+  
+
       ScrollTrigger.create({
         trigger: ".title-text",
         start: 0, // When the top of the trigger element hits the center of the viewport
         onEnter: () => {
-          tl2.play();
-          // Play the timeline when the trigger enters the viewport
-        },
-       
-        once: true, // Play animation once
-      });
-
-      ScrollTrigger.create({
-        trigger: ".title-text",
-        start: 100, // When the top of the trigger element hits the center of the viewport
-        onEnter: () => {
           setdeskchairtransparent(true)
 
-         
+          handleHTMLPresent()
           disableScroll(), monitorCamera.play();
         },
         
         onLeaveBack: () => {
+          handleHTMLPresent()
           setdeskchairtransparent(false)
           monitorCamera.reverse();
           

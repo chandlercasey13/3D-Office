@@ -69,7 +69,7 @@ const Sky = ({ daynighttogglestate }) => {
        {/* <planeGeometry args={[200,200,1]}/> */}
       <meshStandardMaterial 
        
-         color={daynighttogglestate ? "#000000" : "#b3997b"}
+         color={daynighttogglestate ? "#0f383b" : "#b3997b"}
         side={THREE.BackSide}
       />
       
@@ -77,47 +77,6 @@ const Sky = ({ daynighttogglestate }) => {
   );
 };
 
-
-function Stars({ count = 2000 }) {
-  const pointsRef = useRef();
-
-  // Generate random star positions
-  const positions = useMemo(() => {
-    const positions = new Float32Array(count * 3); // 3 values per point (x, y, z)
-    for (let i = 0; i < count; i++) {
-      const x = (Math.random() - 0.5) * 1000; // Spread stars across -500 to 500 units
-      const y = (Math.random() - 0.5) * 1000;
-      const z = (Math.random() - 0.5) * 1000;
-      positions.set([x, y, z], i * 3);
-    }
-    return positions;
-  }, [count]);
-
-  
-  useFrame(({ clock }) => {
-    pointsRef.current.rotation.z += 0.0002; 
-  });
-
-  return (
-    <points ref={pointsRef} position={[0,-4,0]} rotation={[Math.PI/1.25,0,0]} scale={[.1,.06,.02]}>
-      <bufferGeometry rotation={[0,0,0]}>
-        <bufferAttribute
-          attach="attributes-position"
-          count={positions.length / 3}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={.01} // Size of each star
-        sizeAttenuation
-        color="#ffffff"
-        transparent
-        opacity={0.8}
-      />
-    </points>
-  );
-}
 
 
 
@@ -127,7 +86,7 @@ function App() {
   
   
   
-  const [htmlPresent, sethtmlPresent] = useState(false)
+  const [htmlPresent, sethtmlPresent] = useState(true)
   const [arrowPresent, setarrowPresent] = useState(true)
 
   const [daynighttoggle, setDaynighttoggle] = useState(true);
@@ -216,16 +175,17 @@ const handleHTMLPresent = () => {
           
           <div className="canvas-container">
             <Canvas
+            gl={{ alpha: true }}
               shadows
               antialias="true"
               camera={{
-                fov: 120,
-                position: new THREE.Vector3(0, 2.25, 5.55),
-                 rotation: new THREE.Euler(-.4, 0, 0), 
+                fov: 30,
+                position: new THREE.Vector3(0, 1, 5.55),
+                 rotation: new THREE.Euler(-.2, 0, 0), 
                 
               }}
             >
-              <Suspense fallback={<Loader />}>
+              <Suspense fallback={null}>
                 <ambientLight intensity={daynighttoggle ? 4.5 : 5.5} />
                 <directionalLight
                   castShadow
@@ -233,7 +193,7 @@ const handleHTMLPresent = () => {
                   intensity={[2.5]}
                 />
               
-                <Stars/>
+                
                  <group ref = {modelRef}>
                  
                 <OfficeModel
@@ -244,7 +204,7 @@ const handleHTMLPresent = () => {
                 />
                 </group>
                 <mesh
-                  position={[0, -0.75, 0]}
+                  position={[0, -0.65, 0]}
                   rotation-x={[-Math.PI / 2]}
                   scale={[400, 400, 1]}
                   receiveShadow

@@ -40,15 +40,12 @@ export default function Model( {deskchairtransparent}
 
 <>
 
-  <EffectComposer autoClear={false}>
+  <EffectComposer autoClear={true}>
    <Bloom 
     
    luminanceThreshold={2}
           luminanceSmoothing={1}/>
-           <BrightnessContrast
-    brightness={-.05} // brightness. min: -1, max: 1
-    contrast={0.05} // contrast: min -1, max: 1
-  />
+           
  
   </EffectComposer>
   
@@ -56,7 +53,7 @@ export default function Model( {deskchairtransparent}
   position={[-.1, .05, 0.14]}>
     {`Chandler Casey\nFull-Stack Developer`}
       
-    <meshStandardMaterial attach="material" color="#fce365" emissive="#fce365"   emissiveIntensity={1} />
+    <meshStandardMaterial attach="material" color="#fce365" emissive="#fce365" emissiveIntensity={1} />
     
     </Text3D>
 
@@ -73,13 +70,11 @@ export default function Model( {deskchairtransparent}
     <group
       
       dispose={null}
-      position={[-.045,-0,-1 ]}
+      position={[-.045,-.35,-1 ]}
        rotation-y={[0.79]}
-      // rotation-x={[.1]}
       rotation-x ={[0]}
       
       
-      // scale={[.55,.6,.55]}
       scale={[.35,.4,.35]}
     >
       
@@ -525,7 +520,7 @@ My journey in software development began with a curiosity for how things work un
         </group>
 
 
-//desk
+
 
         <group position={[-2.88, -0.702, 0.565]} scale={0.306}>
          
@@ -731,7 +726,7 @@ My journey in software development began with a curiosity for how things work un
           material-metalness={0.9}
         />
         
-//corkboard
+
 <group position={[-2.354, 0.3, -.1]} rotation={[-Math.PI/2,0,-Math.PI/2]} scale={.32}>
           <Corkboard/>
         </group>
