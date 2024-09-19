@@ -72,9 +72,7 @@
   padding-top: 2px;
 }
 
-.monitor-screen{
-  
-}
+
 
 .computer-html{
   height: 20%;
@@ -126,52 +124,28 @@ position: relative;
   
  
 }
-.logos-div{
-  position: relative;
+
+.resume-icon{
   display: flex;
-  justify-content: start;
-  align-items: start;
-  height: 30%;
-  width:100%;
-  padding: 2%;
-}
-.logos-organization{
-  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  flex-wrap: wrap;
-  left:24%;
-  transform: scale(1.4,1);
-  width:60%;
-  gap: 3.5px;
-}
-
-.threejslogo{
-  width: 80px;
-  height: 65px;
-transform: scale(1.5,2);
-padding-left: 30px;
-padding-top: 20px;
-margin-right: 4%;
-
-
-}
-
-.nextjslogo{
- width: 100px;
-  padding-left: 11px;
-}
-
-.expressjslogo{
-  width: 90px;
-  
-  
+  transform: scale(5,3);
+  top: 16%;
+  color: white;
+ 
+  font-size: 10px;
+  font-family: "Inter";
+  font-weight: 300;
 }
 
 .about-me-column{
   display: flex;
   flex-direction: column;
   justify-content: end;
-  width: 75%;
+
+  width: 55%;
   height: 100%;
   position: relative;
 }
@@ -181,7 +155,7 @@ margin-right: 4%;
   height: 10%;
   color: white;
   font-size: 90px;
-  font-weight: 700;
+  font-weight: 650;
   position: absolute;
   left:27%;
   top:3%;
@@ -198,6 +172,49 @@ margin-right: 4%;
   margin-right: 5px;
 }
 
+.about-me-skills-header{
+  width: 100%;
+  height: 10%;
+  color: white;
+  font-size: 90px;
+  font-weight: 650;
+  position: absolute;
+  left:27%;
+  top:50%;
+  transform: scale(1.5,1);
+}
+
+
+.about-me-skills-section{
+  position: absolute;
+  top: 65%;
+  font-size: 41px;
+}
+.section-picker-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+}
+
+.section-picker-organization-container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 12%;
+  width: 100%;
+  
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+  transform: rotate(90deg);
+
+  color: white;
+  transform-origin: bottom left; /* Optional: Adjust rotation point */
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+
 
 .html-overlay {
   width: 100%;
@@ -209,7 +226,7 @@ margin-right: 4%;
   position: absolute;
   z-index: 1;
   
-  /* pointer-events: none; */
+  pointer-events: none;
  
  
   
@@ -218,7 +235,7 @@ margin-right: 4%;
 }
 
 .html-overlay-organization-container {
-  width: 80%;
+  width: 70%;
   height: 100%;
   position:absolute;
   
@@ -226,7 +243,7 @@ margin-right: 4%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* pointer-events: none; */
+  pointer-events: none;
  
   
 }

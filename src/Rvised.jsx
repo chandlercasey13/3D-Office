@@ -46,14 +46,17 @@ export default function Model( {deskchairtransparent}
    luminanceThreshold={2}
           luminanceSmoothing={1}/>
            
- 
+           <BrightnessContrast 
+    brightness={0} 
+    contrast={0.1}   
+  />
   </EffectComposer>
   
   <Text3D ref = {glowingTextRef} font={"/fonts/3dfont3.json"} size={.05} scale={[.35,.3,.2]} rotation={[Math.PI/2,0,0]} height={.011} width={.01} curveSegments={10} 
-  position={[-.1, .05, 0.14]}>
+  position={[-.095, .05, 0.14]}>
     {`Chandler Casey\nFull-Stack Developer`}
       
-    <meshStandardMaterial attach="material" color="#fce365" emissive="#fce365" emissiveIntensity={1} />
+    <meshStandardMaterial attach="material" color="#9af4fc" emissive="#9af4fc"   emissiveIntensity={.85} />
     
     </Text3D>
 
@@ -70,11 +73,13 @@ export default function Model( {deskchairtransparent}
     <group
       
       dispose={null}
-      position={[-.045,-.35,-1 ]}
+      position={[-.045,-.4,-1 ]}
        rotation-y={[0.79]}
+      // rotation-x={[.1]}
       rotation-x ={[0]}
       
       
+     
       scale={[.35,.4,.35]}
     >
       
@@ -166,6 +171,7 @@ export default function Model( {deskchairtransparent}
                  scale={[0.080, 0.1425, .01]}
                  rotation={[Math.PI ,0,0]}
                  transform
+                 occlude
                  
                  
                >
@@ -228,9 +234,18 @@ export default function Model( {deskchairtransparent}
                   >
                     <div className="computer-html">
                       <div className="html-container">
+
+
                       <div className="picture-column">
                       <div className="picture-div">
                       <img className="chandler-pic" src = '/images/chandler-pic.jpg'/>
+                      </div>
+                      <div className="resume-icon">
+                        <a href="/images/resume.pdf" target="_blank">
+                      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAh9JREFUaEPtmVFygjAQhnfhySGcoXgTe5Lak6gnwZ5EexK9A3F8IabdSCi1CJmSEJgJT+iGsN/usgk/CDM/cOb+QwDwnUGjDFyv1+wmxAYAVgCQDXJaym2SprtBczQu7gWonD/ZuqGaxyJEL8CF8xwA1lYBLEKYAEjrzusJLWRiPAApt4C4/ROMgRCjASSM4aUoNrYhRgWg6NuGGB3ANoQXAJsQ3gBsQXgFsAHhHWAoxCQAuiCo/XYtpJMBeAYxGYD/bkcCwIVzd5s5g7SEDIQMGJRJ15BQQqGEQgk52kpEcbyk4C4Wi7OSXsryDRCVehHF8Sv9T+dkK8syixBJ3VCaEl2r7TpBz0rV2UNME2vBSwJ8Msb21eviOmFsqW03KT/SND2qvQ7npC9lGl5B66PthR8AnAIURbGKEA/futGZnK5+541zstVCFud8jQB5DSBEr2A2BkAuAXaPGWjAEUIT8KBLiIDIiFK+tKoVrjPQbDA6uo/O6jGNkjtpACozsgshVpSZtoY1SgaqG2vR91e0K9s+YexdSypTK6F7nf8cNQAiblDKI6nRTZF4FgAt5UXyfN1GyX7z+RAbLLC0Dgz7luDyITYAsDLE2UNsxTuDSQKAXv4NguViiOpoXROb6EJuPjGZ4ar1YxBA1b+p1w/uKGY+16N6o6+2ISaTEoQQIsc7xBgg+yiOd49b7jZfjQBMIH2NCQC+Iq/vO/sMfAE/aLJALz9/rgAAAABJRU5ErkJggg=="/>
+                      </a>
+                     Resume
+                     
                       </div>
                      
                       </div>
@@ -239,10 +254,24 @@ export default function Model( {deskchairtransparent}
                         <header className="about-me-header"></header>
                         <div className="about-me-section">I'm a passionate full-stack developer with a deep love for creating dynamic and responsive web applications. With a strong foundation in both front-end and back-end technologies, I enjoy bringing ideas to life through clean code, intuitive interfaces, and robust architectures.
 
-My journey in software development began with a curiosity for how things work under the hood, leading me to master a wide range of programming languages and frameworks. On the front-end, I specialize in crafting seamless user experiences using modern libraries and frameworks like React and Vue.js. On the back-end, I have extensive experience building scalable APIs and services with Node.js, Django, and Express, along with a solid understanding of database management using SQL and NoSQL technologies.
-
+My journey in software development began with a curiosity for how things work under the hood, leading me to master a wide range of programming languages and frameworks. On the front-end, I specialize in crafting seamless user experiences using modern libraries and frameworks like React and Vue.js. On the back-end, I have extensive experience building scalable APIs and services with Node.js.
+<div className="about-me-skills-header"> 
+  Skills
  </div>
+ <div className="about-me-skills-section"> Typescript, React, Express, Node.js, HTML, CSS, TailwindCSS, MongoDB, SQL, ThreeJS, React Three Fiber, Python, Django, Flask </div>
+ </div>
+ 
                       </div>
+{/* 
+
+<div className="section-picker-column">
+  <div className="section-picker-organization-container" > 
+    <p>About Me</p> 
+  <p>Skills</p>
+  </div>
+  
+</div> */}
+
                       </div>
                     </div>
 

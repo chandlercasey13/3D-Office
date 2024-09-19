@@ -41,18 +41,16 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   const enableScroll = () => (document.body.style.overflowY = "scroll");
 
 
-  const [animationStarted, setAnimationStarted] = useState(false);
 
 
 
-  // const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  // const [mousePos, setMousePos] = useState({ x: 0});
 
-  // // Function to handle mouse move and update position
   // const handleMouseMove = (event) => {
   //   {htmlPresent && (
   //   setMousePos({
   //     x: event.clientX / window.innerWidth,
-  //     y: event.clientY / window.innerHeight,
+      
   //   }))}
   // };
 
@@ -62,16 +60,9 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   //   return () => window.removeEventListener('mousemove', handleMouseMove);
   // }, [htmlPresent]);
 
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setAnimationStarted(true);
-  //   }, 1000);
-
-  //   return () => clearTimeout(timeout);
-  // }, []);
-
+ 
   // useFrame(() => {
-  //   if (modelRef.current && animationStarted) {
+  //   if (modelRef.current ) {
   //     const sensitivity = 0.1;
   //     const lerpFactor = 0.05;
   //     modelRef.current.rotation.y = THREE.MathUtils.lerp(
@@ -189,7 +180,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
       camera.position,
       {
         x: 0.15, // Double the size along the x-axis
-        y: 0.025, // Double the size along the y-axis
+        y: -.025, // Double the size along the y-axis
         z: 0.3, // Double the size along the z-axis
         duration: 1,
         delay: 0,
@@ -299,29 +290,29 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
 
 
 
-  function TextMesh({ text }) {
-    return (
-      <mesh position={[6, 0.5, 0]} rotation={[Math.PI / 2, 0, Math.PI / 2]}>
-        <boxGeometry args={[0, 2]} />
-        <meshStandardMaterial
-          color="black"
-          transparent
-          opacity={0} // Adjust opacity if needed
-          side={2} // Double side
-        />
-        <Html transform sprite>
-          <div
-            className={`intro-text ${
-              chandlersOfficeTextVisible ? "opacity-100" : "opacity-0"
-            }`}
-          ></div>
-        </Html>
-      </mesh>
-    );
-  }
+  // function TextMesh({ text }) {
+  //   return (
+  //     <mesh position={[6, 0.5, 0]} rotation={[Math.PI / 2, 0, Math.PI / 2]}>
+  //       <boxGeometry args={[0, 2]} />
+  //       <meshStandardMaterial
+  //         color="black"
+  //         transparent
+  //         opacity={0} // Adjust opacity if needed
+  //         side={2} // Double side
+  //       />
+  //       <Html transform sprite>
+  //         <div
+  //           className={`intro-text ${
+  //             chandlersOfficeTextVisible ? "opacity-100" : "opacity-0"
+  //           }`}
+  //         ></div>
+  //       </Html>
+  //     </mesh>
+  //   );
+  // }
 
-  const [chandlersOfficeTextVisible, setchandlersOfficeTextVisible] =
-    useState(true);
+  // const [chandlersOfficeTextVisible, setchandlersOfficeTextVisible] =
+  //   useState(true);
     
 
   return (
@@ -331,12 +322,9 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         
          deskchairtransparent={deskchairtransparent}
         />
-        {chandlersOfficeTextVisible && (
-          <group ref={textRef}>
-            <TextMesh />
-          </group>
-        )}
-      </group>
+        </group>
+       
+      
     </>
   );
 };
