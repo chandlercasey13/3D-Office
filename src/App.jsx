@@ -175,7 +175,7 @@ const handleHTMLPresent = () => {
           
           <div className="canvas-container">
             <Canvas
-            gl={{ alpha: true }}
+            
               shadows
               antialias="true"
               camera={{
@@ -186,7 +186,7 @@ const handleHTMLPresent = () => {
               }}
             >
               <Suspense fallback={null}>
-                <ambientLight intensity={daynighttoggle ? 4.5 : 5.5} />
+                <ambientLight intensity={daynighttoggle ? 5.5 : 5.5} />
                 <directionalLight
                   castShadow
                   position={[-2, 10, 3]}

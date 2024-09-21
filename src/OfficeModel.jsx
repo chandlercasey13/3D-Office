@@ -204,9 +204,9 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
     projectsCamera.to(
       camera.position,
       {
-        x: -0.5, // Double the size along the x-axis
+        x: -0.3, // Double the size along the x-axis
         y: 0.3, // Double the size along the y-axis
-        z: 0.4, // Double the size along the z-axis
+        z: 0.25, // Double the size along the z-axis
         duration: 1,
         delay: 0,
         onComplete: () => {

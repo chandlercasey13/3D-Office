@@ -47,7 +47,7 @@ export default function Model( {deskchairtransparent}
           luminanceSmoothing={1}/>
            
            <BrightnessContrast 
-    brightness={0} 
+    brightness={0.0} 
     contrast={0.1}   
   />
   </EffectComposer>
@@ -56,7 +56,7 @@ export default function Model( {deskchairtransparent}
   position={[-.095, .05, 0.14]}>
     {`Chandler Casey\nFull-Stack Developer`}
       
-    <meshStandardMaterial attach="material" color="#9af4fc" emissive="#9af4fc"   emissiveIntensity={.85} />
+    <meshStandardMaterial attach="material" color="#9af4fc" emissive="#9af4fc"   emissiveIntensity={.75} />
     
     </Text3D>
 
