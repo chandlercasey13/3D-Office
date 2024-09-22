@@ -27,7 +27,7 @@ gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
 
-const [animationEnded, setAnimationEnded] =useState( false)
+const [animationEnded, setAnimationEnded] =useState( true)
 const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   const modelRef = useRef();
   const textRef = useRef();
@@ -44,34 +44,34 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
 
 
 
-  // const [mousePos, setMousePos] = useState({ x: 0});
+  const [mousePos, setMousePos] = useState({x: 0});
 
-  // const handleMouseMove = (event) => {
-  //   {htmlPresent && (
-  //   setMousePos({
-  //     x: event.clientX / window.innerWidth,
+  const handleMouseMove = (event) => {
+    {htmlPresent && animationEnded (
+    setMousePos({
+      x: event.clientX / window.innerWidth,
       
-  //   }))}
-  // };
+    }))}
+  };
 
-  // // Add event listener for mouse movement
-  // useEffect(() => {
-  //   window.addEventListener('mousemove', handleMouseMove);
-  //   return () => window.removeEventListener('mousemove', handleMouseMove);
-  // }, [htmlPresent]);
+  
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [htmlPresent]);
 
  
-  // useFrame(() => {
-  //   if (modelRef.current ) {
-  //     const sensitivity = 0.1;
-  //     const lerpFactor = 0.05;
-  //     modelRef.current.rotation.y = THREE.MathUtils.lerp(
-  //       modelRef.current.rotation.y,
-  //       (mousePos.x - 0.5) * Math.PI * sensitivity,
-  //       lerpFactor
-  //     );
-  //   }
-  // });
+  useFrame(() => {
+    if (modelRef.current && animationEnded) {
+      const sensitivity = 0.1;
+      const lerpFactor = 0.05;
+      modelRef.current.rotation.y = THREE.MathUtils.lerp(
+        modelRef.current.rotation.y,
+        (mousePos.x - 0.5) * Math.PI * sensitivity,
+        lerpFactor
+      );
+    }
+  });
 
 
 
@@ -165,11 +165,13 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
       camera.rotation,
       {
         x: -0.055, // Double the size along the x-axis
-        y: 0.78, // Double the size along the y-axis
+        y: 0.795, // Double the size along the y-axis
         z: 0.0375, // Double the size along the z-axis
         duration: 1,
         delay: 0,
-        onEnter: () => {},
+        onEnter: () => {
+          
+        },
         onComplete: () => {
           enableScroll();
         },
@@ -180,7 +182,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
       camera.position,
       {
         x: 0.15, // Double the size along the x-axis
-        y: -.025, // Double the size along the y-axis
+        y: 0.025, // Double the size along the y-axis
         z: 0.3, // Double the size along the z-axis
         duration: 1,
         delay: 0,
@@ -194,7 +196,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
       camera.rotation,
       {
         x: 0, // Double the size along the x-axis
-        y: -0.8, // Double the size along the y-axis
+        y: -0.77, // Double the size along the y-axis
         z: 0, // Double the size along the z-axis
         duration: 1,
         delay: 0,
@@ -204,8 +206,8 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
     projectsCamera.to(
       camera.position,
       {
-        x: -0.3, // Double the size along the x-axis
-        y: 0.3, // Double the size along the y-axis
+        x: -0.25, // Double the size along the x-axis
+        y: 0.35, // Double the size along the y-axis
         z: 0.25, // Double the size along the z-axis
         duration: 1,
         delay: 0,
@@ -233,7 +235,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
       camera.position,
       {
         x: .2, // Double the size along the x-axis
-        y: 0.5, // Double the size along the y-axis
+        y: 0.3, // Double the size along the y-axis
         z: 0.35, // Double the size along the z-axis
         duration: 0.5,
         delay: 0,
@@ -251,7 +253,9 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         start: 0, // When the top of the trigger element hits the center of the viewport
         onEnter: () => {
           setdeskchairtransparent(true)
-
+          setAnimationEnded(false)
+            modelRef.current.rotation.set(0, 0, 0);
+         
           handleHTMLPresent()
           disableScroll(), monitorCamera.play();
         },
@@ -259,6 +263,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         onLeaveBack: () => {
           handleHTMLPresent()
           setdeskchairtransparent(false)
+          setAnimationEnded(true)
           monitorCamera.reverse();
           
         },

@@ -43,9 +43,9 @@ export default function Model(props) {
           >
             <mesh
               geometry={nodes.Plane001.geometry}
-              position={[-2.575, 1.93, 0.1]}
+              position={[-2.575, 1.915, 0.1]}
               rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-              scale={[0.155, 0.095, 0.139]}
+              scale={[0.172, 0.095, 0.139]}
             >
                <Html
                 position={[-.8, 0.05, .97]}
@@ -130,9 +130,9 @@ export default function Model(props) {
             </mesh>
             <mesh
               geometry={nodes.Plane002.geometry}
-              position={[-2.247, 1.93, 0.1]}
+              position={[-2.247, 1.915, 0.1]}
               rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-              scale={[0.154, 0.095, 0.141]}
+              scale={[0.172, 0.095, 0.141]}
             >
                 <Html
                 position={[-.8, 0.05, .97]}
@@ -216,9 +216,9 @@ export default function Model(props) {
             </mesh>
             <mesh
               geometry={nodes.Plane003.geometry}
-              position={[-1.913, 1.93, 0.1]}
+              position={[-1.913, 1.915, 0.1]}
               rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-              scale={[0.154, 0.095, 0.139]}
+              scale={[0.172, 0.095, 0.139]}
             >
                    <Html
                position={[-.8, 0.05, .97]}
@@ -254,7 +254,7 @@ export default function Model(props) {
                     <div className="project-html">
                       <div className="project-html-container">
                       <div className="project-picture">
- 
+                      <img src="/images/wormgame.png"/>
                       </div>
                       <div className="project-description">
                         
@@ -294,9 +294,9 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
             </mesh>
             <mesh
               geometry={nodes.Plane004.geometry}
-              position={[-2.575, 1.562, 0.1]}
+              position={[-2.575, 1.547, 0.1]}
               rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-              scale={[0.154, 0.095, 0.141]}
+              scale={[0.176, 0.095, 0.141]}
             >
                <Html
                  position={[-.8, 0.05, .97]}
@@ -369,9 +369,9 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
             </mesh>
             <mesh
               geometry={nodes.Plane005.geometry}
-              position={[-2.247, 1.563, 0.1]}
+              position={[-2.247, 1.547, 0.1]}
               rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-              scale={[0.154, 0.095, 0.142]}
+              scale={[0.176, 0.095, 0.142]}
             >
                   <Html
                position={[-.8, 0.05, .97]}
@@ -444,9 +444,9 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
             </mesh>
             <mesh
               geometry={nodes.Plane006.geometry}
-              position={[-1.913, 1.562, 0.1]}
+              position={[-1.913, 1.547, 0.1]}
               rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-              scale={[0.154, 0.095, 0.141]}
+              scale={[0.176, 0.095, 0.141]}
             >
                 <Html
                 position={[-.8, 0.05, .97]}

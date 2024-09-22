@@ -40,18 +40,7 @@ export default function Model( {deskchairtransparent}
 
 <>
 
-  <EffectComposer autoClear={true}>
-   <Bloom 
-    
-   luminanceThreshold={2}
-          luminanceSmoothing={1}/>
-           
-           <BrightnessContrast 
-    brightness={0.0} 
-    contrast={0.1}   
-  />
-  </EffectComposer>
-  
+
   <Text3D ref = {glowingTextRef} font={"/fonts/3dfont3.json"} size={.05} scale={[.35,.3,.2]} rotation={[Math.PI/2,0,0]} height={.011} width={.01} curveSegments={10} 
   position={[-.095, .05, 0.14]}>
     {`Chandler Casey\nFull-Stack Developer`}
@@ -73,7 +62,7 @@ export default function Model( {deskchairtransparent}
     <group
       
       dispose={null}
-      position={[-.045,-.4,-1 ]}
+      position={[-.045,-.35,-1 ]}
        rotation-y={[0.79]}
       // rotation-x={[.1]}
       rotation-x ={[0]}
@@ -171,7 +160,7 @@ export default function Model( {deskchairtransparent}
                  scale={[0.080, 0.1425, .01]}
                  rotation={[Math.PI ,0,0]}
                  transform
-                 occlude
+                 
                  
                  
                >
@@ -416,14 +405,14 @@ My journey in software development began with a curiosity for how things work un
         >
           <mesh
             castShadow
-            receiveShadow
+            
             geometry={nodes.Cube003_2.geometry}
             material={materials["Material.039"]}
             position={[1.91, -0.597, -0.137]}
           >
             <mesh
               castShadow
-              receiveShadow
+              
               geometry={nodes.Cube003_0.geometry}
               material={materials["Material.031"]}
             />
@@ -699,8 +688,8 @@ My journey in software development began with a curiosity for how things work un
           </mesh>
         </group>
         <group
-          position={[-3.603, -0.862, 0.088]}
-          rotation={[0, 0, -0.637]}
+          position={[-3.7, -0.762, 0.068]}
+          rotation={[0, 0, -1.4]}
           scale={0.225}
         >
           <mesh

@@ -8,6 +8,13 @@ import { TextPlugin } from "gsap/TextPlugin";
 import * as Switch from "@radix-ui/react-switch";
 import { useProgress } from "@react-three/drei";
 
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
+
+
+import { SelectiveBloom, Selection, Select } from '@react-three/postprocessing'
+
+import { BrightnessContrast } from '@react-three/postprocessing'
+import { Outline } from '@react-three/postprocessing'
 
 
 
@@ -180,8 +187,8 @@ const handleHTMLPresent = () => {
               antialias="true"
               camera={{
                 fov: 30,
-                position: new THREE.Vector3(0, 1, 5.55),
-                 rotation: new THREE.Euler(-.2, 0, 0), 
+                position: new THREE.Vector3(0, 2.25, 5.55),
+                 rotation: new THREE.Euler(-.4, 0, 0), 
                 
               }}
             >
@@ -227,6 +234,16 @@ const handleHTMLPresent = () => {
                     />
                   </mesh>
                 </Environment>
+                  <EffectComposer  >
+   <Bloom 
+   
+   opacity={0.95}
+   luminanceThreshold={2}
+          luminanceSmoothing={1}/>
+           
+         
+  </EffectComposer>
+  
               </Suspense>
             </Canvas>
           </div>
