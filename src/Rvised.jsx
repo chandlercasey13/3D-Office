@@ -384,6 +384,14 @@ My journey in software development began with a curiosity for how things work un
             />
           </mesh>
         </group>
+
+
+
+
+
+
+
+
         <group
           position={[-4.355, -3.5, 0.738]}
           rotation={[0, 0, 1.751]}
@@ -394,10 +402,121 @@ My journey in software development began with a curiosity for how things work un
             receiveShadow
             geometry={nodes.Cube002_0.geometry}
             material={materials["Material.035"]}
-            position={[-0.971, -13.728, -8.932]}
-            scale={0.752}
-          />
+            position={[-0.1, -13.728, -8.932]}
+            scale={1.6}
+          >
+<Html
+                position={[0, 0.00, .01]}
+               
+                rotation={[0,0 , Math.PI /1]}
+                transform
+                occlude
+                
+                
+               
+                
+                
+                
+                
+              >
+<div className="contact"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                  
+                    
+                    position: "relative",
+                    zIndex: 1,
+                    
+                  }}
+                >
+                  <div style = {{
+                    width:"100%",
+                    height:"100%",
+                    position: "absolute",
+                   
+                   
+                  }}
+                  >
+                    <div className="contact-html">
+                      <div className="contact-html-header">
+                      Contact Me
+                     
+
+
+
+
+
+
+                      
+                     
+ 
+                      </div>
+                      <div className="contact-html-input-boxes">
+                      
+                      
+                      <input className="contact-html-input"
+          type="text"
+          placeholder="Name"
+        />
+                      
+                      </div>
+
+                      <div className="contact-html-input-boxes">
+                     
+                      
+                      <input className="contact-html-input"
+          type="text"
+          placeholder="Email"
+        />
+
+                      </div>
+
+                      <div className="contact-html-input-message-box">
+                      
+                      <input className="contact-html-input-message-input"
+          type="text"
+           placeholder="Message"
+        />
+                      
+                      </div>
+                      <div className="contact-html-input-submit-box">
+
+<div className="contact-html-input-submit-button">
+<img className="boxicon" src="/images/sendicon.png"/>
+</div>
+
+                      </div>
+                      </div>
+                      
+                    </div>
+
+
+
+                  </div>
+               
+               
+               
+                
+              </Html>
+
+
+
+
+          </mesh>
         </group>
+
+
+
+
+
+
+
+
+
+
+
+
         <group
           position={[-1.313, -0.417, 0.12]}
           rotation={[0, 0, -0.018]}

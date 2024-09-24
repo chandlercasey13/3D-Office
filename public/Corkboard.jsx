@@ -48,8 +48,8 @@ export default function Model(props) {
               scale={[0.172, 0.095, 0.139]}
             >
                <Html
-                position={[-.8, 0.05, .97]}
-                scale={[0.023, 0.065, 1]}
+                position={[-.0, 0.05, .0]}
+                scale={[1, 1, 1]}
                 rotation={[-Math.PI /2,0 , Math.PI /2]}
                 transform
                 occlude
@@ -62,20 +62,19 @@ export default function Model(props) {
               >
 <div className="projects"
                   style={{
-                    width: "100%",
-                    height: 0,
-                    paddingBottom: "178%",
+                    width: "75px",
+                    height:"80px",
                     position: "relative",
+                    
                     zIndex: 1,
                     
                   }}
                 >
                   <div style = {{
-                    width:"5000%",
-                    height:"5000%",
+                    width:"100%",
+                    height:"100%",
                     position: "absolute",
-                    frameBorder:"0",
-                    className:"giphy-embed"
+                   
                   }}
                   >
                     <div className="project-html">
@@ -105,14 +104,7 @@ export default function Model(props) {
 
                   </div>
                
-                <p>
-                  <a
-                    style={{ color: "rgba(0,0,0,0)" }}
-                    href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW"
-                  >
-                    via GIPHY
-                  </a>
-                </p>
+                
                
                 
               </Html>
@@ -135,8 +127,8 @@ export default function Model(props) {
               scale={[0.172, 0.095, 0.141]}
             >
                 <Html
-                position={[-.8, 0.05, .97]}
-                scale={[0.023, 0.065, 1]}
+                position={[.0, 0.05, .0]}
+                scale={[1, 1, 1]}
                 rotation={[-Math.PI /2,0 , Math.PI /2]}
                 transform
                 occlude
@@ -149,20 +141,19 @@ export default function Model(props) {
               >
 <div className="projects"
                   style={{
-                    width: "100%",
-                    height: 0,
-                    paddingBottom: "178%",
+                    width: "75px",
+                    height:"80px",
                     position: "relative",
+                    
                     zIndex: 1,
                     
                   }}
                 >
                   <div style = {{
-                    width:"5000%",
-                    height:"5000%",
+                    width:"100%",
+                    height:"100%",
                     position: "absolute",
-                    frameBorder:"0",
-                    className:"giphy-embed"
+                   
                   }}
                   >
                     <div className="project-html">
@@ -198,14 +189,7 @@ export default function Model(props) {
 
                   </div>
                
-                <p>
-                  <a
-                    style={{ color: "rgba(0,0,0,0)" }}
-                    href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW"
-                  >
-                    via GIPHY
-                  </a>
-                </p>
+               
                
                 
               </Html>
@@ -221,8 +205,8 @@ export default function Model(props) {
               scale={[0.172, 0.095, 0.139]}
             >
                    <Html
-               position={[-.8, 0.05, .97]}
-               scale={[0.023, 0.065, 1]}
+               position={[0.0, 0.05, 0]}
+               scale={1}
                 rotation={[-Math.PI /2,0 , Math.PI /2]}
                 transform
                 occlude
@@ -235,20 +219,19 @@ export default function Model(props) {
               >
 <div className="projects"
                   style={{
-                    width: "100%",
-                    height: 0,
-                    paddingBottom: "178%",
+                    width: "75px",
+                    height:"80px",
                     position: "relative",
+                    
                     zIndex: 1,
                     
                   }}
                 >
                   <div style = {{
-                    width:"5000%",
-                    height:"5000%",
+                    width:"100%",
+                    height:"100%",
                     position: "absolute",
-                    frameBorder:"0",
-                    className:"giphy-embed"
+                   
                   }}
                   >
                     <div className="project-html">
@@ -276,15 +259,7 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
 
                   </div>
                
-                <p>
-                  <a
-                    style={{ color: "rgba(0,0,0,0)" }}
-                    href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW"
-                  >
-                    via GIPHY
-                  </a>
-                </p>
-               
+                
                 
               </Html>
 
@@ -299,8 +274,8 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
               scale={[0.176, 0.095, 0.141]}
             >
                <Html
-                 position={[-.8, 0.05, .97]}
-                 scale={[0.023, 0.065, 1]}
+                 position={[0, 0.05,0]}
+                 scale={1}
                 rotation={[-Math.PI /2,0 , Math.PI /2]}
                 transform
                 occlude
@@ -313,20 +288,19 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
               >
 <div className="projects"
                   style={{
-                    width: "100%",
-                    height: 0,
-                    paddingBottom: "178%",
+                    width: "75px",
+                    height:"80px",
                     position: "relative",
+                    
                     zIndex: 1,
                     
                   }}
                 >
                   <div style = {{
-                    width:"5000%",
-                    height:"5000%",
+                    width:"100%",
+                    height:"100%",
                     position: "absolute",
-                    frameBorder:"0",
-                    className:"giphy-embed"
+                   
                   }}
                   >
                     <div className="project-html">
@@ -353,14 +327,7 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
 
                   </div>
                
-                <p>
-                  <a
-                    style={{ color: "rgba(0,0,0,0)" }}
-                    href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW"
-                  >
-                    via GIPHY
-                  </a>
-                </p>
+            
                
                 
               </Html>
@@ -373,9 +340,9 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
               rotation={[Math.PI / 2, -Math.PI / 2, 0]}
               scale={[0.176, 0.095, 0.142]}
             >
-                  <Html
-               position={[-.8, 0.05, .97]}
-               scale={[0.023, 0.065, 1]}
+                    <Html
+                 position={[0, 0.05,0]}
+                 scale={1}
                 rotation={[-Math.PI /2,0 , Math.PI /2]}
                 transform
                 occlude
@@ -388,20 +355,19 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
               >
 <div className="projects"
                   style={{
-                    width: "100%",
-                    height: 0,
-                    paddingBottom: "178%",
+                    width: "75px",
+                    height:"80px",
                     position: "relative",
+                    
                     zIndex: 1,
                     
                   }}
                 >
                   <div style = {{
-                    width:"5000%",
-                    height:"5000%",
+                    width:"100%",
+                    height:"100%",
                     position: "absolute",
-                    frameBorder:"0",
-                    className:"giphy-embed"
+                   
                   }}
                   >
                     <div className="project-html">
@@ -428,18 +394,10 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
 
                   </div>
                
-                <p>
-                  <a
-                    style={{ color: "rgba(0,0,0,0)" }}
-                    href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW"
-                  >
-                    via GIPHY
-                  </a>
-                </p>
+            
                
                 
               </Html>
-
 
             </mesh>
             <mesh
@@ -448,9 +406,9 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
               rotation={[Math.PI / 2, -Math.PI / 2, 0]}
               scale={[0.176, 0.095, 0.141]}
             >
-                <Html
-                position={[-.8, 0.05, .97]}
-                scale={[0.023, 0.065, 1]}
+                  <Html
+                 position={[0, 0.05,0]}
+                 scale={1}
                 rotation={[-Math.PI /2,0 , Math.PI /2]}
                 transform
                 occlude
@@ -463,20 +421,19 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
               >
 <div className="projects"
                   style={{
-                    width: "100%",
-                    height: 0,
-                    paddingBottom: "178%",
+                    width: "75px",
+                    height:"80px",
                     position: "relative",
+                    
                     zIndex: 1,
                     
                   }}
                 >
                   <div style = {{
-                    width:"5000%",
-                    height:"5000%",
+                    width:"100%",
+                    height:"100%",
                     position: "absolute",
-                    frameBorder:"0",
-                    className:"giphy-embed"
+                   
                   }}
                   >
                     <div className="project-html">
@@ -503,18 +460,10 @@ A Google Keep clone is a note-taking app that lets users create, organize, and s
 
                   </div>
                
-                <p>
-                  <a
-                    style={{ color: "rgba(0,0,0,0)" }}
-                    href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW"
-                  >
-                    via GIPHY
-                  </a>
-                </p>
+            
                
                 
               </Html>
-
 
 
             </mesh>

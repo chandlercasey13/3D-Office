@@ -13,7 +13,7 @@ import { useGLTF } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 
 import { TextPlugin } from "gsap/TextPlugin";
-
+import { useMemo } from "react";
 
 
 const OfficeModel = ({
@@ -27,7 +27,7 @@ gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
 
-const [animationEnded, setAnimationEnded] =useState( true)
+const [animationEnded, setAnimationEnded] =useState(true)
 const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   const modelRef = useRef();
   const textRef = useRef();
@@ -56,7 +56,8 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
 
   
   useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
+    setTimeout(
+    window.addEventListener('mousemove', handleMouseMove),2000)
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [htmlPresent]);
 
@@ -72,7 +73,6 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
       );
     }
   });
-
 
 
 
@@ -152,7 +152,32 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
 
   useGSAP(() => {
 
+    const intro = gsap.timeline({  repeat: 0 });
 
+    intro.from(
+      modelRef.current.scale,
+      {
+        x: .01, // Double the size along the x-axis
+        y: .01, // Double the size along the y-axis
+        z: .01, // Double the size along the z-axis
+        duration: 1.5,
+        delay: .5,
+        ease: "elastic.out",
+        
+      })
+
+      intro.to(
+modelRef.current.rotation, {
+  x: 0, // Double the size along the x-axis
+  y: 0, // Double the size along the y-axis
+  z: 0, // Double the size along the z-axis
+  duration: 2,
+  delay: .5,
+  ease: "elastic.out",
+}, 0
+
+      )
+    
 
 
    
@@ -234,9 +259,9 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
     contactCamera.to(
       camera.position,
       {
-        x: .2, // Double the size along the x-axis
-        y: 0.3, // Double the size along the y-axis
-        z: 0.35, // Double the size along the z-axis
+        x: .175, // Double the size along the x-axis
+        y: 0.45, // Double the size along the y-axis
+        z: 0.335, // Double the size along the z-axis
         duration: 0.5,
         delay: 0,
         onComplete: () => {
@@ -327,6 +352,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         
          deskchairtransparent={deskchairtransparent}
         />
+       
         </group>
        
       

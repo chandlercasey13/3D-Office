@@ -20,6 +20,7 @@ import { Outline } from '@react-three/postprocessing'
 
 
 
+
 import { Text3D } from "@react-three/drei";
 
 
@@ -200,7 +201,7 @@ const handleHTMLPresent = () => {
                   intensity={[2.5]}
                 />
               
-                
+               
                  <group ref = {modelRef}>
                  
                 <OfficeModel
@@ -220,11 +221,11 @@ const handleHTMLPresent = () => {
                   <shadowMaterial opacity={0.2} />
                 </mesh>
                 <Sky daynighttogglestate={daynighttoggle} />
-                <FlyControls
+                {/* <FlyControls
                   movementSpeed={5}
                   rollSpeed={0.5}
                   dragToLook={true}
-                />
+                /> */}
                 <Environment preset="city">
                   <mesh>
                     <boxGeometry args={[100, 32, 32]} />

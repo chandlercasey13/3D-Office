@@ -46,9 +46,9 @@ return(
           </div>
           
           <div className="dark-mode-switch">
-          {htmlPresent && (
+          {/* {htmlPresent && (
             <DarkModeSwitch handleDayNightToggle={handleDayNightToggle} daynighttoggle={daynighttoggle} />
-          )}
+          )} */}
             </div>
           </div>
           </div>   
