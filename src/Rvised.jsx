@@ -18,6 +18,8 @@ import { SelectiveBloom, Selection, Select } from '@react-three/postprocessing'
 import { BrightnessContrast } from '@react-three/postprocessing'
 import { Outline } from '@react-three/postprocessing'
 
+import Component from "./ContactForm";
+
 
 export default function Model( {deskchairtransparent}
  
@@ -406,9 +408,10 @@ My journey in software development began with a curiosity for how things work un
             scale={1.6}
           >
 <Html
-                position={[0, 0.00, .01]}
+                position={[0.0, 0.00, .01]}
                
                 rotation={[0,0 , Math.PI /1]}
+                scale={.25}
                 transform
                 occlude
                 
@@ -439,55 +442,8 @@ My journey in software development began with a curiosity for how things work un
                   }}
                   >
                     <div className="contact-html">
-                      <div className="contact-html-header">
-                      Contact Me
-                     
-
-
-
-
-
-
-                      
-                     
- 
-                      </div>
-                      <div className="contact-html-input-boxes">
-                      
-                      
-                      <input className="contact-html-input"
-          type="text"
-          placeholder="Name"
-        />
-                      
-                      </div>
-
-                      <div className="contact-html-input-boxes">
-                     
-                      
-                      <input className="contact-html-input"
-          type="text"
-          placeholder="Email"
-        />
-
-                      </div>
-
-                      <div className="contact-html-input-message-box">
-                      
-                      <input className="contact-html-input-message-input"
-          type="text"
-           placeholder="Message"
-        />
-                      
-                      </div>
-                      <div className="contact-html-input-submit-box">
-
-<div className="contact-html-input-submit-button">
-<img className="boxicon" src="/images/sendicon.png"/>
-</div>
-
-                      </div>
-                      </div>
+                    <Component/>
+                    </div>
                       
                     </div>
 
