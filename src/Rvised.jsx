@@ -197,71 +197,42 @@ export default function Model( {deskchairtransparent}
                 
                 </Html>)}
                 <Html
-                 className={`computer-monitor`}
+                 
 
-                 position={deskchairtransparent? [0.478,.428, -0.7] : [0.478,.428, -0.5]}
+                 position={deskchairtransparent? [0 ,0, -0.6] : [0.478,.428, -0.5]}
                  rotation-y={[Math.PI]}
-                 scale={[0.0114, 0.032, .01]}
+                 scale={.05}
                  transform
                  occlude
                >
-                <div className="monitor-screen"
+                <div 
                   style={{
-                    width: "100%",
-                    height: 0,
-                    paddingBottom: "178%",
-                    position: "relative",
+                    width: "156px",
+                    height: "156px",
+                    
+                   
                     zIndex: 1,
                     
                   }}
                 >
-                  <div style = {{
-                    width:"5000%",
-                    height:"5000%",
-                    position: "absolute",
-                    frameBorder:"0",
-                    className:"giphy-embed"
-                  }}
-                  >
+                 
                     <div className="computer-html">
                       <div className="html-container">
-
-
-                      <div className="picture-column">
-                      <div className="picture-div">
-                      <img className="chandler-pic" src = '/images/chandler-pic.jpg'/>
+                      <div className="html-container-wrapper">
+                        <div className="chandler-pic-column">
+                       
+                      <img className="chandler-pic" src="/images/chandler-pic.jpg"/>
+                       
                       </div>
-                      <div className="resume-icon">
-                        <a href="/images/resume.pdf" target="_blank">
-                      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAh9JREFUaEPtmVFygjAQhnfhySGcoXgTe5Lak6gnwZ5EexK9A3F8IabdSCi1CJmSEJgJT+iGsN/usgk/CDM/cOb+QwDwnUGjDFyv1+wmxAYAVgCQDXJaym2SprtBczQu7gWonD/ZuqGaxyJEL8CF8xwA1lYBLEKYAEjrzusJLWRiPAApt4C4/ROMgRCjASSM4aUoNrYhRgWg6NuGGB3ANoQXAJsQ3gBsQXgFsAHhHWAoxCQAuiCo/XYtpJMBeAYxGYD/bkcCwIVzd5s5g7SEDIQMGJRJ15BQQqGEQgk52kpEcbyk4C4Wi7OSXsryDRCVehHF8Sv9T+dkK8syixBJ3VCaEl2r7TpBz0rV2UNME2vBSwJ8Msb21eviOmFsqW03KT/SND2qvQ7npC9lGl5B66PthR8AnAIURbGKEA/futGZnK5+541zstVCFud8jQB5DSBEr2A2BkAuAXaPGWjAEUIT8KBLiIDIiFK+tKoVrjPQbDA6uo/O6jGNkjtpACozsgshVpSZtoY1SgaqG2vR91e0K9s+YexdSypTK6F7nf8cNQAiblDKI6nRTZF4FgAt5UXyfN1GyX7z+RAbLLC0Dgz7luDyITYAsDLE2UNsxTuDSQKAXv4NguViiOpoXROb6EJuPjGZ4ar1YxBA1b+p1w/uKGY+16N6o6+2ISaTEoQQIsc7xBgg+yiOd49b7jZfjQBMIH2NCQC+Iq/vO/sMfAE/aLJALz9/rgAAAABJRU5ErkJggg=="/>
-                      </a>
-                     Resume
-                     
-                      </div>
-                     
-                      </div>
-
                       <div className="about-me-column">
-                        <header className="about-me-header"></header>
-                        <div className="about-me-section">I'm a passionate full-stack developer with a deep love for creating dynamic and responsive web applications. With a strong foundation in both front-end and back-end technologies, I enjoy bringing ideas to life through clean code, intuitive interfaces, and robust architectures.
-
-My journey in software development began with a curiosity for how things work under the hood, leading me to master a wide range of programming languages and frameworks. On the front-end, I specialize in crafting seamless user experiences using modern libraries and frameworks like React and Vue.js. On the back-end, I have extensive experience building scalable APIs and services with Node.js.
-<div className="about-me-skills-header"> 
-  Skills
- </div>
- <div className="about-me-skills-section"> Typescript, React, Express, Node.js, HTML, CSS, TailwindCSS, MongoDB, SQL, ThreeJS, React Three Fiber, Python, Django, Flask </div>
- </div>
- 
+                        <div></div>
+                        <h1 className="about-me-header">I'm Chandler, a Full-Stack Developer, working freelance. </h1>
                       </div>
-{/* 
+                      </div>
 
-<div className="section-picker-column">
-  <div className="section-picker-organization-container" > 
-    <p>About Me</p> 
-  <p>Skills</p>
-  </div>
-  
-</div> */}
+                     
+
+                      
 
                       </div>
                     </div>
@@ -269,15 +240,7 @@ My journey in software development began with a curiosity for how things work un
 
 
                   </div>
-                </div>
-                <p>
-                  <a
-                    style={{ color: "rgba(0,0,0,0)" }}
-                    href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW"
-                  >
-                    via GIPHY
-                  </a>
-                </p>
+                
                
                   
  
@@ -404,14 +367,14 @@ My journey in software development began with a curiosity for how things work un
             receiveShadow
             geometry={nodes.Cube002_0.geometry}
             material={materials["Material.035"]}
-            position={[-0.1, -13.728, -8.932]}
-            scale={1.6}
+            position={[-0.0, -13.5, -8.932]}
+            scale={[2.2,1.9,1]}
           >
 <Html
                 position={[0.0, 0.00, .01]}
                
                 rotation={[0,0 , Math.PI /1]}
-                scale={.25}
+                scale={.24}
                 transform
                 occlude
                 

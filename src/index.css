@@ -1,24 +1,15 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-*{
+* {
   box-sizing: border-box;
-  
 }
 
-
-
-.App{
+.App {
   max-width: 100vw;
   height: 300vh;
   position: relative;
- 
-  
- 
-
 }
 *::-webkit-scrollbar {
   width: 2px; /* Width of the vertical scrollbar */
@@ -38,23 +29,18 @@
   background: #555; /* Handle color on hover */
 }
 
-
-.canvas-container{
+.canvas-container {
   position: fixed;
   width: 100%;
   height: 100vh;
-  
-  
-  
 }
 
-.intro-text{
+.intro-text {
   color: white;
   opacity: 0;
   font-family: "Inter";
   font-size: 30px;
-  font-weight:300;
-  
+  font-weight: 300;
 }
 
 .name-text {
@@ -64,7 +50,7 @@
   font-weight: 300;
 }
 
-.name-subtext{
+.name-subtext {
   font-size: 5px;
   color: white;
   font-family: "Inter";
@@ -72,123 +58,127 @@
   padding-top: 2px;
 }
 
-
-
-.computer-html{
-  height: 20%;
+.computer-html {
+  height: 100%;
   width: 100%;
 
- 
- 
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('/images/gradient.png'); 
-   background-size: cover; 
+  background-image: url("/images/gradient.png");
+  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;  
-  
+  background-repeat: no-repeat;
+  transform: scale(5);
 }
 
-.html-container{
+.html-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
-  
-  
-}
-
-
-
-.picture-column{
-  width: 40%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.picture-div{
-position: relative;
- height: 80%; 
- width: 100%;
-}
-
-.chandler-pic{
-  position: absolute;
-  left:28%;
-  top:0;
-  width: 40%;
-  transform: scale(1.5,.90); 
-  border-radius: 20px;
-  
  
 }
 
-.resume-icon{
+.html-container-wrapper{
+height: 80%;
+width: 90%;
+display: flex;
+
+
+}
+
+
+
+.chandler-pic-column{
+height: 100%;
+width: 50%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 3px;
+}
+
+
+img {
+  border-radius: 2px;
+}
+
+.chandler-pic {
+  height: 90%;
+  width: 90%;
+  border-radius: 2px;
+  
+
+}
+
+
+
+.about-me-column {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  transform: scale(5,3);
-  top: 16%;
   color: white;
- 
-  font-size: 10px;
-  font-family: "Inter";
-  font-weight: 300;
-}
 
-.about-me-column{
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-
-  width: 55%;
+  width: 50%;
   height: 100%;
   position: relative;
 }
 
 .about-me-header{
-  width: 100%;
-  height: 10%;
-  color: white;
-  font-size: 90px;
-  font-weight: 650;
-  position: absolute;
-  left:27%;
-  top:3%;
-  transform: scale(1.5,1);
+  height: 30%;
+  font-size: 4.5px;
+  font-family: "Inter";
+  font-weight: 600;
+  padding: 1px;
 }
 
-.about-me-section{
-  height: 85%;
+
+
+
+
+
+
+.resume-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  transform: scale(.1,.1);
+  color: white;
+
+  font-size: 10px;
+  font-family: "Inter";
+  font-weight: 300;
+}
+
+
+
+.about-me-section {
+ 
   color: white;
   padding: 2%;
-  font-size: 41px;
+  font-size: 10px;
   position: relative;
-  
-  margin-right: 5px;
+
 }
 
-.about-me-skills-header{
+.about-me-skills-header {
   width: 100%;
   height: 10%;
   color: white;
-  font-size: 90px;
+  font-size: 10px;
   font-weight: 650;
-  position: absolute;
-  left:27%;
-  top:50%;
-  transform: scale(1.5,1);
+ 
+ 
 }
 
-
-.about-me-skills-section{
-  position: absolute;
+.about-me-skills-section {
+ 
   top: 65%;
-  font-size: 41px;
+  font-size: 10px;
 }
 .section-picker-column {
   display: flex;
@@ -196,24 +186,6 @@ position: relative;
   align-items: center;
   width: 5%;
 }
-
-.section-picker-organization-container{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  height: 12%;
-  width: 100%;
-  
-  justify-content: center;
-  align-items: center;
-  font-size: 70px;
-  transform: rotate(90deg);
-
-  color: white;
-  transform-origin: bottom left; /* Optional: Adjust rotation point */
-  white-space: nowrap; /* Prevents text wrapping */
-}
-
 
 
 .html-overlay {
@@ -225,59 +197,39 @@ position: relative;
   align-items: center;
   position: absolute;
   z-index: 1;
-  
+
   pointer-events: none;
- 
- 
-  
-
-
 }
 
 .html-overlay-organization-container {
   width: 70%;
   height: 100%;
-  position:absolute;
-  
-  
+  position: absolute;
+
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: none;
- 
-  
 }
-
 
 .overlay-text-container {
   display: flex;
   flex-direction: column;
   position: absolute;
   left: 10%;
-  top:22%;
+  top: 22%;
 
-  
   width: 90%;
   height: 25%;
-  
-
 }
 
 .title-text {
-  
-  
-  
-  
   padding: 0px;
   font-size: 65px;
   font-weight: 500;
   opacity: 1;
-  
+
   font-family: "Frank Ruhl Libre";
-  
-
-
-  
 }
 
 .subtitle-text {
@@ -287,8 +239,7 @@ position: relative;
   opacity: 1;
 }
 
-
-.arrow-div{
+.arrow-div {
   position: fixed;
   bottom: 10px;
   width: 100%;
@@ -296,33 +247,25 @@ position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
- 
- 
-  
-  
 }
 
-.arrow-text{
- font-size: 13px;
- font-weight: 200;
- font-family: "Frank Ruhl Libre";
- 
+.arrow-text {
+  font-size: 13px;
+  font-weight: 200;
+  font-family: "Frank Ruhl Libre";
 }
 .arrow-down {
- 
   opacity: 1;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-
 }
 
-
-.dark-mode-switch{
-position: absolute;
-top:2.5%;
-right: 20%;  
+.dark-mode-switch {
+  position: absolute;
+  top: 2.5%;
+  right: 20%;
 }
 
 button {
@@ -340,7 +283,7 @@ button {
   & {
     box-shadow: 0 0 0 1px white;
   }
-  &[data-state='checked'] {
+  &[data-state="checked"] {
     background-color: transparent;
   }
 }
@@ -349,13 +292,13 @@ button {
   display: block;
   width: 21px;
   height: 20px;
-  
+
   border-radius: 9999px;
   box-shadow: 0 2px 2px var(--black-a7);
   transition: transform 100ms;
   transform: translateX(2px);
   will-change: transform;
-  &[data-state='checked'] {
+  &[data-state="checked"] {
     transform: translateX(19px);
   }
 }
@@ -367,40 +310,35 @@ button {
   user-select: none;
 }
 
-
-.trigger-div-cam-perspective{
-position: absolute;
-top:30%
+.trigger-div-cam-perspective {
+  position: absolute;
+  top: 30%;
 }
 
-.trigger-div-cam-perspective2{
+.trigger-div-cam-perspective2 {
   position: absolute;
-  top:30%
-  }
-  
+  top: 30%;
+}
 
 .project-html {
- 
-    height: 100%;
-    width: 100%;
-  
-   
-   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-  }
+  height: 100%;
+  width: 100%;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
 
-  .project-html-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
+.project-html-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
 
 .project-header {
   display: flex;
@@ -410,21 +348,17 @@ top:30%
   width: 100%;
   font-size: 5px;
   font-weight: 500;
- 
-
 }
-  .project-picture {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 45%;
-   
-    border-radius: 10px;
-  
-   transform: scale(.9,.7);
-   
-    
-  }
+.project-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45%;
+
+  border-radius: 10px;
+
+  transform: scale(0.9, 0.7);
+}
 .project-description {
   display: flex;
   justify-content: center;
@@ -436,26 +370,18 @@ top:30%
 
   font-size: 4.5px;
   font-weight: 400;
- 
- 
 }
-
-
-
 
 .contact-html {
   height: 100%;
   width: 100%;
-  
- transform: scale(4);
 
- 
- 
+  transform: scale(3.75);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
- 
 }
 .contact-html-header {
   display: flex;
@@ -469,26 +395,15 @@ top:30%
   font-family: "Inter";
 }
 
-
-.contact-me-component{
-  
- 
-    
-
+.contact-me-component {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
-
 }
 
-
-
-
 .contact-input {
-  
 }
 
 @layer base {
@@ -518,7 +433,6 @@ top:30%
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-  
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -545,18 +459,13 @@ top:30%
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-  
   }
-  
 }
 @layer base {
   * {
     @apply border-border;
-  
   }
   body {
     @apply bg-background text-foreground;
-  
   }
-  
 }

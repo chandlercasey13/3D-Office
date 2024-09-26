@@ -47,7 +47,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   const [mousePos, setMousePos] = useState({x: 0});
 
   const handleMouseMove = (event) => {
-    {htmlPresent && animationEnded (
+    {htmlPresent &&  (
     setMousePos({
       x: event.clientX / window.innerWidth,
       
@@ -106,19 +106,33 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         opacity: 0,
       });
 
-      gsap.to(".about-me-header", {
+      gsap.fromTo(".about-me-header", 
+        
+      
+        {
+          scrollTrigger: {
+            trigger: ".title-text",
+            start: 0,
+          },
         y: 10,
-        scrollTrigger: {
-          trigger: ".title-text",
-          start: 0,
-        },
-        text: "Hi, I'm Chandler ",
+        ease: "back.inOut",
 
         duration: 1.5,
 
-        opacity: 1,
-        delay: 1,
-      });
+        opacity: 0,
+        delay: .5,
+        },
+        {
+          y: 0,
+          ease: "back.inOut",
+  
+          duration: 1.0,
+  
+          opacity: 1,
+          delay: 1,
+        },
+       
+      );
 
       gsap.from(".about-me-section", {
         y: 10,
@@ -132,18 +146,18 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         opacity: 0,
         delay: 1,
       });
-      gsap.from(".chandler-pic", {
-        y: 10,
-        scrollTrigger: {
-          trigger: ".title-text",
-          start: 0,
-        },
+      // gsap.from(".chandler-pic", {
+      //   y: 10,
+      //   scrollTrigger: {
+      //     trigger: ".title-text",
+      //     start: 0,
+      //   },
 
-        duration: 2,
+      //   duration: 2,
 
-        opacity: 0,
-        delay: 1,
-      });
+      //   opacity: 0,
+      //   delay: 1,
+      // });
     },
     { dependencies: [deskchairtransparent], revertOnUpdate: true }
   );
