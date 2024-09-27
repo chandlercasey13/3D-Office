@@ -16,13 +16,15 @@ import * as Switch from "@radix-ui/react-switch";
 import { useProgress } from "@react-three/drei";
 
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
-
+import ResponsiveCamera from "./ResponsiveCamera";
 import { SelectiveBloom, Selection, Select } from "@react-three/postprocessing";
 
 import { BrightnessContrast } from "@react-three/postprocessing";
 import { Outline } from "@react-three/postprocessing";
 
 import { Text3D } from "@react-three/drei";
+
+
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -154,6 +156,7 @@ function App() {
               rotation: new THREE.Euler(-0.4, 0, 0),
             }}
           >
+            <ResponsiveCamera/>
             <Suspense fallback={null}>
               <ambientLight intensity={daynighttoggle ? 5.5 : 5.5} />
               <directionalLight
@@ -166,6 +169,8 @@ function App() {
                 <OfficeModel
                   handleHTMLPresent={handleHTMLPresent}
                   htmlPresent={htmlPresent}
+                  
+                 
                 />
               </group>
               <mesh

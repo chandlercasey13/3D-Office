@@ -3,7 +3,9 @@ import { useState, useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 
 import * as THREE from "three";
-import Model from "./Rvised";
+import PCModel from "./PCScene";
+import MobileModel from "./MobileScene";
+
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import React from "react";
@@ -14,6 +16,9 @@ import { Canvas, useThree } from "@react-three/fiber";
 
 import { TextPlugin } from "gsap/TextPlugin";
 import { useMemo } from "react";
+import Media from 'react-media';
+
+
 
 
 const OfficeModel = ({
@@ -54,7 +59,8 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
     }))}
   };
 
-  
+
+
   useEffect(() => {
     setTimeout(
     window.addEventListener('mousemove', handleMouseMove),2000)
@@ -114,7 +120,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
             trigger: ".title-text",
             start: 0,
           },
-        y: 10,
+        y: -5,
         ease: "back.inOut",
 
         duration: 1.5,
@@ -126,7 +132,7 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
           y: 0,
           ease: "back.inOut",
   
-          duration: 1.0,
+          duration: 2.0,
   
           opacity: 1,
           delay: 1,
@@ -138,26 +144,26 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         y: 10,
         scrollTrigger: {
           trigger: ".title-text",
-          start: 0,
+         
         },
 
         duration: 2,
 
         opacity: 0,
-        delay: 1,
+        delay: 2,
       });
-      // gsap.from(".chandler-pic", {
-      //   y: 10,
-      //   scrollTrigger: {
-      //     trigger: ".title-text",
-      //     start: 0,
-      //   },
+      gsap.from(".chandler-pic", {
+        x: -10,
+        scrollTrigger: {
+          trigger: ".title-text",
+          
+        },
 
-      //   duration: 2,
+        duration: 2,
 
-      //   opacity: 0,
-      //   delay: 1,
-      // });
+        opacity: 0,
+        delay: 2,
+      },);
     },
     { dependencies: [deskchairtransparent], revertOnUpdate: true }
   );
@@ -191,7 +197,6 @@ modelRef.current.rotation, {
 }, 0
 
       )
-    
 
 
    
@@ -310,7 +315,7 @@ modelRef.current.rotation, {
 
       ScrollTrigger.create({
         trigger: ".title-text",
-        start: 200, // When the top of the trigger element hits the center of the viewport
+        start:  200, // When the top of the trigger element hits the center of the viewport
         onEnter: () => {
           disableScroll(), projectsCamera.play();
         },
@@ -361,13 +366,30 @@ modelRef.current.rotation, {
 
   return (
     <>
-      <group ref={modelRef}>
-        <Model
+
+
+<Media queries={{ small: { maxWidth: 599 } }}>
+    {matches =>
+      matches.small ? (
+        <group ref={modelRef}>
+        <MobileModel
         
          deskchairtransparent={deskchairtransparent}
         />
        
         </group>
+      ) : (
+        <group ref={modelRef}>
+        <PCModel
+        
+         deskchairtransparent={deskchairtransparent}
+        />
+       
+        </group>
+      )
+    }
+  </Media>
+      
        
       
     </>
