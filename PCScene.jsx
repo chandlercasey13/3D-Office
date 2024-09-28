@@ -17,7 +17,7 @@ import * as THREE from "three";
 import Component from "../src/ContactForm";
 
 export default function PCModel({ deskchairtransparent, scale }) {
-  const { nodes: nodes, materials: materials } = useGLTF("/rvised.glb");
+  const { nodes: nodes, materials: materials } = useGLTF("rvised.glb");
   const { nodes: nodes2, materials: materials2 } = useGLTF("/OfficeProps.glb");
   const { viewport } = useThree();
   const modelRef = useRef();
@@ -824,4 +824,4 @@ export default function PCModel({ deskchairtransparent, scale }) {
   );
 }
 
-useGLTF.preload("/rvised.glb");
+useGLTF.preload("rvised.glb");
