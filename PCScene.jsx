@@ -201,7 +201,7 @@ export default function PCModel({ deskchairtransparent, scale }) {
                           <div className="chandler-pic-column">
                             <img
                               className="chandler-pic"
-                              src="/images/chandler-pic.jpg"
+                              src="images/chandler-pic.jpg"
                             />
                           </div>
                           <div className="about-me-column">
