@@ -29,7 +29,7 @@ export default function PCModel({ deskchairtransparent, scale }) {
       <>
         <Text3D
           ref={glowingTextRef}
-          font={"/fonts/3dfont3.json"}
+          font={"fonts/3dfont3.json"}
           size={0.05}
           scale={[0.35, 0.3, 0.2]}
           rotation={[Math.PI / 2, 0, 0]}
