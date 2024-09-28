@@ -7,28 +7,29 @@ import React from "react";
 import { Html } from "@react-three/drei";
 
 import { useGLTF } from "@react-three/drei";
-import Corkboard from "./Corkboard";
+import Corkboard from "../src/Corkboard";
 import { useState, useRef, useEffect } from "react";
 
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { Text3D } from "@react-three/drei";
+import { Canvas, useThree } from "@react-three/fiber";
+import * as THREE from "three";
+import Component from "../src/ContactForm";
 
-
-import Component from "./ContactForm";
-
-export default function MobileModel({ deskchairtransparent, scale }) {
-  const { nodes: nodes, materials: materials } = useGLTF("/rvised.glb");
-  const { nodes: nodes2, materials: materials2 } = useGLTF("/OfficeProps.glb");
+export default function PCModel({ deskchairtransparent, scale }) {
+  const { nodes: nodes, materials: materials } = useGLTF("rvised.glb");
+  const { nodes: nodes2, materials: materials2 } = useGLTF("OfficeProps.glb");
+  const { viewport } = useThree();
+  const modelRef = useRef();
 
   function GlowingText() {
     const glowingTextRef = useRef();
-    const modelRef = useRef();
 
     return (
       <>
         <Text3D
           ref={glowingTextRef}
-          font={"/fonts/3dfont3.json"}
+          font={"fonts/3dfont3.json"}
           size={0.05}
           scale={[0.35, 0.3, 0.2]}
           rotation={[Math.PI / 2, 0, 0]}
@@ -53,6 +54,7 @@ export default function MobileModel({ deskchairtransparent, scale }) {
   return (
     <>
       <group
+        ref={modelRef}
         dispose={null}
         position={[-0.045, -0.35, -1]}
         rotation-y={[0.79]}
@@ -199,7 +201,7 @@ export default function MobileModel({ deskchairtransparent, scale }) {
                           <div className="chandler-pic-column">
                             <img
                               className="chandler-pic"
-                              src="/images/chandler-pic.jpg"
+                              src="images/chandler-pic.jpg"
                             />
                           </div>
                           <div className="about-me-column">
@@ -822,4 +824,4 @@ export default function MobileModel({ deskchairtransparent, scale }) {
   );
 }
 
-useGLTF.preload("/rvised.glb");
+useGLTF.preload("rvised.glb");

@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 
 export default function ResponsiveCamera() {
   const { camera, size } = useThree(); // Access camera and size
-console.log(camera)
   useEffect(() => {
     const aspect = size.width / size.height;
 
@@ -21,7 +20,6 @@ console.log(camera)
 
         camera.fov = 60; // Zoom out for wider screens
       }
-console.log(aspect)
     camera.updateProjectionMatrix(); // Ensure the changes take effect
   }, [camera, size]);
 

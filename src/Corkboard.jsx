@@ -19,7 +19,7 @@ import { BrightnessContrast } from "@react-three/postprocessing";
 import { Outline } from "@react-three/postprocessing";
 import { gsap } from "gsap";
 export default function Model(props) {
-  const { nodes, materials } = useGLTF("/corkboard.glb");
+  const { nodes, materials } = useGLTF("corkboard.glb");
 
   const project1 = useRef();
   const project2 = useRef();
@@ -97,7 +97,7 @@ export default function Model(props) {
                         <div className="project-html-container">
                           <div className="project-header">SureLock</div>
                           <div className="project-picture">
-                            <img src="/images/surelock.png" />
+                            <img src="images/surelock.png" />
                           </div>
                           <div className="project-description">
                             Surelock is a secure, user-friendly password manager
@@ -172,7 +172,7 @@ export default function Model(props) {
                         <div className="project-html-container">
                           <div className="project-header">GPT-Clone</div>
                           <div className="project-picture">
-                            <img src="/images/AIPIC.png" />
+                            <img src="images/AIPIC.png" />
                           </div>
                           <div className="project-description">
                             A ChatGPT clone is an AI-powered chatbot that
@@ -247,7 +247,7 @@ export default function Model(props) {
                         <div className="project-html-container">
                           <div className="project-header">JavaScript Game</div>
                           <div className="project-picture">
-                            <img src="/images/wormgame.png" />
+                            <img src="images/wormgame.png" />
                           </div>
                           <div className="project-description">
                             A Google Keep clone is a note-taking app that lets
@@ -498,4 +498,4 @@ export default function Model(props) {
   );
 }
 
-useGLTF.preload("/corkboard.glb");
+useGLTF.preload("corkboard.glb");

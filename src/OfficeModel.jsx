@@ -3,8 +3,8 @@ import { useState, useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 
 import * as THREE from "three";
-import PCModel from "./PCScene";
-import MobileModel from "./MobileScene";
+import PCModel from "../public/PCScene";
+
 
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -16,58 +16,39 @@ import { Canvas, useThree } from "@react-three/fiber";
 
 import { TextPlugin } from "gsap/TextPlugin";
 import { useMemo } from "react";
-import Media from 'react-media';
+import Media from "react-media";
 
+const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
+  gsap.registerPlugin(useGSAP);
+  gsap.registerPlugin(TextPlugin);
+  gsap.registerPlugin(ScrollTrigger);
 
-
-
-const OfficeModel = ({
-  handleHTMLPresent,
-  htmlPresent,
-  
-}) => {
-
-gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(TextPlugin);
-gsap.registerPlugin(ScrollTrigger);
-
-
-const [animationEnded, setAnimationEnded] =useState(true)
-const [deskchairtransparent, setdeskchairtransparent] = useState(false);
+  const [animationEnded, setAnimationEnded] = useState(true);
+  const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   const modelRef = useRef();
   const textRef = useRef();
 
-
-
- 
-  const { camera } = useThree(); 
+  const { camera } = useThree();
 
   const disableScroll = () => (document.body.style.overflow = "hidden");
   const enableScroll = () => (document.body.style.overflowY = "scroll");
 
-
-
-
-
-  const [mousePos, setMousePos] = useState({x: 0});
+  const [mousePos, setMousePos] = useState({ x: 0 });
 
   const handleMouseMove = (event) => {
-    {htmlPresent &&  (
-    setMousePos({
-      x: event.clientX / window.innerWidth,
-      
-    }))}
+    {
+      htmlPresent &&
+        setMousePos({
+          x: event.clientX / window.innerWidth,
+        });
+    }
   };
 
-
-
   useEffect(() => {
-    setTimeout(
-    window.addEventListener('mousemove', handleMouseMove),2000)
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    setTimeout(window.addEventListener("mousemove", handleMouseMove), 2000);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [htmlPresent]);
 
- 
   useFrame(() => {
     if (modelRef.current && animationEnded) {
       const sensitivity = 0.1;
@@ -79,10 +60,6 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
       );
     }
   });
-
-
-
-
 
   useGSAP(
     () => {
@@ -112,39 +89,37 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         opacity: 0,
       });
 
-      gsap.fromTo(".about-me-header", 
-        
-      
+      gsap.fromTo(
+        ".about-me-header",
+
         {
           scrollTrigger: {
             trigger: ".title-text",
             start: 0,
           },
-        y: -5,
-        ease: "back.inOut",
+          y: -5,
+          ease: "back.inOut",
 
-        duration: 1.5,
+          duration: 1.5,
 
-        opacity: 0,
-        delay: .5,
+          opacity: 0,
+          delay: 0.5,
         },
         {
           y: 0,
           ease: "back.inOut",
-  
+
           duration: 2.0,
-  
+
           opacity: 1,
           delay: 1,
-        },
-       
+        }
       );
 
       gsap.from(".about-me-section", {
         y: 10,
         scrollTrigger: {
           trigger: ".title-text",
-         
         },
 
         duration: 2,
@@ -156,52 +131,41 @@ const [deskchairtransparent, setdeskchairtransparent] = useState(false);
         x: -10,
         scrollTrigger: {
           trigger: ".title-text",
-          
         },
 
         duration: 2,
 
         opacity: 0,
         delay: 2,
-      },);
+      });
     },
     { dependencies: [deskchairtransparent], revertOnUpdate: true }
   );
 
-  
-
   useGSAP(() => {
+    const intro = gsap.timeline({ repeat: 0 });
 
-    const intro = gsap.timeline({  repeat: 0 });
+    intro.from(modelRef.current.scale, {
+      x: 0.01, // Double the size along the x-axis
+      y: 0.01, // Double the size along the y-axis
+      z: 0.01, // Double the size along the z-axis
+      duration: 1.5,
+      delay: 0.5,
+      ease: "elastic.out",
+    });
 
-    intro.from(
-      modelRef.current.scale,
+    intro.to(
+      modelRef.current.rotation,
       {
-        x: .01, // Double the size along the x-axis
-        y: .01, // Double the size along the y-axis
-        z: .01, // Double the size along the z-axis
-        duration: 1.5,
-        delay: .5,
+        x: 0, // Double the size along the x-axis
+        y: 0, // Double the size along the y-axis
+        z: 0, // Double the size along the z-axis
+        duration: 2,
+        delay: 0.5,
         ease: "elastic.out",
-        
-      })
-
-      intro.to(
-modelRef.current.rotation, {
-  x: 0, // Double the size along the x-axis
-  y: 0, // Double the size along the y-axis
-  z: 0, // Double the size along the z-axis
-  duration: 2,
-  delay: .5,
-  ease: "elastic.out",
-}, 0
-
-      )
-
-
-   
-
-
+      },
+      0
+    );
 
     const monitorCamera = gsap.timeline({ paused: true, repeat: 0 });
 
@@ -213,9 +177,7 @@ modelRef.current.rotation, {
         z: 0.0375, // Double the size along the z-axis
         duration: 1,
         delay: 0,
-        onEnter: () => {
-          
-        },
+        onEnter: () => {},
         onComplete: () => {
           enableScroll();
         },
@@ -278,7 +240,7 @@ modelRef.current.rotation, {
     contactCamera.to(
       camera.position,
       {
-        x: .175, // Double the size along the x-axis
+        x: 0.175, // Double the size along the x-axis
         y: 0.45, // Double the size along the y-axis
         z: 0.335, // Double the size along the z-axis
         duration: 0.5,
@@ -290,32 +252,29 @@ modelRef.current.rotation, {
       0
     );
     setTimeout(() => {
-  
-
       ScrollTrigger.create({
         trigger: ".title-text",
         start: 0, // When the top of the trigger element hits the center of the viewport
         onEnter: () => {
-          setdeskchairtransparent(true)
-          setAnimationEnded(false)
-            modelRef.current.rotation.set(0, 0, 0);
-         
-          handleHTMLPresent()
+          setdeskchairtransparent(true);
+          setAnimationEnded(false);
+          modelRef.current.rotation.set(0, 0, 0);
+
+          handleHTMLPresent();
           disableScroll(), monitorCamera.play();
         },
-        
+
         onLeaveBack: () => {
-          handleHTMLPresent()
-          setdeskchairtransparent(false)
-          setAnimationEnded(true)
+          handleHTMLPresent();
+          setdeskchairtransparent(false);
+          setAnimationEnded(true);
           monitorCamera.reverse();
-          
         },
       });
 
       ScrollTrigger.create({
         trigger: ".title-text",
-        start:  200, // When the top of the trigger element hits the center of the viewport
+        start: 200, // When the top of the trigger element hits the center of the viewport
         onEnter: () => {
           disableScroll(), projectsCamera.play();
         },
@@ -336,8 +295,6 @@ modelRef.current.rotation, {
       });
     }, 100);
   }, []);
-
-
 
   // function TextMesh({ text }) {
   //   return (
@@ -362,28 +319,12 @@ modelRef.current.rotation, {
 
   // const [chandlersOfficeTextVisible, setchandlersOfficeTextVisible] =
   //   useState(true);
-    
 
   return (
     <>
-
-
-
-       
-       
-        <group ref={modelRef}>
-        <PCModel
-        
-         deskchairtransparent={deskchairtransparent}
-        />
-       
-        </group>
-      
-    
-  
-      
-       
-      
+      <group ref={modelRef}>
+        <PCModel deskchairtransparent={deskchairtransparent} />
+      </group>
     </>
   );
 };
