@@ -7,19 +7,19 @@ import React from "react";
 import { Html } from "@react-three/drei";
 
 import { useGLTF } from "@react-three/drei";
-import Corkboard from "../src/Corkboard";
-import { useState, useRef, useEffect } from "react";
+import Corkboard from "./Corkboard";
+import { useRef } from "react";
 
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
+
 import { Text3D } from "@react-three/drei";
-import { Canvas, useThree } from "@react-three/fiber";
-import * as THREE from "three";
-import Component from "../src/ContactForm";
+import {  useThree } from "@react-three/fiber";
+
+import Component from "./ContactForm";
 
 export default function PCModel({ deskchairtransparent, scale }) {
   const { nodes: nodes, materials: materials } = useGLTF("rvised.glb");
   const { nodes: nodes2, materials: materials2 } = useGLTF("OfficeProps.glb");
-  const { viewport } = useThree();
+  
   const modelRef = useRef();
 
   function GlowingText() {

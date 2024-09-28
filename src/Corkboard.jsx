@@ -7,16 +7,10 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 
 import { Html } from "@react-three/drei";
-import Corkboard from "./Corkboard";
-import { useState, useRef, useEffect } from "react";
 
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import { Text3D } from "@react-three/drei";
+import { useRef } from "react";
 
-import { SelectiveBloom, Selection, Select } from "@react-three/postprocessing";
 
-import { BrightnessContrast } from "@react-three/postprocessing";
-import { Outline } from "@react-three/postprocessing";
 import { gsap } from "gsap";
 export default function Model(props) {
   const { nodes, materials } = useGLTF("corkboard.glb");

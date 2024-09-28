@@ -3,20 +3,18 @@ import { useState, useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 
 import * as THREE from "three";
-import PCModel from "../public/PCScene";
-
+import PCModel from "./PCScene";
 
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import React from "react";
-import { Html } from "@react-three/drei";
+
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useGLTF } from "@react-three/drei";
-import { Canvas, useThree } from "@react-three/fiber";
+
+import {  useThree } from "@react-three/fiber";
 
 import { TextPlugin } from "gsap/TextPlugin";
-import { useMemo } from "react";
-import Media from "react-media";
+
 
 const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
   gsap.registerPlugin(useGSAP);
@@ -26,7 +24,7 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
   const [animationEnded, setAnimationEnded] = useState(true);
   const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   const modelRef = useRef();
-  const textRef = useRef();
+
 
   const { camera } = useThree();
 
@@ -63,7 +61,7 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
 
   useGSAP(
     () => {
-      // gsap code here...
+    
       gsap.from(".title-text", {
         y: 0,
 
@@ -146,9 +144,9 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     const intro = gsap.timeline({ repeat: 0 });
 
     intro.from(modelRef.current.scale, {
-      x: 0.01, // Double the size along the x-axis
-      y: 0.01, // Double the size along the y-axis
-      z: 0.01, // Double the size along the z-axis
+      x: 0.01, 
+      y: 0.01, 
+      z: 0.01, 
       duration: 1.5,
       delay: 0.5,
       ease: "elastic.out",
@@ -157,9 +155,9 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     intro.to(
       modelRef.current.rotation,
       {
-        x: 0, // Double the size along the x-axis
-        y: 0, // Double the size along the y-axis
-        z: 0, // Double the size along the z-axis
+        x: 0, 
+        y: 0, 
+        z: 0, 
         duration: 2,
         delay: 0.5,
         ease: "elastic.out",
@@ -172,9 +170,9 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     monitorCamera.to(
       camera.rotation,
       {
-        x: -0.055, // Double the size along the x-axis
-        y: 0.795, // Double the size along the y-axis
-        z: 0.0375, // Double the size along the z-axis
+        x: -0.055, 
+        y: 0.795, 
+        z: 0.0375, 
         duration: 1,
         delay: 0,
         onEnter: () => {},
@@ -187,9 +185,9 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     monitorCamera.to(
       camera.position,
       {
-        x: 0.15, // Double the size along the x-axis
-        y: 0.025, // Double the size along the y-axis
-        z: 0.3, // Double the size along the z-axis
+        x: 0.15, 
+        y: 0.025, 
+        z: 0.3, 
         duration: 1,
         delay: 0,
       },
@@ -201,9 +199,9 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     projectsCamera.to(
       camera.rotation,
       {
-        x: 0, // Double the size along the x-axis
-        y: -0.77, // Double the size along the y-axis
-        z: 0, // Double the size along the z-axis
+        x: 0, 
+        y: -0.77, 
+        z: 0, 
         duration: 1,
         delay: 0,
       },
@@ -212,9 +210,9 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     projectsCamera.to(
       camera.position,
       {
-        x: -0.25, // Double the size along the x-axis
-        y: 0.35, // Double the size along the y-axis
-        z: 0.25, // Double the size along the z-axis
+        x: -0.25, 
+        y: 0.35, 
+        z: 0.25, 
         duration: 1,
         delay: 0,
         onComplete: () => {
@@ -229,9 +227,9 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     contactCamera.to(
       camera.rotation,
       {
-        x: -1.4, // Double the size along the x-axis
-        y: 0, // Double the size along the y-axis
-        z: -0.55, // Double the size along the z-axis
+        x: -1.4, 
+        y: 0,
+        z: -0.55, 
         duration: 0.5,
         delay: 0,
       },
@@ -240,9 +238,9 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     contactCamera.to(
       camera.position,
       {
-        x: 0.175, // Double the size along the x-axis
-        y: 0.45, // Double the size along the y-axis
-        z: 0.335, // Double the size along the z-axis
+        x: 0.175, 
+        y: 0.45, 
+        z: 0.335, 
         duration: 0.5,
         delay: 0,
         onComplete: () => {
@@ -254,7 +252,7 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     setTimeout(() => {
       ScrollTrigger.create({
         trigger: ".title-text",
-        start: 0, // When the top of the trigger element hits the center of the viewport
+        start: 0, 
         onEnter: () => {
           setdeskchairtransparent(true);
           setAnimationEnded(false);
@@ -274,7 +272,7 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
 
       ScrollTrigger.create({
         trigger: ".title-text",
-        start: 200, // When the top of the trigger element hits the center of the viewport
+        start: 200, 
         onEnter: () => {
           disableScroll(), projectsCamera.play();
         },
@@ -285,7 +283,7 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
 
       ScrollTrigger.create({
         trigger: ".title-text",
-        start: 300, // When the top of the trigger element hits the center of the viewport
+        start: 300,
         onEnter: () => {
           disableScroll(), contactCamera.play();
         },
@@ -296,29 +294,6 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     }, 100);
   }, []);
 
-  // function TextMesh({ text }) {
-  //   return (
-  //     <mesh position={[6, 0.5, 0]} rotation={[Math.PI / 2, 0, Math.PI / 2]}>
-  //       <boxGeometry args={[0, 2]} />
-  //       <meshStandardMaterial
-  //         color="black"
-  //         transparent
-  //         opacity={0} // Adjust opacity if needed
-  //         side={2} // Double side
-  //       />
-  //       <Html transform sprite>
-  //         <div
-  //           className={`intro-text ${
-  //             chandlersOfficeTextVisible ? "opacity-100" : "opacity-0"
-  //           }`}
-  //         ></div>
-  //       </Html>
-  //     </mesh>
-  //   );
-  // }
-
-  // const [chandlersOfficeTextVisible, setchandlersOfficeTextVisible] =
-  //   useState(true);
 
   return (
     <>
