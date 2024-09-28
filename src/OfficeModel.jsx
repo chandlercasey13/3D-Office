@@ -368,17 +368,9 @@ modelRef.current.rotation, {
     <>
 
 
-<Media queries={{ small: { maxWidth: 599 } }}>
-    {matches =>
-      matches.small ? (
-        <group ref={modelRef}>
-        <MobileModel
-        
-         deskchairtransparent={deskchairtransparent}
-        />
+
        
-        </group>
-      ) : (
+       
         <group ref={modelRef}>
         <PCModel
         
@@ -386,9 +378,9 @@ modelRef.current.rotation, {
         />
        
         </group>
-      )
-    }
-  </Media>
+      
+    
+  
       
        
       
