@@ -9,7 +9,7 @@ import { useGLTF } from "@react-three/drei";
 import { Html } from "@react-three/drei";
 
 import { useRef } from "react";
-
+import { Text3D, ScreenSpace } from "@react-three/drei";
 
 import { gsap } from "gsap";
 export default function Model(props) {
@@ -23,8 +23,12 @@ export default function Model(props) {
   const project6 = useRef();
 
   return (
+   
+
     <group {...props} dispose={null}>
       <group>
+
+
         <group scale={1}>
           <mesh
             geometry={nodes.Cube11647_1.geometry}
@@ -64,16 +68,16 @@ export default function Model(props) {
                 <meshStandardMaterial color={"white"} />
                 <Html
                   position={[-0.0, 0.05, 0.0]}
-                  scale={[1, 1, 1]}
+                  scale={1}
                   rotation={[-Math.PI / 2, 0, Math.PI / 2]}
                   transform
                   occlude
-                  pointerEvents="none"
+                   pointerEvents="none"
                 >
                   <div
                     className="projects"
                     style={{
-                      width: "75px",
+                      width: "74px",
                       height: "80px",
                       position: "relative",
 
@@ -139,7 +143,7 @@ export default function Model(props) {
                 <meshStandardMaterial color={"white"} />
                 <Html
                   position={[0.0, 0.05, 0.0]}
-                  scale={[1, 1, 1]}
+                  scale={1}
                   rotation={[-Math.PI / 2, 0, Math.PI / 2]}
                   transform
                   occlude
@@ -148,7 +152,7 @@ export default function Model(props) {
                   <div
                     className="projects"
                     style={{
-                      width: "75px",
+                      width: "74px",
                       height: "80px",
                       position: "relative",
 
@@ -223,7 +227,7 @@ export default function Model(props) {
                   <div
                     className="projects"
                     style={{
-                      width: "75px",
+                      width: "74px",
                       height: "80px",
                       position: "relative",
 
@@ -297,7 +301,7 @@ export default function Model(props) {
                   <div
                     className="projects"
                     style={{
-                      width: "75px",
+                      width: "74px",
                       height: "80px",
                       position: "relative",
 
@@ -370,7 +374,7 @@ export default function Model(props) {
                   <div
                     className="projects"
                     style={{
-                      width: "75px",
+                      width: "74px",
                       height: "80px",
                       position: "relative",
 
@@ -489,6 +493,7 @@ export default function Model(props) {
         </group>
       </group>
     </group>
+    
   );
 }
 

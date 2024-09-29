@@ -9,9 +9,11 @@ import { Html } from "@react-three/drei";
 import { useGLTF } from "@react-three/drei";
 import Corkboard from "./Corkboard";
 import { useRef } from "react";
+import { useFrame } from '@react-three/fiber';
 
+import * as THREE from "three";
 
-import { Text3D } from "@react-three/drei";
+import { Text3D, ScreenSpace, AdaptiveDpr } from "@react-three/drei";
 import {  useThree } from "@react-three/fiber";
 
 import Component from "./ContactForm";
@@ -21,6 +23,12 @@ export default function PCModel({ deskchairtransparent, scale }) {
   const { nodes: nodes2, materials: materials2 } = useGLTF("OfficeProps.glb");
   
   const modelRef = useRef();
+
+
+
+
+
+
 
   function GlowingText() {
     const glowingTextRef = useRef();
@@ -53,6 +61,7 @@ export default function PCModel({ deskchairtransparent, scale }) {
 
   return (
     <>
+    
       <group
         ref={modelRef}
         dispose={null}
@@ -61,6 +70,7 @@ export default function PCModel({ deskchairtransparent, scale }) {
         // rotation-x={[.1]}
         rotation-x={[0]}
         scale={[0.35, 0.4, 0.35]}
+       
       >
         <group
           position={[-2.237, 0.576, 0.969]}
@@ -141,18 +151,20 @@ export default function PCModel({ deskchairtransparent, scale }) {
                 material={materials["tvtela_da_tv.002"]}
               >
                 {!deskchairtransparent && (
+                 
                   <Html
                     className="computer-monitor"
-                    position={[0.364, -0.32, -0.7]}
+                    position={[0.364, -0.34, -0.7]}
                     scale={[0.08, 0.1425, 0.01]}
                     rotation={[Math.PI, 0, 0]}
                     transform
+                    pointerEvents="none"
                   >
                     <div
                       className="monitor-screen"
                       style={{
-                        width: "100%",
-                        height: 0,
+                        width: "67px",
+                        height: "0px",
                         paddingBottom: "178%",
                         position: "relative",
                         zIndex: 1,
@@ -165,18 +177,12 @@ export default function PCModel({ deskchairtransparent, scale }) {
                         height="400%"
                         style={{ position: "absolute" }}
                         frameBorder="0"
-                        className="giphy-embed"
+                        
                       ></iframe>
                     </div>
-                    <p>
-                      <a
-                        style={{ color: "rgba(0,0,0,0)" }}
-                        href="https://giphy.com/gifs/Trakto--background-trakto-bg-HCJJlbF8097pdYRNWW"
-                      >
-                        via GIPHY
-                      </a>
-                    </p>
+                   
                   </Html>
+                  
                 )}
                 <Html
                   position={

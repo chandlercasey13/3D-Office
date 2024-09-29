@@ -39,21 +39,27 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
         setMousePos({
           x: event.clientX / window.innerWidth,
         });
+        
     }
   };
 
+
+
   useEffect(() => {
-    setTimeout(window.addEventListener("mousemove", handleMouseMove), 2000);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    
+      window.addEventListener("mousemove",  handleMouseMove);
+    
+  
   }, [htmlPresent]);
 
   useFrame(() => {
     if (modelRef.current && animationEnded) {
       const sensitivity = 0.1;
-      const lerpFactor = 0.05;
+      const lerpFactor = 0.1;
+      const initialRotation = -0.0 * Math.PI;
       modelRef.current.rotation.y = THREE.MathUtils.lerp(
         modelRef.current.rotation.y,
-        (mousePos.x - 0.5) * Math.PI * sensitivity,
+        mousePos.x === 0 ? initialRotation : (mousePos.x - 0.5) * Math.PI * sensitivity,
         lerpFactor
       );
     }

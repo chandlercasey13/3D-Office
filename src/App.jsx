@@ -13,8 +13,8 @@ import { TextPlugin } from "gsap/TextPlugin";
 
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import ResponsiveCamera from "./ResponsiveCamera";
-
-
+import { CanvasWrapper } from "./CanvasWrapper"
+import { Html, ScrollControls } from "@react-three/drei";
 
 
 gsap.registerPlugin(useGSAP);
@@ -24,7 +24,7 @@ gsap.registerPlugin(TextPlugin);
 import {
   Environment,
   
-
+ 
   
 } from "@react-three/drei";
 import * as THREE from "three";
@@ -72,6 +72,7 @@ function App() {
 
   return (
     <>
+    
       <div className="App">
         <HTMLOverlay
           htmlPresent={htmlPresent}
@@ -81,9 +82,12 @@ function App() {
           arrowPresent={arrowPresent}
           arrowTextShadow={arrowTextShadow}
         />
-
+        
         <div className="canvas-container">
+        <CanvasWrapper>
           <Canvas
+          dpr={window.devicePixelRatio}
+          
             shadows
             antialias="true"
             camera={{
@@ -138,8 +142,12 @@ function App() {
               </EffectComposer>
             </Suspense>
           </Canvas>
+
+          </CanvasWrapper>
         </div>
+       
       </div>
+      
     </>
   );
 }

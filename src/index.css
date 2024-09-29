@@ -15,8 +15,8 @@ h2 {
   font-family: "Inter";
 }
 .App {
-  max-width: 100vw;
-  height: 145vh;
+  max-width: 100dvw ;
+  height: 145dvh;
   position: relative;
 }
 *::-webkit-scrollbar {
@@ -39,8 +39,8 @@ h2 {
 
 .canvas-container {
   position: fixed;
-  width: 100%;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
 }
 
 .intro-text {
@@ -216,7 +216,7 @@ img {
   position: absolute;
   z-index: 1;
 
-  pointer-events: none;
+   pointer-events: none; 
 }
 
 .html-overlay-organization-container {
@@ -227,48 +227,11 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: none;
+  pointer-events: none; 
 }
 
 
 
-
-@media (max-width: 1000px) {
- 
-  .overlay-text-container {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    left: 0%;
-    top: 42%;
-  
-    width: 100%;
-    height: 25%;
-  }
-  
-
-
-
-
-  
-.title-text {
-  padding: 0px;
-  font-size: 6px;
-  font-weight: 300;
-  opacity: 1;
-  
-
-  font-family: "Inter";
-}
-
-.subtitle-text {
-  font-size: 30px;
-  font-weight: 200;
-  font-style: italic;
-  opacity: 1;
-  font-family: "Inter";
-}
-}
 
 
 .overlay-text-container {
@@ -306,13 +269,19 @@ img {
   color: white;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 
 .arrow-text {
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 200;
   font-family: "Frank Ruhl Libre";
+  text-wrap: nowrap;
+}
+
+.arrow-image {
+  object-fit: contain;
 }
 .arrow-down {
   opacity: 1;
@@ -320,6 +289,8 @@ img {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  width: 4%;
+ 
 }
 
 .dark-mode-switch {
@@ -351,14 +322,18 @@ button {
   top: 30%;
 }
 
+
+
+
+
 .project-html {
   height: 100%;
   width: 100%;
-
+ 
   display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .project-html-container {
@@ -501,3 +476,213 @@ button {
     @apply bg-background text-foreground;
   }
 }
+
+
+
+@media (max-width: 1400px) {
+ 
+
+
+  .title-text {
+    padding: 0px;
+    font-size: 3.5rem;
+    font-weight: 300;
+    opacity: 1;
+  
+    font-family: "Inter";
+  }
+  
+  
+  }
+
+
+
+ 
+  
+  
+  
+  .subtitle-text {
+    font-size: 2.5rem;
+    font-weight: 200;
+    font-style: italic;
+    opacity: 1;
+    font-family: "Inter";
+  }
+
+
+
+
+@media (max-width: 1000px) {
+ 
+
+
+.title-text {
+  padding: 0px;
+  font-size: 3rem;
+  font-weight: 300;
+  opacity: 1;
+
+  font-family: "Inter";
+}
+
+
+  
+
+
+
+.overlay-text-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 15%;
+  top: 60%;
+
+  width: 100%;
+  height: 25%;
+}
+
+
+
+.subtitle-text {
+  font-size: 2rem;
+  font-weight: 200;
+  font-style: italic;
+  opacity: 1;
+  font-family: "Inter";
+}
+
+
+
+
+}
+
+
+
+
+@media (max-width: 800px) {
+ 
+
+
+  .title-text {
+    padding: 0px;
+    font-size: 2.5rem;
+    font-weight: 300;
+    opacity: 1;
+  
+    font-family: "Inter";
+  }
+  
+
+
+  
+
+
+
+.overlay-text-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 15%;
+  top: 60%;
+
+  width: 100%;
+  height: 25%;
+}
+
+
+
+.subtitle-text {
+  font-size: 1.5rem;
+  font-weight: 200;
+  font-style: italic;
+  opacity: 1;
+  font-family: "Inter";
+}
+  
+  }
+
+  @media (max-width: 600px) {
+ 
+
+    .title-text {
+      padding: 0px;
+      
+      font-weight: 300;
+      opacity: 1;
+    
+      font-family: "Inter";
+    }
+    
+  
+  
+    
+  
+  
+  
+  .overlay-text-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 10%;
+    top: 60%;
+  
+    width: 100%;
+    height: 25%;
+  }
+  
+  
+  
+  .subtitle-text {
+    font-size: 1.5rem;
+    font-weight: 200;
+    font-style: italic;
+    opacity: 1;
+    font-family: "Inter";
+  }
+    
+    
+    }
+
+
+    
+  @media (max-width: 400px) {
+ 
+
+    .title-text {
+      padding: 0px;
+      font-size: 2rem;
+      font-weight: 300;
+      opacity: 1;
+    
+      font-family: "Inter";
+    }
+    
+  
+  
+    
+  
+  
+  
+  .overlay-text-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 10%;
+    top: 70%;
+  
+    width: 100%;
+    height: 25%;
+  }
+  
+  
+  
+  .subtitle-text {
+    font-size: 1rem;
+    font-weight: 200;
+    font-style: italic;
+    opacity: 1;
+    font-family: "Inter";
+  }
+    
+    
+    }

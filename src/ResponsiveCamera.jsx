@@ -6,15 +6,20 @@ export default function ResponsiveCamera() {
   useEffect(() => {
     const aspect = size.width / size.height;
 
-    if (aspect < 1.8) {
-      camera.fov = 35;
+    if (size.width < 1920) {
+
+        camera.fov = 30;
     }
 
-    if (aspect < 1) {
+    if (size.width < 1400) {
       camera.fov = 40;
     }
 
-    if (aspect < 0.5) {
+    if (size.width < 600) {
+      camera.fov = 50;
+    }
+
+    if (size.width < 400) {
       camera.fov = 60;
     }
     camera.updateProjectionMatrix();
