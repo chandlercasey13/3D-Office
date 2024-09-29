@@ -14,8 +14,8 @@ import { TextPlugin } from "gsap/TextPlugin";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import ResponsiveCamera from "./ResponsiveCamera";
 import { CanvasWrapper } from "./CanvasWrapper"
-import { Html, ScrollControls } from "@react-three/drei";
 
+import { Loader, useGLTF } from '@react-three/drei';
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -147,7 +147,13 @@ function App() {
         </div>
        
       </div>
-      
+      <Loader containerStyles={{ background: "#0f383b" }} 
+      innerStyles={{background: "#0f383b" }}     
+  barStyles={{  height: '20px',
+    borderRadius: '5px'
+  }}
+  dataStyles={{ color: 'white' }}           
+  dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`} />
     </>
   );
 }
