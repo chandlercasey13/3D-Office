@@ -84,9 +84,10 @@ function App() {
         />
         
         <div className="canvas-container">
-        <CanvasWrapper>
+        
           <Canvas
-          dpr={window.devicePixelRatio}
+          resize
+           dpr={[1,2]}
           
             shadows
             antialias="true"
@@ -143,16 +144,16 @@ function App() {
             </Suspense>
           </Canvas>
 
-          </CanvasWrapper>
+          
         </div>
        
       </div>
       <Loader containerStyles={{ background: "#0f383b" }} 
-      innerStyles={{background: "#0f383b" }}     
-  barStyles={{  height: '20px',
+      innerStyles={{background: "#0f383b", height: '40px' }}     
+  barStyles={{  height: '30px',
     borderRadius: '5px'
   }}
-  dataStyles={{ color: 'white' }}           
+  dataStyles={{ color: 'white',fontSize: '18px', }}           
   dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`} />
     </>
   );

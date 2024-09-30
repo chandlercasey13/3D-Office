@@ -62,7 +62,7 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://buttmagazine.com/", "_blank")
+                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
                 }
               >
                 <meshStandardMaterial color={"white"} />
@@ -72,7 +72,7 @@ export default function Model(props) {
                   rotation={[-Math.PI / 2, 0, Math.PI / 2]}
                   transform
                   occlude
-                   pointerEvents="none"
+                  pointerEvents="none"
                 >
                   <div
                     className="projects"
@@ -137,7 +137,7 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://buttmagazine.com/", "_blank")
+                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
                 }
               >
                 <meshStandardMaterial color={"white"} />
@@ -213,7 +213,7 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://buttmagazine.com/", "_blank")
+                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
                 }
               >
                 <Html
@@ -287,7 +287,7 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://buttmagazine.com/", "_blank")
+                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
                 }
               >
                 <Html
@@ -360,7 +360,7 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://buttmagazine.com/", "_blank")
+                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
                 }
               >
                 <Html
@@ -432,7 +432,7 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://buttmagazine.com/", "_blank")
+                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
                 }
               >
                 <Html
@@ -446,7 +446,7 @@ export default function Model(props) {
                   <div
                     className="projects"
                     style={{
-                      width: "75px",
+                      width: "74px",
                       height: "80px",
                       position: "relative",
 

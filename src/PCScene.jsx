@@ -19,8 +19,8 @@ import {  useThree } from "@react-three/fiber";
 import Component from "./ContactForm";
 
 export default function PCModel({ deskchairtransparent, scale }) {
-  const { nodes: nodes, materials: materials } = useGLTF("rvised.glb");
-  const { nodes: nodes2, materials: materials2 } = useGLTF("OfficeProps.glb");
+  const { nodes: nodes, materials: materials } = useGLTF("compressedOffice.glb",true);
+  const { nodes: nodes2, materials: materials2 } = useGLTF("OfficeProps.glb",true );
   
   const modelRef = useRef();
 
@@ -154,7 +154,7 @@ export default function PCModel({ deskchairtransparent, scale }) {
                  
                   <Html
                     className="computer-monitor"
-                    position={[0.364, -0.34, -0.7]}
+                    position={[0.364, -0.36, -0.7]}
                     scale={[0.08, 0.1425, 0.01]}
                     rotation={[Math.PI, 0, 0]}
                     transform
@@ -163,9 +163,9 @@ export default function PCModel({ deskchairtransparent, scale }) {
                     <div
                       className="monitor-screen"
                       style={{
-                        width: "67px",
-                        height: "0px",
-                        paddingBottom: "178%",
+                        width: "68px",
+                        height: "120px",
+                        
                         position: "relative",
                         zIndex: 1,
                         transform: "rotate(90deg)",
@@ -830,4 +830,4 @@ export default function PCModel({ deskchairtransparent, scale }) {
   );
 }
 
-useGLTF.preload("rvised.glb");
+useGLTF.preload("compressedOffice.glb");

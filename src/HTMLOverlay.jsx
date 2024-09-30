@@ -5,9 +5,9 @@ const HTMLOverlay = ({ htmlPresent, arrowText, arrowPresent }) => {
         {htmlPresent && (
           <div className="overlay-text-container">
             <>
-              <h1 className={`subtitle-text text-white `}>Welcome to</h1>
+              <h1 className={`subtitle-text text-white `}></h1>
 
-              <h1 className={`title-text text-white`}>Chandler's Office</h1>
+              <h1 className={`title-text text-white`}>Chandler's Portfolio</h1>
             </>
           </div>
         )}
