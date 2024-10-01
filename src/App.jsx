@@ -2,6 +2,7 @@ import {
   useState,
   useRef,
   Suspense,
+  useEffect
  
 } from "react";
 
@@ -70,11 +71,24 @@ function App() {
   };
  
 
+  const elementRef = useRef(null);
+  const [heightElement, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (elementRef.current) {
+      setHeight(elementRef.current.offsetHeight);
+    }
+  }, []);
+
+
+
+
   return (
     <>
     
       <div className="App">
         <HTMLOverlay
+        heightElement = {heightElement}
           htmlPresent={htmlPresent}
           
           daynighttoggle={daynighttoggle}
@@ -82,12 +96,14 @@ function App() {
           arrowPresent={arrowPresent}
           arrowTextShadow={arrowTextShadow}
         />
+        <CanvasWrapper heightElement={heightElement}>
         
-        <div className="canvas-container">
         
           <Canvas
-          resize
-           dpr={[1,2]}
+          
+        
+          
+           
           
             shadows
             antialias="true"
@@ -145,8 +161,8 @@ function App() {
           </Canvas>
 
           
-        </div>
-       
+        
+        </CanvasWrapper>
       </div>
       <Loader containerStyles={{ background: "#0f383b" }} 
       innerStyles={{background: "#0f383b", height: '40px' }}     

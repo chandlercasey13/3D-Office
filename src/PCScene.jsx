@@ -154,8 +154,8 @@ export default function PCModel({ deskchairtransparent, scale }) {
                  
                   <Html
                     className="computer-monitor"
-                    position={[0.364, -0.36, -0.7]}
-                    scale={[0.08, 0.1425, 0.01]}
+                    position={[0.364, -0.0, -0.7]}
+                    scale={[0.08, 0.58, 0.01]}
                     rotation={[Math.PI, 0, 0]}
                     transform
                     pointerEvents="none"
@@ -163,7 +163,7 @@ export default function PCModel({ deskchairtransparent, scale }) {
                     <div
                       className="monitor-screen"
                       style={{
-                        width: "68px",
+                        width: "69px",
                         height: "120px",
                         
                         position: "relative",
@@ -171,14 +171,18 @@ export default function PCModel({ deskchairtransparent, scale }) {
                         transform: "rotate(90deg)",
                       }}
                     >
-                      <iframe
-                        src="https://giphy.com/embed/39lWTXEdmp4qnZtHIK"
-                        width="400%"
-                        height="400%"
-                        style={{ position: "absolute" }}
-                        frameBorder="0"
-                        
-                      ></iframe>
+                     
+                     <img
+          src="images/lava.gif" 
+          style={{
+            width: "400%",
+            height: "400%",
+            
+            position: "absolute",
+            zIndex: 1,
+           
+          }}
+        />
                     </div>
                    
                   </Html>
@@ -197,7 +201,7 @@ export default function PCModel({ deskchairtransparent, scale }) {
                     style={{
                       width: "120px",
                       height: "120px",
-
+                      position: "relative",
                       zIndex: 1,
                     }}
                   >
