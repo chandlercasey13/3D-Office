@@ -29,7 +29,7 @@ const HTMLOverlay = ({ htmlPresent, arrowText, arrowPresent,heightElement }) => 
         >
           <div className="arrow-down">
             <p className="arrow-text">{arrowText}</p>
-            <img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAORJREFUWEftlMENgzAMRe1jtsgqHaWT0k1gC46pUhEKCOKf2JWoZK6Wrcfzd5hu9vHNeMiBpI24ITckGZDqniE3JBmQ6p4hM0NpniOlNBDzg0OYpMG53tMDrWwZPC4QEwLV05PntwANRBQRqANMbsk/8eQQXpJZCGinX4DSwMCGyl+tmbiA0sI0A9VMfaBTKjlrWtN2jfDKtk2npr7WumG6DFXWV0pwgM8C3mVIyBR0TVfXpgI6ZIrQ066dvhpohSKKyDtj9g5Jg6zqJoasYFRXZgmhfod+BeOGELMeasmSG/o7Q28kfn4l2htz1wAAAABJRU5ErkJggg==" />
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMRJREFUSEvtkkEOgyAQRf/oio3GG9ib2KP0JO1N2p7Eq3AD48odNkxCYqk4qCHpApcI7/H/QEj8UWI+skBsOFf05xVN43iHMW/VNHrtqtMwtCjLTlXVKxQlOGSGAw8AGsZcfQnDiZ4g6kB0C0nCAgsoih5A60u+4IBWdX3ZncAeYJAnYZC7uQDnrdIz+JHMs+ZaIuBRgpUkdmmzluWlxQRu8yIJtjr3G4kWuCShJ3toyNJ8Yv7vShADPFVRFhxpQDyTfMgfWFFEGd8C++sAAAAASUVORK5CYII="/>
           </div>
         </div>
 

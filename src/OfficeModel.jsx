@@ -11,12 +11,15 @@ import React from "react";
 
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-import {  useThree } from "@react-three/fiber";
+import { useThree } from "@react-three/fiber";
 
 import { TextPlugin } from "gsap/TextPlugin";
 
-
-const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
+const OfficeModel = ({
+  handleHTMLPresent,
+  htmlPresent,
+  handleArrowPresent,
+}) => {
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(TextPlugin);
   gsap.registerPlugin(ScrollTrigger);
@@ -25,8 +28,7 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
   const [deskchairtransparent, setdeskchairtransparent] = useState(false);
   const modelRef = useRef();
 
-
-  const { camera } = useThree();
+  const { camera, viewport } = useThree();
 
   const disableScroll = () => (document.body.style.overflow = "hidden");
   const enableScroll = () => (document.body.style.overflowY = "scroll");
@@ -39,17 +41,11 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
         setMousePos({
           x: event.clientX / window.innerWidth,
         });
-        
     }
   };
 
-
-
   useEffect(() => {
-    
-      window.addEventListener("mousemove",  handleMouseMove);
-    
-  
+    window.addEventListener("mousemove", handleMouseMove);
   }, [htmlPresent]);
 
   useFrame(() => {
@@ -59,27 +55,17 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
       const initialRotation = -0.0 * Math.PI;
       modelRef.current.rotation.y = THREE.MathUtils.lerp(
         modelRef.current.rotation.y,
-        mousePos.x === 0 ? initialRotation : (mousePos.x - 0.5) * Math.PI * sensitivity,
+        mousePos.x === 0
+          ? initialRotation
+          : (mousePos.x - 0.5) * Math.PI * sensitivity,
         lerpFactor
       );
     }
   });
 
 
-
-
-
-
-
-
-
-
-
-
-
   useGSAP(
     () => {
-    
       gsap.from(".title-text", {
         y: 0,
 
@@ -162,9 +148,9 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     const intro = gsap.timeline({ repeat: 0 });
 
     intro.from(modelRef.current.scale, {
-      x: 0.01, 
-      y: 0.01, 
-      z: 0.01, 
+      x: 0.01,
+      y: 0.01,
+      z: 0.01,
       duration: 1.5,
       delay: 0.5,
       ease: "elastic.out",
@@ -173,9 +159,9 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     intro.to(
       modelRef.current.rotation,
       {
-        x: 0, 
-        y: 0, 
-        z: 0, 
+        x: 0,
+        y: 0,
+        z: 0,
         duration: 2,
         delay: 0.5,
         ease: "elastic.out",
@@ -183,20 +169,40 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
       0
     );
 
-    const monitorCamera = gsap.timeline({ paused: true, repeat: 0 });
+    const monitorCamera = gsap.timeline({
+      paused: true,
+      repeat: 0,
+      scrollTrigger: {
+        trigger: ".title-text",
+        start: "top 10%",
+        end: "top -200%",
+        scrub: true,
+        onEnter: () => {
+          setdeskchairtransparent(true);
+          setAnimationEnded(false);
+          modelRef.current.rotation.set(0, 0, 0);
+
+          handleHTMLPresent();
+        },
+
+        onLeaveBack: () => {
+          handleHTMLPresent();
+          setdeskchairtransparent(false);
+          setAnimationEnded(true);
+        },
+      },
+    });
 
     monitorCamera.to(
       camera.rotation,
       {
-        x: -0.055, 
-        y: 0.795, 
-        z: 0.0375, 
+        x: -0.055,
+        y: 0.795,
+        z: 0.0375,
         duration: 1,
         delay: 0,
         onEnter: () => {},
-        onComplete: () => {
-          enableScroll();
-        },
+        onComplete: () => {},
       },
       0
     );
@@ -211,15 +217,29 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
       },
       0
     );
+   
 
-    const projectsCamera = gsap.timeline({ paused: true, repeat: 0 });
+    const projectsCamera = gsap.timeline({
+      paused: true,
+      repeat: 0,
+      scrollTrigger: {
+        trigger: ".title-text",
+        start: "top -250%",
+        end: "top -400%",
+        scrub: true,
+        onEnter: () => {},
+        onLeaveBack: () => {
+          handleArrowPresent();
+        },
+      },
+    });
 
     projectsCamera.to(
       camera.rotation,
       {
-        x: 0, 
-        y: -0.77, 
-        z: 0, 
+        x: 0,
+        y: -0.77,
+        z: 0,
         duration: 1,
         delay: 0,
       },
@@ -228,26 +248,37 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     projectsCamera.to(
       camera.position,
       {
-        x: -0.25, 
-        y: 0.35, 
-        z: 0.25, 
+        x: -0.25,
+        y: 0.35,
+        z: 0.25,
         duration: 1,
         delay: 0,
-        onComplete: () => {
-          enableScroll();
-        },
+        onComplete: () => {},
       },
       0
     );
 
-    const contactCamera = gsap.timeline({ paused: true, repeat: 0 });
+    const contactCamera = gsap.timeline({
+      paused: true,
+      repeat: 0,
+      scrollTrigger: {
+        trigger: ".title-text",
+        start: "top -450%",
+        end: "top -600%",
+        scrub: true,
+        onEnter: () => {
+          handleArrowPresent();
+        },
+        onLeaveBack: () => {},
+      },
+    });
 
     contactCamera.to(
       camera.rotation,
       {
-        x: -1.4, 
+        x: -1.4,
         y: 0,
-        z: -0.55, 
+        z: -0.55,
         duration: 0.5,
         delay: 0,
       },
@@ -256,9 +287,9 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
     contactCamera.to(
       camera.position,
       {
-        x: 0.175, 
-        y: 0.45, 
-        z: 0.335, 
+        x: 0.175,
+        y: 0.45,
+        z: 0.335,
         duration: 0.5,
         delay: 0,
         onComplete: () => {
@@ -267,55 +298,15 @@ const OfficeModel = ({ handleHTMLPresent, htmlPresent }) => {
       },
       0
     );
-    setTimeout(() => {
-      ScrollTrigger.create({
-        trigger: ".title-text",
-        start: 0, 
-        onEnter: () => {
-          setdeskchairtransparent(true);
-          setAnimationEnded(false);
-          modelRef.current.rotation.set(0, 0, 0);
-
-          handleHTMLPresent();
-          disableScroll(), monitorCamera.play();
-        },
-
-        onLeaveBack: () => {
-          handleHTMLPresent();
-          setdeskchairtransparent(false);
-          setAnimationEnded(true);
-          monitorCamera.reverse();
-        },
-      });
-
-      ScrollTrigger.create({
-        trigger: ".title-text",
-        start: 200, 
-        onEnter: () => {
-          disableScroll(), projectsCamera.play();
-        },
-        onLeaveBack: () => {
-          projectsCamera.reverse();
-        },
-      });
-
-      ScrollTrigger.create({
-        trigger: ".title-text",
-        start: 300,
-        onEnter: () => {
-          disableScroll(), contactCamera.play();
-        },
-        onLeaveBack: () => {
-          contactCamera.reverse();
-        },
-      });
-    }, 100);
+    setTimeout(() => {}, 100);
   }, []);
-
 
   return (
     <>
-      <group ref={modelRef}>
+      <group
+        ref={modelRef}
+      
+      >
         <PCModel deskchairtransparent={deskchairtransparent} />
       </group>
     </>

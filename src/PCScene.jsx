@@ -8,27 +8,28 @@ import { Html } from "@react-three/drei";
 
 import { useGLTF } from "@react-three/drei";
 import Corkboard from "./Corkboard";
-import { useRef } from "react";
+import { useRef,useEffect } from "react";
 import { useFrame } from '@react-three/fiber';
-
+import VaporEffect from "./VaporEffect";
 import * as THREE from "three";
 
-import { Text3D, ScreenSpace, AdaptiveDpr } from "@react-three/drei";
+import { Text3D } from "@react-three/drei";
 import {  useThree } from "@react-three/fiber";
+
 
 import Component from "./ContactForm";
 
 export default function PCModel({ deskchairtransparent, scale }) {
   const { nodes: nodes, materials: materials } = useGLTF("compressedOffice.glb",true);
   const { nodes: nodes2, materials: materials2 } = useGLTF("OfficeProps.glb",true );
-  
   const modelRef = useRef();
+  const { camera, viewport } = useThree();
+
+  
 
 
-
-
-
-
+  const scaleFactor= Math.min(viewport.width, viewport.height) / 9;
+console.log(scaleFactor)
 
   function GlowingText() {
     const glowingTextRef = useRef();
@@ -69,9 +70,22 @@ export default function PCModel({ deskchairtransparent, scale }) {
         rotation-y={[0.79]}
         // rotation-x={[.1]}
         rotation-x={[0]}
-        scale={[0.35, 0.4, 0.35]}
+        scale={[.19,.24,.19]}
        
       >
+
+
+<mesh
+                position={[0, -0.65, 0]}
+                rotation-x={[-Math.PI / 2]}
+                scale={[400, 400, 1]}
+                receiveShadow
+              >
+                <planeGeometry args={[1, 1]} />
+                <shadowMaterial opacity={0.2} />
+              </mesh>
+
+
         <group
           position={[-2.237, 0.576, 0.969]}
           rotation={[-Math.PI / 2, 0, 0]}
@@ -117,7 +131,7 @@ export default function PCModel({ deskchairtransparent, scale }) {
                 position={[0.8, 0, 0]}
               />
             </group>
-            <group
+            <group 
               position={[-0.023, 3.798, -3.962]}
               rotation={[-Math.PI, 0, -Math.PI]}
               scale={[9.223, 4.632, 0.268]}
@@ -144,6 +158,7 @@ export default function PCModel({ deskchairtransparent, scale }) {
                 material={materials["Material.035"]}
               />
               <mesh
+              
                 emissive="black"
                 castShadow
                 receiveShadow
@@ -163,7 +178,7 @@ export default function PCModel({ deskchairtransparent, scale }) {
                     <div
                       className="monitor-screen"
                       style={{
-                        width: "69px",
+                        width: "68px",
                         height: "120px",
                         
                         position: "relative",
@@ -357,7 +372,7 @@ export default function PCModel({ deskchairtransparent, scale }) {
               <Html
                 position={[0.0, 0.0, 0.01]}
                 rotation={[0, 0, Math.PI / 1]}
-                scale={0.24}
+                scale={0.185}
                 transform
                 occlude
               >
@@ -710,6 +725,10 @@ export default function PCModel({ deskchairtransparent, scale }) {
           rotation={[-Math.PI, 0, -Math.PI]}
           scale={[-0.574, -0.019, -0.574]}
         />
+
+
+
+       
         <group
           position={[-1.9, 0.2, 2.6]}
           rotation={[-Math.PI / 2, 0, 0]}
@@ -718,7 +737,10 @@ export default function PCModel({ deskchairtransparent, scale }) {
           <mesh
             geometry={nodes2.Cylinder007_0.geometry}
             material={materials2["Material.027"]}
-          />
+          > 
+          
+          
+          <VaporEffect/></mesh>
           <mesh
             geometry={nodes2.Cylinder007_1.geometry}
             material={materials2["Material.026"]}
@@ -824,9 +846,9 @@ export default function PCModel({ deskchairtransparent, scale }) {
           scale={[1.969, 0.095, 1.997]}
         >
           <meshStandardMaterial
-            color={"#ffffff"}
-            roughness={0.3}
-            metalness={1}
+            color={"#171616"}
+            roughness={1}
+            metalness={0.4}
           />
         </mesh>
       </group>

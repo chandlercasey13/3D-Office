@@ -36,6 +36,7 @@ import OfficeModel from "./OfficeModel";
 
 
 import HTMLOverlay from "./HTMLOverlay";
+import VaporEffect from "./VaporEffect";
 
 
 
@@ -61,25 +62,24 @@ function App() {
 
   const [daynighttoggle, setDaynighttoggle] = useState(true);
 
-  const [arrowText, setArrowText] = useState("Scroll Slowly");
+  const [arrowText, setArrowText] = useState();
   const [arrowTextShadow, setArrowTextShadow] = useState(false);
 
   const modelRef = useRef();
+
+
+const handleArrowPresent = () => 
+{
+  setarrowPresent(!arrowPresent)
+}
 
   const handleHTMLPresent = () => {
     sethtmlPresent((prev) => !prev);
   };
  
 
-  const elementRef = useRef(null);
-  const [heightElement, setHeight] = useState(0);
 
-  useEffect(() => {
-    if (elementRef.current) {
-      setHeight(elementRef.current.offsetHeight);
-    }
-  }, []);
-
+ 
 
 
 
@@ -88,7 +88,7 @@ function App() {
     
       <div className="App">
         <HTMLOverlay
-        heightElement = {heightElement}
+      
           htmlPresent={htmlPresent}
           
           daynighttoggle={daynighttoggle}
@@ -96,7 +96,7 @@ function App() {
           arrowPresent={arrowPresent}
           arrowTextShadow={arrowTextShadow}
         />
-        <CanvasWrapper heightElement={heightElement}>
+        <CanvasWrapper >
         
         
           <Canvas
@@ -108,12 +108,12 @@ function App() {
             shadows
             antialias="true"
             camera={{
-              fov: 30,
+              
               position: new THREE.Vector3(0, 2.25, 5.55),
               rotation: new THREE.Euler(-0.4, 0, 0),
             }}
           >
-            <ResponsiveCamera/>
+            
             <Suspense fallback={null}>
               <ambientLight intensity={daynighttoggle ? 5.5 : 5.5} />
               <directionalLight
@@ -121,24 +121,18 @@ function App() {
                 position={[-2, 10, 3]}
                 intensity={[2.5]}
               />
-
+<ResponsiveCamera/>
               <group ref={modelRef}>
                 <OfficeModel
                   handleHTMLPresent={handleHTMLPresent}
                   htmlPresent={htmlPresent}
+                  handleArrowPresent = {handleArrowPresent}
                   
                  
                 />
               </group>
-              <mesh
-                position={[0, -0.65, 0]}
-                rotation-x={[-Math.PI / 2]}
-                scale={[400, 400, 1]}
-                receiveShadow
-              >
-                <planeGeometry args={[1, 1]} />
-                <shadowMaterial opacity={0.2} />
-              </mesh>
+              
+              
               <Sky daynighttogglestate={daynighttoggle} />
       
               <Environment preset="city">
@@ -164,12 +158,12 @@ function App() {
         
         </CanvasWrapper>
       </div>
-      <Loader containerStyles={{ background: "#0f383b" }} 
-      innerStyles={{background: "#0f383b", height: '40px' }}     
+      <Loader containerStyles={{ background: "#0f383b", display:'flex', justifyContent:'center', alignItems:'center' }} 
+      innerStyles={{background: "#0f383b", height: '40px', textAlign:'center', width:'100%' }}     
   barStyles={{  height: '30px',
     borderRadius: '5px'
   }}
-  dataStyles={{ color: 'white',fontSize: '18px', }}           
+  dataStyles={{ color: 'white',fontSize: '18px',  }}           
   dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`} />
     </>
   );
