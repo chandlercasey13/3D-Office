@@ -26,6 +26,8 @@ const OfficeModel = ({
 
   const [animationEnded, setAnimationEnded] = useState(true);
   const [deskchairtransparent, setdeskchairtransparent] = useState(false);
+  const [scrollProgtoMonitorComplete, setScrollProgtoMonitorComplete]=useState(false);
+  
   const modelRef = useRef();
 
   const { camera, viewport } = useThree();
@@ -51,7 +53,7 @@ const OfficeModel = ({
   useFrame(() => {
     if (modelRef.current && animationEnded) {
       const sensitivity = 0.1;
-      const lerpFactor = 0.1;
+      const lerpFactor = 0.05;
       const initialRotation = -0.0 * Math.PI;
       modelRef.current.rotation.y = THREE.MathUtils.lerp(
         modelRef.current.rotation.y,
@@ -62,6 +64,8 @@ const OfficeModel = ({
       );
     }
   });
+
+
 
 
   useGSAP(
@@ -91,61 +95,15 @@ const OfficeModel = ({
         opacity: 0,
       });
 
-      gsap.fromTo(
-        ".about-me-header",
-
-        {
-          scrollTrigger: {
-            trigger: ".title-text",
-            start: 0,
-          },
-          y: -5,
-          ease: "back.inOut",
-
-          duration: 1.5,
-
-          opacity: 0,
-          delay: 0.5,
-        },
-        {
-          y: 0,
-          ease: "back.inOut",
-
-          duration: 2.0,
-
-          opacity: 1,
-          delay: 1,
-        }
-      );
-
-      gsap.from(".about-me-section", {
-        y: 10,
-        scrollTrigger: {
-          trigger: ".title-text",
-        },
-
-        duration: 2,
-
-        opacity: 0,
-        delay: 2,
-      });
-      gsap.from(".chandler-pic", {
-        x: -10,
-        scrollTrigger: {
-          trigger: ".title-text",
-        },
-
-        duration: 2,
-
-        opacity: 0,
-        delay: 2,
-      });
     },
     { dependencies: [deskchairtransparent], revertOnUpdate: true }
   );
 
   useGSAP(() => {
     const intro = gsap.timeline({ repeat: 0 });
+
+
+
 
     intro.from(modelRef.current.scale, {
       x: 0.01,
@@ -174,15 +132,76 @@ const OfficeModel = ({
       repeat: 0,
       scrollTrigger: {
         trigger: ".title-text",
-        start: "top 10%",
+        start: "top 50%",
         end: "top -200%",
         scrub: true,
         onEnter: () => {
           setdeskchairtransparent(true);
+          
+        
           setAnimationEnded(false);
           modelRef.current.rotation.set(0, 0, 0);
 
           handleHTMLPresent();
+
+setTimeout(() => {
+
+          const aboutMe = gsap.timeline({ repeat: 0 });
+
+          aboutMe.fromTo(
+            ".about-me-header",
+      
+            {
+              scrollTrigger: {
+                trigger: ".title-text",
+                start: 0,
+              },
+              y: -5,
+              ease: "back.inOut",
+      
+              duration: 1.5,
+      
+              opacity: 0,
+              delay: 0.5,
+            },
+            {
+              y: 0,
+              ease: "back.inOut",
+      
+              duration: 2.0,
+      
+              opacity: 1,
+              delay: 0,
+            },2
+          );
+      
+          aboutMe.from(".about-me-section", {
+            y: 10,
+            scrollTrigger: {
+              trigger: ".title-text",
+            },
+      
+            duration: 2,
+      
+            opacity: 0,
+            delay: 0,
+          },3);
+          aboutMe.from(".chandler-pic", {
+            x: -10,
+            scrollTrigger: {
+              trigger: ".title-text",
+            },
+      
+            duration: 2,
+      
+            opacity: 0,
+            delay: 0,
+          } ,3);
+        },0)
+
+
+
+
         },
 
         onLeaveBack: () => {
@@ -202,16 +221,18 @@ const OfficeModel = ({
         duration: 1,
         delay: 0,
         onEnter: () => {},
-        onComplete: () => {},
+        onComplete: () => {
+          setScrollProgtoMonitorComplete(true)
+        },
       },
       0
     );
     monitorCamera.to(
       camera.position,
       {
-        x: 0.15, 
-        y: 0.025, 
-        z: 0.3, 
+        x: 0.469, 
+        y: -0.1, 
+        z: 0.1, 
         duration: 1,
         delay: 0,
       },
@@ -248,9 +269,9 @@ const OfficeModel = ({
     projectsCamera.to(
       camera.position,
       {
-        x: -0.25,
-        y: 0.35,
-        z: 0.25,
+        x: -0.9,
+        y: 0.075,
+        z: .457,
         duration: 1,
         delay: 0,
         onComplete: () => {},
@@ -276,10 +297,10 @@ const OfficeModel = ({
     contactCamera.to(
       camera.rotation,
       {
-        x: -1.4,
+        x: -Math.PI/2,
         y: 0,
-        z: -0.55,
-        duration: 0.5,
+        z: -.55,
+        duration: 0.2,
         delay: 0,
       },
       0
@@ -287,9 +308,9 @@ const OfficeModel = ({
     contactCamera.to(
       camera.position,
       {
-        x: 0.175,
-        y: 0.45,
-        z: 0.335,
+        x: 0.11,
+        y: 0.55,
+        z: -0.33,
         duration: 0.5,
         delay: 0,
         onComplete: () => {
@@ -305,9 +326,10 @@ const OfficeModel = ({
     <>
       <group
         ref={modelRef}
+        position={[0,0,-1]}
       
       >
-        <PCModel deskchairtransparent={deskchairtransparent} />
+        <PCModel deskchairtransparent={deskchairtransparent} scrollProgtoMonitorComplete={scrollProgtoMonitorComplete} />
       </group>
     </>
   );

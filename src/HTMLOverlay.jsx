@@ -13,8 +13,9 @@ const HTMLOverlay = ({ htmlPresent, arrowText, arrowPresent,heightElement }) => 
           <div className="overlay-text-container">
             <>
               <h1 className={`subtitle-text text-white `}> </h1>
-
-              <h1 className={`title-text text-white`}>Chandler's Portfolio</h1>
+              {/* <div className='overlay-h1-wrapper'> */}
+              <p className={`title-text text-white`}>Chandler's Portfolio</p>
+              {/* </div> */}
             </>
           </div>
         )}

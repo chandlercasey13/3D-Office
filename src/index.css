@@ -10,8 +10,8 @@
 * {
   box-sizing: border-box;
   touch-action: pan-y;
-}
-
+  
+} 
 
 
 
@@ -84,12 +84,7 @@ h2 {
 }
 
 
-.loader-background {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  background-color: #0f383b;
-}
+
 
 .html-container {
   display: flex;
@@ -219,7 +214,7 @@ img {
 
 .html-overlay {
   width: 100%;
-  height: 100%;
+  height: 100lvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -248,22 +243,32 @@ img {
 .overlay-text-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   position: fixed;
-  left: 20%;
-  top: 60%;
+  left: 0%;
+  top: 75%;
 
   width: 100%;
   height: 25%;
 }
 
+
+
+
 .title-text {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+
   padding: 0px;
-  font-size: 65px;
+  font-size: 30px;
   font-weight: 300;
   opacity: 1;
-  letter-spacing: 3px; 
+  letter-spacing: 17px; 
 
   font-family: "Inter";
+
 }
 
 .subtitle-text {
@@ -312,11 +317,7 @@ iframe {
   
 }
 
-.dark-mode-switch {
-  position: absolute;
-  top: 2.5%;
-  right: 20%;
-}
+
 
 button {
   all: unset;
@@ -324,12 +325,6 @@ button {
 
 
 
-.Label {
-  color: white;
-  font-size: 15px;
-  line-height: 1;
-  user-select: none;
-}
 
 .trigger-div-cam-perspective {
   position: absolute;
@@ -348,7 +343,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* pointer-events: none; */
+  pointer-events: none;
 }
 
 .project-html-container {
@@ -394,16 +389,26 @@ button {
   font-weight: 400;
 }
 
+.contact {
+  transform: rotate3d(0, 0, 1, 2.75deg);
+}
+
+
 .contact-html {
   height: 100%;
   width: 100%;
 
-  transform: scale(4.75);
+  /* transform: scale(2.75,2.9);  */
+  /* transform: scale(4.75); */
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  -webkit-user-select: all;
+  user-select: all;
+  
+  
 }
 .contact-html-header {
   display: flex;
@@ -425,8 +430,7 @@ button {
   justify-content: center;
 }
 
-.contact-input {
-}
+
 
 @layer base {
   :root {
@@ -499,12 +503,22 @@ button {
 
 
   .title-text {
-    padding: 0px;
-    font-size: 3.5rem;
+   
+    font-size: 20px;
     font-weight: 300;
     opacity: 1;
+    letter-spacing: 13px; 
   
-    font-family: "Inter";
+  }
+  
+
+
+  .overlay-text-container {
+    
+   
+    top: 70%;
+  
+    
   }
   
   
@@ -513,16 +527,7 @@ button {
 
 
  
-  
-  
-  
-  .subtitle-text {
-    font-size: 2.5rem;
-    font-weight: 200;
-    font-style: italic;
-    opacity: 1;
-    font-family: "Inter";
-  }
+
 
 
 
@@ -531,40 +536,26 @@ button {
  
 
 
-.title-text {
-  padding: 0px;
-  font-size: 3rem;
-  font-weight: 300;
-  opacity: 1;
 
-  font-family: "Inter";
-}
-
-
+  .title-text {
+   
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 1;
+    letter-spacing: 13px; 
+  
+  }
   
 
 
+  .overlay-text-container {
+    
+   
+    top: 70%;
+  
+    
+  }
 
-.overlay-text-container {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  left: 15%;
-  top: 60%;
-
-  width: 100%;
-  height: 25%;
-}
-
-
-
-.subtitle-text {
-  font-size: 2rem;
-  font-weight: 200;
-  font-style: italic;
-  opacity: 1;
-  font-family: "Inter";
-}
 
 
 
@@ -578,82 +569,53 @@ button {
  
 
 
+
   .title-text {
-    padding: 0px;
-    font-size: 2.5rem;
+   
+    font-size: 20px;
     font-weight: 300;
     opacity: 1;
+    letter-spacing: 12px; 
   
-    font-family: "Inter";
   }
   
 
 
+  .overlay-text-container {
+    
+   
+    top: 70%;
   
+    
+  }
 
-
-
-.overlay-text-container {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  left: 15%;
-  top: 60%;
-
-  width: 100%;
-  height: 25%;
-}
-
-
-
-.subtitle-text {
-  font-size: 1.5rem;
-  font-weight: 200;
-  font-style: italic;
-  opacity: 1;
-  font-family: "Inter";
-}
   
   }
 
   @media (max-width: 600px) {
  
 
+
     .title-text {
-      padding: 0px;
-      
+   
+      font-size: 19px;
       font-weight: 300;
       opacity: 1;
-    
-      font-family: "Inter";
+      letter-spacing: 12px; 
+    text-wrap: nowrap;
     }
     
   
   
+    .overlay-text-container {
+      
+     
+      top: 70%;
     
+      
+    }
   
-  
-  
-  .overlay-text-container {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    left: 10%;
-    top: 60%;
-  
-    width: 100%;
-    height: 25%;
-  }
-  
-  
-  
-  .subtitle-text {
-    font-size: 1.5rem;
-    font-weight: 200;
-    font-style: italic;
-    opacity: 1;
-    font-family: "Inter";
-  }
+
     
     
     }
@@ -663,42 +625,26 @@ button {
   @media (max-width: 480px) {
  
 
-    .title-text {
-      padding: 0px;
-      font-size: .75rem;
-      font-weight: 300;
-      opacity: 1;
-    
-      font-family: "Inter";
-    }
-    
-  
-  
-    
-  
-  
-  
-  .overlay-text-container {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    left: 27%;
-    top: 65%;
-  
-    width: 100%;
-    height: 25%;
-  }
-  
-  
-  
-  .subtitle-text {
-    font-size: 1rem;
-    font-weight: 200;
-    font-style: italic;
+   
+  .title-text {
+   
+    font-size: 12px;
+    font-weight: 500;
     opacity: 1;
-    font-family: "Inter";
+    letter-spacing: 7px; 
+  
   }
+  
+
+
+  .overlay-text-container {
     
+   
+    top: 60svh;
+  
+    
+  }
+
     
     }
 

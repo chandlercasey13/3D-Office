@@ -8,7 +8,7 @@ import { Html } from "@react-three/drei";
 
 import { useGLTF } from "@react-three/drei";
 import Corkboard from "./Corkboard";
-import { useRef,useEffect } from "react";
+import { useRef,useEffect, useState } from "react";
 import { useFrame } from '@react-three/fiber';
 import VaporEffect from "./VaporEffect";
 import * as THREE from "three";
@@ -19,18 +19,25 @@ import {  useThree } from "@react-three/fiber";
 
 import Component from "./ContactForm";
 
-export default function PCModel({ deskchairtransparent, scale }) {
+export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComplete  }) {
   const { nodes: nodes, materials: materials } = useGLTF("compressedOffice.glb",true);
   const { nodes: nodes2, materials: materials2 } = useGLTF("OfficeProps.glb",true );
   const modelRef = useRef();
   const { camera, viewport } = useThree();
 
-  
+  const meshRef = useRef();
 
+  useEffect(() => {
+    if (meshRef.current) {
+      // Log the transformation matrix of the mesh
+      console.log(meshRef.current);
+    }
+  }, []);
 
   const scaleFactor= Math.min(viewport.width, viewport.height) / 9;
-console.log(scaleFactor)
+ 
 
+  
   function GlowingText() {
     const glowingTextRef = useRef();
 
@@ -66,7 +73,7 @@ console.log(scaleFactor)
       <group
         ref={modelRef}
         dispose={null}
-        position={[-0.045, -0.35, -1]}
+        position={[-0.045, -0.35, -0]}
         rotation-y={[0.79]}
         // rotation-x={[.1]}
         rotation-x={[0]}
@@ -165,7 +172,7 @@ console.log(scaleFactor)
                 geometry={nodes.tvpCube1_tvtela_da_tv_0.geometry}
                 material={materials["tvtela_da_tv.002"]}
               >
-                {!deskchairtransparent && (
+                {!deskchairtransparent ?  (
                  
                   <Html
                     className="computer-monitor"
@@ -173,6 +180,7 @@ console.log(scaleFactor)
                     scale={[0.08, 0.58, 0.01]}
                     rotation={[Math.PI, 0, 0]}
                     transform
+                    
                     pointerEvents="none"
                   >
                     <div
@@ -202,7 +210,7 @@ console.log(scaleFactor)
                    
                   </Html>
                   
-                )}
+                ): (
                 <Html
                   position={
                     deskchairtransparent ? [0, 0, -0.6] : [0.478, 0.428, -0.5]
@@ -210,7 +218,8 @@ console.log(scaleFactor)
                   rotation-y={[Math.PI]}
                   scale={0.065}
                   transform
-                  occlude
+                  
+                  
                 >
                   <div
                     style={{
@@ -250,7 +259,7 @@ console.log(scaleFactor)
                               </p>
                               Out of the office you'll find me dreaming of
                               soccer, playing the guitar, and petting all the
-                              good dogs.
+                              good dogs. 
                             </div>
                           </div>
                         </div>
@@ -258,6 +267,7 @@ console.log(scaleFactor)
                     </div>
                   </div>
                 </Html>
+                )}
               </mesh>
             </group>
           </group>
@@ -362,28 +372,39 @@ console.log(scaleFactor)
             scale={[0.131, 0.183, 0.067]}
           >
             <mesh
-              castShadow
-              receiveShadow
+              
               geometry={nodes.Cube002_0.geometry}
               material={materials["Material.035"]}
+              
               position={[-0.0, -13.5, -8.932]}
               scale={[2.2, 1.9, 1]}
             >
               <Html
-                position={[0.0, 0.0, 0.01]}
-                rotation={[0, 0, Math.PI / 1]}
-                scale={0.185}
+              className="contact"
+              position={scrollProgtoMonitorComplete ? [0,0,0]: [0, 0, 0.01]}
+                rotation={[0, 0, Math.PI/1]}
+                scale={scrollProgtoMonitorComplete ? [.01,.01,10]: [.19, .15, 1]}
+                sprite={scrollProgtoMonitorComplete}
                 transform
-                occlude
+                
+                
+              
+                
+                
+                
               >
+                
                 <div
                   className="contact"
                   style={{
+                    transform: scrollProgtoMonitorComplete
+            ? 'rotate3d(0, 0, 1, -0deg)' 
+            : 'rotate3d(0, 1, 1, 0deg)',
                     width: "80px",
                     height: "80px",
 
                     position: "relative",
-                    zIndex: 1,
+                    
                   }}
                 >
                   <div
@@ -393,8 +414,12 @@ console.log(scaleFactor)
                       position: "absolute",
                     }}
                   >
-                    <div className="contact-html">
-                      <Component />
+                    
+                    <div className="contact-html" style={{
+                        transform: scrollProgtoMonitorComplete 
+                        ? 'scale(5.2,6)': 'scale(5.2,6)'
+                    }}>
+                    <Component />
                     </div>
                   </div>
                 </div>
@@ -740,7 +765,8 @@ console.log(scaleFactor)
           > 
           
           
-          <VaporEffect/></mesh>
+          <VaporEffect/>
+          </mesh>
           <mesh
             geometry={nodes2.Cylinder007_1.geometry}
             material={materials2["Material.026"]}

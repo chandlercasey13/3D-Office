@@ -2,7 +2,7 @@ import {
   useState,
   useRef,
   Suspense,
-  useEffect
+  useEffect,
  
 } from "react";
 
@@ -16,7 +16,7 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import ResponsiveCamera from "./ResponsiveCamera";
 import { CanvasWrapper } from "./CanvasWrapper"
 
-import { Loader, useGLTF } from '@react-three/drei';
+import { Loader, useGLTF,PivotControls } from '@react-three/drei';
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -107,10 +107,12 @@ const handleArrowPresent = () =>
           
             shadows
             antialias="true"
+           
             camera={{
+            
               
               position: new THREE.Vector3(0, 2.25, 5.55),
-              rotation: new THREE.Euler(-0.4, 0, 0),
+              rotation: new THREE.Euler(-0.4, 0.003, 0),
             }}
           >
             
@@ -122,6 +124,11 @@ const handleArrowPresent = () =>
                 intensity={[2.5]}
               />
 <ResponsiveCamera/>
+
+
+
+
+
               <group ref={modelRef}>
                 <OfficeModel
                   handleHTMLPresent={handleHTMLPresent}
@@ -131,7 +138,7 @@ const handleArrowPresent = () =>
                  
                 />
               </group>
-              
+            
               
               <Sky daynighttogglestate={daynighttoggle} />
       
