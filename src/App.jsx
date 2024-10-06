@@ -16,7 +16,7 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import ResponsiveCamera from "./ResponsiveCamera";
 import { CanvasWrapper } from "./CanvasWrapper"
 
-import { Loader, useGLTF,PivotControls } from '@react-three/drei';
+import { Loader, useGLTF,PivotControls,Preload } from '@react-three/drei';
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -36,7 +36,6 @@ import OfficeModel from "./OfficeModel";
 
 
 import HTMLOverlay from "./HTMLOverlay";
-import VaporEffect from "./VaporEffect";
 
 
 
@@ -67,7 +66,6 @@ function App() {
 
   const modelRef = useRef();
 
-
 const handleArrowPresent = () => 
 {
   setarrowPresent(!arrowPresent)
@@ -77,7 +75,9 @@ const handleArrowPresent = () =>
     sethtmlPresent((prev) => !prev);
   };
  
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the very top
+  }, []);
 
  
 
@@ -128,7 +128,7 @@ const handleArrowPresent = () =>
 
 
 
-
+<Preload all />
               <group ref={modelRef}>
                 <OfficeModel
                   handleHTMLPresent={handleHTMLPresent}

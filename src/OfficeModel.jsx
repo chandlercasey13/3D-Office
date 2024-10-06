@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect,useCallback } from "react";
 
 import { useFrame } from "@react-three/fiber";
 
@@ -52,21 +52,67 @@ const OfficeModel = ({
 
   useFrame(() => {
     if (modelRef.current && animationEnded) {
-      const sensitivity = 0.1;
+      const sensitivity = 0.05;
       const lerpFactor = 0.05;
       const initialRotation = -0.0 * Math.PI;
       modelRef.current.rotation.y = THREE.MathUtils.lerp(
         modelRef.current.rotation.y,
         mousePos.x === 0
           ? initialRotation
-          : (mousePos.x - 0.5) * Math.PI * sensitivity,
+          : (mousePos.x - .5) * Math.PI * sensitivity,
         lerpFactor
       );
     }
   });
 
 
-
+  const MyComponent = ({ htmlPresent, animationEnded, modelRef }) => {
+    const [mousePos, setMousePos] = useState({ x: 0 });
+  
+    
+    const handleMouseMove = useCallback(() => {
+      let animationFrameId;
+      const onMouseMove = (event) => {
+        if (htmlPresent) {
+         
+          if (animationFrameId) cancelAnimationFrame(animationFrameId);
+          animationFrameId = requestAnimationFrame(() => {
+            setMousePos({
+              x: event.clientX / window.innerWidth,
+            });
+          });
+        }
+      };
+      return onMouseMove;
+    }, [htmlPresent]);
+  
+   
+    useEffect(() => {
+      const onMouseMove = handleMouseMove();
+      window.addEventListener("mousemove", onMouseMove);
+  
+      return () => {
+        window.removeEventListener("mousemove", onMouseMove);
+      };
+    }, [handleMouseMove]);
+  
+    useFrame(() => {
+      if (modelRef.current && animationEnded) {
+        const sensitivity = 0.05;
+        const lerpFactor = 0.05;
+        const initialRotation = -0.0 * Math.PI;
+        modelRef.current.rotation.y = THREE.MathUtils.lerp(
+          modelRef.current.rotation.y,
+          mousePos.x === 0
+            ? initialRotation
+            : (mousePos.x - 0.5) * Math.PI * sensitivity,
+          lerpFactor
+        );
+      }
+    });
+  
+    return null;
+  };
 
   useGSAP(
     () => {
@@ -132,7 +178,7 @@ const OfficeModel = ({
       repeat: 0,
       scrollTrigger: {
         trigger: ".title-text",
-        start: "top 50%",
+        start: "top 30%",
         end: "top -200%",
         scrub: true,
         onEnter: () => {
@@ -208,6 +254,7 @@ setTimeout(() => {
           handleHTMLPresent();
           setdeskchairtransparent(false);
           setAnimationEnded(true);
+          setScrollProgtoMonitorComplete(false)
         },
       },
     });
@@ -224,6 +271,9 @@ setTimeout(() => {
         onComplete: () => {
           setScrollProgtoMonitorComplete(true)
         },
+        onLeaveBack: () => {
+         
+        }
       },
       0
     );
@@ -297,10 +347,10 @@ setTimeout(() => {
     contactCamera.to(
       camera.rotation,
       {
-        x: -Math.PI/2,
+        x: -1.4,
         y: 0,
         z: -.55,
-        duration: 0.2,
+        duration: 0.5,
         delay: 0,
       },
       0
@@ -308,9 +358,9 @@ setTimeout(() => {
     contactCamera.to(
       camera.position,
       {
-        x: 0.11,
-        y: 0.55,
-        z: -0.33,
+        x: 0.1,
+        y: 0.65,
+        z: -0.15,
         duration: 0.5,
         delay: 0,
         onComplete: () => {
