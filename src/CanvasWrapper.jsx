@@ -12,12 +12,12 @@ const CanvasWrapper = ({ children, heightElement }) => {
     const measureCanvasSize = () => {
       const canvasElement = canvasRef.current;
       if (canvasElement) {
-        const canvasHeight = window.visualViewport.height;
-        const canvasWidth = window.visualViewport.width;
+        const canvasHeight =  window.innerHeight;
+        const canvasWidth = window.innerWidth;
         
         
-        setWidth(`${window.visualViewport.width % 2 !== 0 ? canvasWidth +1  : canvasWidth}px`);
-        setHeight(`${ window.visualViewport.height % 2 !== 0 ? canvasHeight +1  : canvasHeight}px`);
+        setWidth(`${window.innerWidth % 2 !== 0 ? canvasWidth +1  : canvasWidth}px`);
+        setHeight(`${ window.innerHeight % 2 !== 0 ? canvasHeight +1  : canvasHeight}px`);
       }
     };
     

@@ -29,10 +29,11 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
 //  const roughness = .01;
 //  const metalness = .3;
 const toproughness = 1;
-const topmetalness = .1;
-const roughness = 1;
-const metalness = 0;
- const color = '#faf0d2'
+const topmetalness = .6;
+const roughness = .1;
+const metalness = .1;
+ const color = '#171616'
+  const topcolor = '#adaba8'
   useEffect(() => {
     if (meshRef.current) {
       // Log the transformation matrix of the mesh
@@ -64,9 +65,9 @@ const metalness = 0;
 
           <meshStandardMaterial
             attach="material"
-            color="#9af4fc"
-            emissive="#9af4fc"
-            emissiveIntensity={0.75}
+            color="#ffb74a"
+            emissive="#ffb74a"
+            emissiveIntensity={1.8}
           />
         </Text3D>
       </>
@@ -202,7 +203,7 @@ const metalness = 0;
                     >
                      
                      <img
-          src="images/lava.gif" 
+          src="images/giphy.gif" 
           style={{
             width: "400%",
             height: "400%",
@@ -651,10 +652,12 @@ const metalness = 0;
               />
               <mesh
                 castShadow
-                receiveShadow
+               
                 geometry={nodes.Cube021_4.geometry}
                 material={materials["Material.017"]}
-              />
+                material-roughness={0}
+            material-metalness={.3}
+              >  </mesh>
               <mesh
                 castShadow
                 receiveShadow
@@ -740,14 +743,14 @@ const metalness = 0;
           </group>
         </group>
         <mesh
-          castShadow
+          
           receiveShadow
           geometry={nodes.Cylinder012.geometry}
           material={materials["Material.040"]}
           position={[-2.149, -0.188, 2.947]}
           rotation={[-Math.PI, 0, -Math.PI]}
           scale={[-1, -0.006, -1]}
-        />
+        > <meshStandardMaterial color={"#adaba8"} metalness={.5} roughness={1} /></mesh>
         <mesh
           castShadow
           geometry={nodes.Cylinder011.geometry}
@@ -782,12 +785,12 @@ const metalness = 0;
           <mesh
             geometry={nodes.Cube002_1.geometry}
             material={materials["Material.007"]}
-            material-roughness={0}
-            material-metalness={.8}
+            
           >  
+          <meshStandardMaterial color={'#424242'} roughness={0} metalness={.7}/>
          </mesh>
 
-          <group
+        <group
             position={[-2.354, 0.3, -0.1]}
             rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
             scale={0.32}
@@ -808,17 +811,7 @@ const metalness = 0;
           
         ></mesh> */}
         <group>
-         <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane007.geometry}
-          material={nodes.Plane007.material}
-          position={[-3.842, 1.453, 0.095]}
-          rotation={[-Math.PI, 0, Math.PI / 2]}
-          scale={[1.653, 0.094, 0.141]}
-          material-roughness={toproughness}
-          material-metalness={topmetalness}
-        ><meshStandardMaterial color={'#b5f4ff'} roughness={0} metalness={.8} /></mesh>
+        
         <mesh
           castShadow
           receiveShadow
@@ -827,12 +820,45 @@ const metalness = 0;
           position={[-1.825, -0.303, 3.992]}
           rotation={[Math.PI / 2, 0, 0]}
           scale={[2.02, 0.094, 0.101]}
-          material-roughness={roughness}
-          material-metalness={metalness}
           
-        > <meshStandardMaterial color={"#0f383b"} /></mesh>
+          
+        > <meshStandardMaterial color={topcolor} metalness={topmetalness} roughness={toproughness} /></mesh>
+        
         
         <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane004.geometry}
+          material={nodes.Plane004.material}
+          position={[0.038, 1.453, 3.99]}
+          rotation={[Math.PI / 2, -Math.PI / 2, 0]}
+          scale={[1.66, 0.094, 0.16]}
+          
+          
+        ><meshStandardMaterial color={topcolor} metalness={topmetalness} roughness={toproughness} /></mesh>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane001.geometry}
+          material={nodes.Plane001.material}
+          position={[-1.83, 3.112, 0.097]}
+          rotation={[0, -1.571, 0]}
+          scale={[0.143, 1, 2.01]}
+         
+          
+        ><meshStandardMaterial color={topcolor} metalness={topmetalness} roughness={toproughness} /></mesh>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane006.geometry}
+          material={nodes.Plane006.material}
+          position={[0.05, 3.11, 2.11]}
+          scale={[0.143, 1, 1.87]}
+          
+          
+        ><meshStandardMaterial color={topcolor} metalness={topmetalness} roughness={toproughness} /> </mesh>
+
+<mesh
           castShadow
           receiveShadow
           geometry={nodes.Plane003.geometry}
@@ -842,44 +868,17 @@ const metalness = 0;
           scale={[2.02, 0.094, 0.101]}
 
           
-        ><meshStandardMaterial color={'#b5f4ff'} roughness={0} metalness={.8} /></mesh>
-        <mesh
+        ><meshStandardMaterial color={color} roughness={roughness} metalness={metalness} /></mesh>
+         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Plane004.geometry}
-          material={nodes.Plane004.material}
-          position={[0.038, 1.453, 3.99]}
-          rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-          scale={[1.66, 0.094, 0.16]}
-          material-roughness={toproughness}
-          material-metalness={topmetalness}
+          geometry={nodes.Plane007.geometry}
+          material={nodes.Plane007.material}
+          position={[-3.842, 1.453, 0.095]}
+          rotation={[-Math.PI, 0, Math.PI / 2]}
+          scale={[1.653, 0.094, 0.141]}
           
-        ><meshStandardMaterial color={"#0f383b"} /></mesh>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane001.geometry}
-          material={nodes.Plane001.material}
-          position={[-1.83, 3.112, 0.097]}
-          rotation={[0, -1.571, 0]}
-          scale={[0.143, 1, 2.01]}
-          material-roughness={toproughness}
-          material-metalness={topmetalness}
-          
-        ><meshStandardMaterial color={'#b5f4ff'} roughness={0} metalness={.8} /></mesh>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane006.geometry}
-          material={nodes.Plane006.material}
-          position={[0.05, 3.11, 2.11]}
-          scale={[0.143, 1, 1.87]}
-          material-roughness={toproughness}
-          material-metalness={topmetalness}
-          
-        ><meshStandardMaterial color={"#0f383b"} /> </mesh>
-
-
+        ><meshStandardMaterial color={color} roughness={roughness} metalness={metalness} /></mesh>
 </group>
         <group
           position={[-1.835, 1.435, 0.115]}
@@ -892,10 +891,11 @@ const metalness = 0;
             geometry={nodes.Cube004_1.geometry}
             material={materials["Material.005"]}
             material-roughness={1}
-            material-metalness={0}
+            material-metalness={0.0}
           >
             <meshStandardMaterial color={"#171616"} />
           </mesh>
+
         </group>
         <group
           position={[0.049, 1.433, 2.116]}
@@ -911,11 +911,12 @@ const metalness = 0;
           scale={[1.969, 0.095, 1.997]}
         >
           <meshStandardMaterial
-            color={"#171616"}
-            roughness={1}
-            metalness={0.4}
+            color={"#adaba8"}
+            roughness={0}
+            metalness={.7}
           />
         </mesh>
+        
       </group>
     </>
   );

@@ -21,7 +21,7 @@ h2 {
 .App {
   max-width: 100lvw ;
   height: 800lvh;
-  position: relative;
+  
 }
 *::-webkit-scrollbar {
   width: 2px; /* Width of the vertical scrollbar */

@@ -48,7 +48,7 @@ const Sky = ({ daynighttogglestate }) => {
       <sphereGeometry args={[radius, 50, 50]} />
       
       <meshStandardMaterial
-        color={daynighttogglestate ? "#0f383b" : "#b3997b"}
+        color={daynighttogglestate ? "#171616" : "#b3997b"}
         side={THREE.BackSide}
       />
     </mesh>
@@ -165,8 +165,8 @@ const handleArrowPresent = () =>
         
         </CanvasWrapper>
       </div>
-      <Loader containerStyles={{ background: "#0f383b", display:'flex', justifyContent:'center', alignItems:'center' }} 
-      innerStyles={{background: "#0f383b", height: '40px', textAlign:'center', width:'100%' }}     
+      <Loader containerStyles={{ background: "#171616", display:'flex', justifyContent:'center', alignItems:'center' }} 
+      innerStyles={{background: "#171616", height: '40px', textAlign:'center', width:'100%' }}     
   barStyles={{  height: '30px',
     borderRadius: '5px'
   }}
