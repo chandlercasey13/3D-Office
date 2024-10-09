@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect,useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { useFrame } from "@react-three/fiber";
 
@@ -52,67 +52,21 @@ const OfficeModel = ({
 
   useFrame(() => {
     if (modelRef.current && animationEnded) {
-      const sensitivity = 0.05;
+      const sensitivity = 0.1;
       const lerpFactor = 0.05;
       const initialRotation = -0.0 * Math.PI;
       modelRef.current.rotation.y = THREE.MathUtils.lerp(
         modelRef.current.rotation.y,
         mousePos.x === 0
           ? initialRotation
-          : (mousePos.x - .5) * Math.PI * sensitivity,
+          : (mousePos.x - 0.5) * Math.PI * sensitivity,
         lerpFactor
       );
     }
   });
 
 
-  const MyComponent = ({ htmlPresent, animationEnded, modelRef }) => {
-    const [mousePos, setMousePos] = useState({ x: 0 });
-  
-    
-    const handleMouseMove = useCallback(() => {
-      let animationFrameId;
-      const onMouseMove = (event) => {
-        if (htmlPresent) {
-         
-          if (animationFrameId) cancelAnimationFrame(animationFrameId);
-          animationFrameId = requestAnimationFrame(() => {
-            setMousePos({
-              x: event.clientX / window.innerWidth,
-            });
-          });
-        }
-      };
-      return onMouseMove;
-    }, [htmlPresent]);
-  
-   
-    useEffect(() => {
-      const onMouseMove = handleMouseMove();
-      window.addEventListener("mousemove", onMouseMove);
-  
-      return () => {
-        window.removeEventListener("mousemove", onMouseMove);
-      };
-    }, [handleMouseMove]);
-  
-    useFrame(() => {
-      if (modelRef.current && animationEnded) {
-        const sensitivity = 0.05;
-        const lerpFactor = 0.05;
-        const initialRotation = -0.0 * Math.PI;
-        modelRef.current.rotation.y = THREE.MathUtils.lerp(
-          modelRef.current.rotation.y,
-          mousePos.x === 0
-            ? initialRotation
-            : (mousePos.x - 0.5) * Math.PI * sensitivity,
-          lerpFactor
-        );
-      }
-    });
-  
-    return null;
-  };
+
 
   useGSAP(
     () => {
@@ -271,9 +225,6 @@ setTimeout(() => {
         onComplete: () => {
           setScrollProgtoMonitorComplete(true)
         },
-        onLeaveBack: () => {
-         
-        }
       },
       0
     );

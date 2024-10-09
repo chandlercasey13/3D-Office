@@ -16,7 +16,7 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import ResponsiveCamera from "./ResponsiveCamera";
 import { CanvasWrapper } from "./CanvasWrapper"
 
-import { Loader, useGLTF,PivotControls,Preload } from '@react-three/drei';
+import { Loader, useGLTF,PivotControls } from '@react-three/drei';
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -36,6 +36,7 @@ import OfficeModel from "./OfficeModel";
 
 
 import HTMLOverlay from "./HTMLOverlay";
+import VaporEffect from "./VaporEffect";
 
 
 
@@ -48,7 +49,7 @@ const Sky = ({ daynighttogglestate }) => {
       <sphereGeometry args={[radius, 50, 50]} />
       
       <meshStandardMaterial
-        color={daynighttogglestate ? "#171616" : "#b3997b"}
+        color={daynighttogglestate ? "#0f383b" : "#b3997b"}
         side={THREE.BackSide}
       />
     </mesh>
@@ -66,6 +67,7 @@ function App() {
 
   const modelRef = useRef();
 
+
 const handleArrowPresent = () => 
 {
   setarrowPresent(!arrowPresent)
@@ -75,9 +77,7 @@ const handleArrowPresent = () =>
     sethtmlPresent((prev) => !prev);
   };
  
-  useEffect(() => {
-    window.scrollTo(0, 0); // Scrolls to the very top
-  }, []);
+
 
  
 
@@ -128,7 +128,7 @@ const handleArrowPresent = () =>
 
 
 
-<Preload all />
+
               <group ref={modelRef}>
                 <OfficeModel
                   handleHTMLPresent={handleHTMLPresent}
@@ -165,8 +165,8 @@ const handleArrowPresent = () =>
         
         </CanvasWrapper>
       </div>
-      <Loader containerStyles={{ background: "#171616", display:'flex', justifyContent:'center', alignItems:'center' }} 
-      innerStyles={{background: "#171616", height: '40px', textAlign:'center', width:'100%' }}     
+      <Loader containerStyles={{ background: "#0f383b", display:'flex', justifyContent:'center', alignItems:'center' }} 
+      innerStyles={{background: "#0f383b", height: '40px', textAlign:'center', width:'100%' }}     
   barStyles={{  height: '30px',
     borderRadius: '5px'
   }}

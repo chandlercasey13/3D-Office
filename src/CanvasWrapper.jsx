@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const CanvasWrapper = ({ children, heightElement }) => {
-  const [height, setHeight] = useState('100svh');
+  const [height, setHeight] = useState('100lvh');
   const [width, setWidth] = useState('100%');
   const canvasRef = useRef(null);
 

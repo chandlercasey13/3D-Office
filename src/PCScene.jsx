@@ -26,14 +26,6 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
   const { camera, viewport } = useThree();
 
   const meshRef = useRef();
-//  const roughness = .01;
-//  const metalness = .3;
-const toproughness = 1;
-const topmetalness = .6;
-const roughness = .1;
-const metalness = .1;
- const color = '#171616'
-  const topcolor = '#adaba8'
   useEffect(() => {
     if (meshRef.current) {
       // Log the transformation matrix of the mesh
@@ -43,6 +35,9 @@ const metalness = .1;
 
   const scaleFactor= Math.min(viewport.width, viewport.height) / 9;
  
+  const toproughness = 1;
+  const topmetalness = .55;
+  const topcolor = '#a3a3a2'
 
   
   function GlowingText() {
@@ -65,9 +60,9 @@ const metalness = .1;
 
           <meshStandardMaterial
             attach="material"
-            color="#ffb74a"
-            emissive="#ffb74a"
-            emissiveIntensity={1.8}
+            color="#9af4fc"
+            emissive="#9af4fc"
+            emissiveIntensity={.7}
           />
         </Text3D>
       </>
@@ -203,7 +198,7 @@ const metalness = .1;
                     >
                      
                      <img
-          src="images/giphy.gif" 
+          src="images/lava.gif" 
           style={{
             width: "400%",
             height: "400%",
@@ -223,7 +218,7 @@ const metalness = .1;
                     deskchairtransparent ? [0, 0, -0.6] : [0.478, 0.428, -0.5]
                   }
                   rotation-y={[Math.PI]}
-                  scale={0.065}
+                  scale={0.02}
                   transform
                   
                   
@@ -252,21 +247,13 @@ const metalness = .1;
                             </h1>
                             <div className="about-me-section">
                               {" "}
-                              <p className="pb-0.5">
-                                I've spent the past 12+ years working across
-                                different areas of digital design; front-end
-                                development, email design, marketing site pages,
-                                app UI/UX, to my current role designing products
-                                for mobile platforms.
+                              <p className="pb-1">
+                              I’m a creative, solutions-driven full-stack software engineer focused on intuitive design and functionality. Proficient in the MERN stack, TypeScript, PostgreSQL, Next.js, Python, and Three.js, I build efficient applications that emphasize user experience. 
                               </p>
                               <p className="pb-0.5">
-                                These days my time is spent researching,
-                                designing, prototyping and coding, I also help
-                                designers get started with their career.{" "}
+                              Outside of coding, I enjoy baking, playing the trumpet, and building PCs.
                               </p>
-                              Out of the office you'll find me dreaming of
-                              soccer, playing the guitar, and petting all the
-                              good dogs. 
+                              
                             </div>
                           </div>
                         </div>
@@ -424,7 +411,7 @@ const metalness = .1;
                     
                     <div className="contact-html" style={{
                         transform: scrollProgtoMonitorComplete 
-                        ? 'scale(5.2,5.7)': 'scale(5.2,5.9)'
+                        ? 'scale(5.2,6)': 'scale(5.2,6)'
                     }}>
                     <Component />
                     </div>
@@ -785,10 +772,9 @@ const metalness = .1;
           <mesh
             geometry={nodes.Cube002_1.geometry}
             material={materials["Material.007"]}
-            
-          >  
-          <meshStandardMaterial color={'#424242'} roughness={0} metalness={.7}/>
-         </mesh>
+            material-roughness={1}
+            material-metalness={0.9}
+          />
 
         <group
             position={[-2.354, 0.3, -0.1]}
@@ -798,20 +784,18 @@ const metalness = .1;
             <Corkboard />
           </group>
         </group>
-        {/* <mesh
+       
+        <group>
+         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Plane002.geometry}
-          material={nodes.Plane002.material}
-          position={[-1.825, -0.303, 3.992]}
-          rotation={[Math.PI / 2, 0, 0]}
-          scale={[2.02, 0.094, 0.101]}
-          material-roughness={.6}
-          material-metalness={.98}
+          geometry={nodes.Plane007.geometry}
+          material={nodes.Plane007.material}
+          position={[-3.842, 1.453, 0.095]}
+          rotation={[-Math.PI, 0, Math.PI / 2]}
+          scale={[1.66, 0.094, 0.141]}
           
-        ></mesh> */}
-        <group>
-        
+        ><meshStandardMaterial color={"#0f383b"} roughness={0} metalness={.3} /></mesh>
         <mesh
           castShadow
           receiveShadow
@@ -820,11 +804,25 @@ const metalness = .1;
           position={[-1.825, -0.303, 3.992]}
           rotation={[Math.PI / 2, 0, 0]}
           scale={[2.02, 0.094, 0.101]}
+         
           
+        > <meshStandardMaterial color={"#adaba8"}
+        roughness={0}
+        metalness={.98}  /></mesh>
+        
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane003.geometry}
           
-        > <meshStandardMaterial color={topcolor} metalness={topmetalness} roughness={toproughness} /></mesh>
-        
-        
+          position={[-3.844, -0.303, 1.972]}
+          rotation={[Math.PI / 2, 0, Math.PI / 2]}
+          scale={[2.02, 0.094, 0.101]}
+
+          
+        ><meshStandardMaterial color={"#adaba8"}
+        roughness={0}
+        metalness={.98} /></mesh>
         <mesh
           castShadow
           receiveShadow
@@ -835,7 +833,7 @@ const metalness = .1;
           scale={[1.66, 0.094, 0.16]}
           
           
-        ><meshStandardMaterial color={topcolor} metalness={topmetalness} roughness={toproughness} /></mesh>
+        ><meshStandardMaterial color={'#b5f4ff'} roughness={0} metalness={.8}  /></mesh>
         <mesh
           castShadow
           receiveShadow
@@ -846,7 +844,7 @@ const metalness = .1;
           scale={[0.143, 1, 2.01]}
          
           
-        ><meshStandardMaterial color={topcolor} metalness={topmetalness} roughness={toproughness} /></mesh>
+        ><meshStandardMaterial color={"#0f383b"} roughness={0} metalness={.3} /></mesh>
         <mesh
           castShadow
           receiveShadow
@@ -856,44 +854,26 @@ const metalness = .1;
           scale={[0.143, 1, 1.87]}
           
           
-        ><meshStandardMaterial color={topcolor} metalness={topmetalness} roughness={toproughness} /> </mesh>
+        ><meshStandardMaterial color={"#b5f4ff"} roughness={0} metalness={.8} /> </mesh>
 
-<mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane003.geometry}
-          
-          position={[-3.844, -0.303, 1.972]}
-          rotation={[Math.PI / 2, 0, Math.PI / 2]}
-          scale={[2.02, 0.094, 0.101]}
 
-          
-        ><meshStandardMaterial color={color} roughness={roughness} metalness={metalness} /></mesh>
-         <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane007.geometry}
-          material={nodes.Plane007.material}
-          position={[-3.842, 1.453, 0.095]}
-          rotation={[-Math.PI, 0, Math.PI / 2]}
-          scale={[1.653, 0.094, 0.141]}
-          
-        ><meshStandardMaterial color={color} roughness={roughness} metalness={metalness} /></mesh>
 </group>
+        
         <group
           position={[-1.835, 1.435, 0.115]}
           rotation={[0, -Math.PI / 2, 0]}
           scale={[0.124, 1.676, 2.003]}
         >
+          
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.Cube004_1.geometry}
             material={materials["Material.005"]}
             material-roughness={1}
-            material-metalness={0.0}
+            material-metalness={1}
           >
-            <meshStandardMaterial color={"#171616"} />
+            <meshStandardMaterial color={"#0f383b"} />
           </mesh>
 
         </group>
@@ -913,7 +893,7 @@ const metalness = .1;
           <meshStandardMaterial
             color={"#adaba8"}
             roughness={0}
-            metalness={.7}
+            metalness={.98}
           />
         </mesh>
         
