@@ -863,7 +863,7 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
 
 
 
-       <group scale={[1,.69,1]}>
+       <group position={[0,-.1,0]} scale={[1,.69,1]}>
         <mesh
           castShadow
           receiveShadow

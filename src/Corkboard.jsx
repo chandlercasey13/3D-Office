@@ -213,7 +213,7 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://chandlercasey13.github.io/snake-clone-project/", "_blank")
+                  window.open("https://monthly-expense-tracker-2324e228fac8.herokuapp.com/", "_blank")
                 }
               >
                 <Html
@@ -243,9 +243,9 @@ export default function Model(props) {
                     >
                       <div className="project-html">
                         <div className="project-html-container">
-                          <div className="project-header">JavaScript Game</div>
+                          <div className="project-header">Expense Tracker</div>
                           <div className="project-picture">
-                            <img src="images/wormgame.png" />
+                            <img src="images/financial-tracker.png" />
                           </div>
                           <div className="project-description">
                             A Google Keep clone is a note-taking app that lets
@@ -287,11 +287,11 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+                  window.open("https://chandlercasey13.github.io/snake-clone-project/", "_blank")
                 }
               >
                 <Html
-                  position={[0, 0.05, 0]}
+                  position={[0.0, 0.05, 0]}
                   scale={1}
                   rotation={[-Math.PI / 2, 0, Math.PI / 2]}
                   transform
@@ -318,11 +318,13 @@ export default function Model(props) {
                       <div className="project-html">
                         <div className="project-html-container">
                           <div className="project-header">JavaScript Game</div>
-                          <div className="project-picture"></div>
+                          <div className="project-picture">
+                            <img src="images/wormgame.png" />
+                          </div>
                           <div className="project-description">
-                            Surelock is a secure, user-friendly password manager
-                            that safely stores and auto-fills passwords,
-                            ensuring strong encryption and privacy.
+                            A Google Keep clone is a note-taking app that lets
+                            users create, organize, and sync notes, lists, and
+                            reminders across devices.
                           </div>
                         </div>
                       </div>
