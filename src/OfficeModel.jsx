@@ -19,6 +19,7 @@ const OfficeModel = ({
   handleHTMLPresent,
   htmlPresent,
   handleArrowPresent,
+  arrowPresent
 }) => {
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(TextPlugin);
@@ -85,18 +86,20 @@ const OfficeModel = ({
         ease: "power1.in",
         opacity: 0,
       });
-      gsap.from(".arrow-down", {
+      arrowPresent && gsap.from(".arrow-down", {
         y: -10,
+        
+        yoyo: true,
         repeat: -1,
         duration: 0.85,
         ease: "power1.in",
-        yoyo: true,
+        
         delay: 2,
         opacity: 0,
       });
 
     },
-    { dependencies: [deskchairtransparent], revertOnUpdate: true }
+    { dependencies: [deskchairtransparent, arrowPresent], revertOnUpdate: true }
   );
 
   useGSAP(() => {
@@ -127,14 +130,17 @@ const OfficeModel = ({
       0
     );
 
+
+   
     const monitorCamera = gsap.timeline({
       paused: true,
       repeat: 0,
       scrollTrigger: {
-        trigger: ".title-text",
-        start: "top 30%",
+        trigger: ".trigger-div-cam-perspective",
+        start: "top top",
         end: "top -200%",
         scrub: true,
+        paused: true,
         onEnter: () => {
           setdeskchairtransparent(true);
           
@@ -153,7 +159,7 @@ setTimeout(() => {
       
             {
               scrollTrigger: {
-                trigger: ".title-text",
+                trigger: ".trigger-div-cam-perspective",
                 start: 0,
               },
               y: -5,
@@ -178,7 +184,7 @@ setTimeout(() => {
           aboutMe.from(".about-me-section", {
             y: 10,
             scrollTrigger: {
-              trigger: ".title-text",
+              trigger: ".trigger-div-cam-perspective",
             },
       
             duration: 2,
@@ -189,7 +195,7 @@ setTimeout(() => {
           aboutMe.from(".chandler-pic", {
             x: -10,
             scrollTrigger: {
-              trigger: ".title-text",
+              trigger: ".trigger-div-cam-perspective",
             },
       
             duration: 2,
@@ -250,9 +256,7 @@ setTimeout(() => {
         end: "top -400%",
         scrub: true,
         onEnter: () => {},
-        onLeaveBack: () => {
-          handleArrowPresent();
-        },
+       
       },
     });
 
@@ -289,9 +293,10 @@ setTimeout(() => {
         end: "top -600%",
         scrub: true,
         onEnter: () => {
-          handleArrowPresent();
+          setTimeout(() => {
+          handleArrowPresent();},2000)
         },
-        onLeaveBack: () => {},
+        onLeaveBack: () => { handleArrowPresent()},
       },
     });
 

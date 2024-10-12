@@ -70,7 +70,7 @@ function App() {
 
 const handleArrowPresent = () => 
 {
-  setarrowPresent(!arrowPresent)
+  setarrowPresent((prev) => !prev)
 }
 
   const handleHTMLPresent = () => {
@@ -134,7 +134,7 @@ const handleArrowPresent = () =>
                   handleHTMLPresent={handleHTMLPresent}
                   htmlPresent={htmlPresent}
                   handleArrowPresent = {handleArrowPresent}
-                  
+                  arrowPresent = {arrowPresent}
                  
                 />
               </group>

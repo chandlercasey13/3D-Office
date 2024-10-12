@@ -4,7 +4,7 @@ const CanvasWrapper = ({ children, heightElement }) => {
   const [height, setHeight] = useState('100lvh');
   const [width, setWidth] = useState('100%');
   const canvasRef = useRef(null);
-
+  const resizeTimeout = useRef(null);
   
 
 
@@ -21,14 +21,28 @@ const CanvasWrapper = ({ children, heightElement }) => {
       }
     };
     
+    const handleResize = () => {
+      // Clear the previous timeout if resize happens again before 200ms
+      if (resizeTimeout.current) {
+        clearTimeout(resizeTimeout.current);
+      }
+
+      // Set a new timeout to run after 200ms
+      resizeTimeout.current = setTimeout(() => {
+        measureCanvasSize();
+      }, 100); // Adjust this value to control debounce delay
+    };
+
     measureCanvasSize();
-    window.addEventListener('resize', measureCanvasSize);
-    
+    window.addEventListener('resize', handleResize);
+
     return () => {
-      window.removeEventListener('resize', measureCanvasSize);
+      window.removeEventListener('resize', handleResize);
+      if (resizeTimeout.current) {
+        clearTimeout(resizeTimeout.current);  // Clean up the timeout
+      }
     };
   }, []);
-  
 
 
 

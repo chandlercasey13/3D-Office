@@ -174,14 +174,15 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
                 geometry={nodes.tvpCube1_tvtela_da_tv_0.geometry}
                 material={materials["tvtela_da_tv.002"]}
               >
-                {!deskchairtransparent ?  (
+                
                  
                   <Html
                     className="computer-monitor"
-                    position={[0.364, -0.0, -0.7]}
+                    position={  deskchairtransparent ? [0.364, -100, -.7] : [0.364, -0.0, -0.7] }
                     scale={[0.08, 0.58, 0.01]}
                     rotation={[Math.PI, 0, 0]}
                     transform
+                    occlude
                     
                     pointerEvents="none"
                   >
@@ -212,14 +213,15 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
                    
                   </Html>
                   
-                ): (
+                
                 <Html
                   position={
-                    deskchairtransparent ? [0, 0, -0.6] : [0.478, 0.428, -0.5]
+                    deskchairtransparent ? [0, 0, -0.7] : [0, 100, 0]
                   }
                   rotation-y={[Math.PI]}
-                  scale={0.02}
+                  scale={0.045}
                   transform
+                  
                   
                   
                 >
@@ -251,7 +253,7 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
                               I’m a creative, solutions-driven full-stack software engineer focused on intuitive design and functionality. Proficient in the MERN stack, TypeScript, PostgreSQL, Next.js, Python, and Three.js, I build efficient applications that emphasize user experience. 
                               </p>
                               <p className="pb-0.5">
-                              Outside of coding, I enjoy baking, playing the trumpet, and building PCs.
+                            Outside of coding, I enjoy baking, playing the trumpet, and building PCs.
                               </p>
                               
                             </div>
@@ -261,7 +263,7 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
                     </div>
                   </div>
                 </Html>
-                )}
+                
               </mesh>
             </group>
           </group>
@@ -768,8 +770,81 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
             material={materials2["Material.026"]}
           />
         </group>
-        <group position={[0.049, 1.433, 2.116]} scale={[0.144, 1.676, 1.873]}>
+       
+       
+        <group>
+      
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane004.geometry}
+          material={nodes.Plane004.material}
+          position={[0.08, 1.453, 3.99]}
+          rotation={[Math.PI / 2, -Math.PI / 2, 0]}
+          scale={[1.66, 0.094, 0.1]}
+          
+          
+        ><meshStandardMaterial color={'#b5f4ff'} roughness={0} metalness={.9}  /></mesh>
+        
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane006.geometry}
+          material={nodes.Plane006.material}
+          position={[0.08, 3.11, 2.07]}
+          scale={[0.1, 1, 1.92]}
+          
+          
+        ><meshStandardMaterial color={"#b5f4ff"} roughness={0} metalness={.9} /> </mesh>
+
+{/* <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane001.geometry}
+          material={nodes.Plane001.material}
+          position={[-1.83, 3.112, 0.097]}
+          rotation={[0, -1.571, 0]}
+          scale={[0.06, 1, 2.01]}
+         
+          
+        ><meshStandardMaterial color={"#0f383b"} roughness={0} metalness={0} /></mesh>
+       <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Plane007.geometry}
+          material={nodes.Plane007.material}
+          position={[-3.842, 1.453, 0.095]}
+          rotation={[-Math.PI, 0, Math.PI / 2]}
+          scale={[1.66, 0.094, 0.141]}
+          
+        ><meshStandardMaterial color={"#0f383b"} roughness={0} metalness={0} /></mesh> */}
+</group>
+        
+        <group
+          position={[-1.835, 1.435, 0.06]}
+          rotation={[0, -Math.PI / 2, 0]}
+          scale={[0.095, 1.676, 2.003]}
+        >
+        
           <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cube004_1.geometry}
+            material={materials["Material.005"]}
+            material-roughness={1}
+            material-metalness={1}
+          >
+            <meshStandardMaterial color={"#0f383b"} />
+          </mesh>
+
+        </group>
+        <group
+          position={[0.049, 1.433, 2.116]}
+          scale={[0.144, 1.676, 1.873]}
+        ></group>
+       
+       <group position={[0.08, 1.433, 2.07]} scale={[0.1, 1.676, 1.91]}>
+        <mesh
             geometry={nodes.Cube002_1.geometry}
             material={materials["Material.007"]}
             material-roughness={1}
@@ -784,18 +859,26 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
             <Corkboard />
           </group>
         </group>
-       
-        <group>
-         <mesh
+
+
+
+
+       <group scale={[1,.69,1]}>
+        <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Plane007.geometry}
-          material={nodes.Plane007.material}
-          position={[-3.842, 1.453, 0.095]}
-          rotation={[-Math.PI, 0, Math.PI / 2]}
-          scale={[1.66, 0.094, 0.141]}
-          
-        ><meshStandardMaterial color={"#0f383b"} roughness={0} metalness={.3} /></mesh>
+          geometry={nodes.Cube.geometry}
+          material={materials["Material.004"]}
+          position={[-1.854, -0.297, 1.994]}
+          scale={[1.969, 0.095, 1.997]}
+        >
+          <meshStandardMaterial
+            color={"#adaba8"}
+            roughness={0}
+            metalness={.98}
+          />
+        </mesh>
+         
         <mesh
           castShadow
           receiveShadow
@@ -823,80 +906,7 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
         ><meshStandardMaterial color={"#adaba8"}
         roughness={0}
         metalness={.98} /></mesh>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane004.geometry}
-          material={nodes.Plane004.material}
-          position={[0.038, 1.453, 3.99]}
-          rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-          scale={[1.66, 0.094, 0.16]}
-          
-          
-        ><meshStandardMaterial color={'#b5f4ff'} roughness={0} metalness={.8}  /></mesh>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane001.geometry}
-          material={nodes.Plane001.material}
-          position={[-1.83, 3.112, 0.097]}
-          rotation={[0, -1.571, 0]}
-          scale={[0.143, 1, 2.01]}
-         
-          
-        ><meshStandardMaterial color={"#0f383b"} roughness={0} metalness={.3} /></mesh>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane006.geometry}
-          material={nodes.Plane006.material}
-          position={[0.05, 3.11, 2.11]}
-          scale={[0.143, 1, 1.87]}
-          
-          
-        ><meshStandardMaterial color={"#b5f4ff"} roughness={0} metalness={.8} /> </mesh>
-
-
-</group>
-        
-        <group
-          position={[-1.835, 1.435, 0.115]}
-          rotation={[0, -Math.PI / 2, 0]}
-          scale={[0.124, 1.676, 2.003]}
-        >
-          
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Cube004_1.geometry}
-            material={materials["Material.005"]}
-            material-roughness={1}
-            material-metalness={1}
-          >
-            <meshStandardMaterial color={"#0f383b"} />
-          </mesh>
-
-        </group>
-        <group
-          position={[0.049, 1.433, 2.116]}
-          scale={[0.144, 1.676, 1.873]}
-        ></group>
-       
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube.geometry}
-          material={materials["Material.004"]}
-          position={[-1.854, -0.297, 1.994]}
-          scale={[1.969, 0.095, 1.997]}
-        >
-          <meshStandardMaterial
-            color={"#adaba8"}
-            roughness={0}
-            metalness={.98}
-          />
-        </mesh>
-        
+     </group>
       </group>
     </>
   );

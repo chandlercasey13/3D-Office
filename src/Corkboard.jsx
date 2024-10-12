@@ -213,7 +213,7 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+                  window.open("https://chandlercasey13.github.io/snake-clone-project/", "_blank")
                 }
               >
                 <Html

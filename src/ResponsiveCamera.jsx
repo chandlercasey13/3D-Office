@@ -5,9 +5,9 @@ export default function ResponsiveCamera() {
   const { camera, size } = useThree();
   useEffect(() => {
     const aspect = size.width / size.height;
-// console.log(size.width)
+console.log(size.width)
 // console.log(camera)
-    if (size.width > 1920) {
+    if (size.width >= 1920) {
 
         camera.fov = 14;
         camera.position.y = 2.4
