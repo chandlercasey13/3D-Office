@@ -31,12 +31,8 @@ import {
 import * as THREE from "three";
 
 
+import PCModel from "./OfficeScene";
 
-import OfficeModel from "./OfficeModel";
-
-
-import HTMLOverlay from "./HTMLOverlay";
-import VaporEffect from "./VaporEffect";
 
 
 
@@ -49,7 +45,7 @@ const Sky = ({ daynighttogglestate }) => {
       <sphereGeometry args={[radius, 50, 50]} />
       
       <meshStandardMaterial
-        color={daynighttogglestate ? "#0f383b" : "#b3997b"}
+        color={daynighttogglestate ? "#0f3839" : "#b3997b"}
         side={THREE.BackSide}
       />
     </mesh>
@@ -58,14 +54,14 @@ const Sky = ({ daynighttogglestate }) => {
 
 function App() {
   const [htmlPresent, sethtmlPresent] = useState(true);
-  const [arrowPresent, setarrowPresent] = useState(true);
+  const [arrowPresent, setarrowPresent] = useState(false);
 
   const [daynighttoggle, setDaynighttoggle] = useState(true);
 
   const [arrowText, setArrowText] = useState();
   const [arrowTextShadow, setArrowTextShadow] = useState(false);
-
-  const modelRef = useRef();
+ 
+  const [animationLocation,setAnimationLocation] = useState('')
 
 
 const handleArrowPresent = () => 
@@ -78,7 +74,12 @@ const handleArrowPresent = () =>
   };
  
 
-
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Smooth scrolling
+    });
+  };
  
 
 
@@ -87,15 +88,51 @@ const handleArrowPresent = () =>
     <>
     
       <div className="App">
-        <HTMLOverlay
+      <div className="html-overlay">
+      <div className="html-overlay-organization-container">
+        {htmlPresent && (
+<>
+<div className='navbar'>
+<button onClick={() => setAnimationLocation('About')} className='navbar-button border-solid border-white  border-t-0 border-l-0 border-r border-b-0'>About Me</button> <button className='navbar-button'onClick={() => setAnimationLocation('Projects')}> Projects</button> <button className='navbar-button border-solid border-white  border-t-0 border-l border-r-0 border-b-0 ' onClick={() => setAnimationLocation('Contact')}> Contact</button>
+</div>
+
+
+
+
+          <div className="overlay-text-container">
+            <>
+              <h1 className={`subtitle-text text-white `}> </h1>
+              {/* <div className='overlay-h1-wrapper'> */}
+              <p className={`title-text text-white`}>Chandler's Portfolio</p>
+              {/* </div> */}
+            </>
+          </div>
+
+          </>
+        )}
+        <div className="trigger-div-cam-perspective"></div>
+
+
+
+
+
+        <div
+          className={`arrow-div`}
+        >
+          {/* <div className="arrow-down"> */}
+           {arrowPresent && ( <button className='home-button' onClick={() => setAnimationLocation('Home')}><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMRJREFUSEvtkkEOgyAQRf/oio3GG9ib2KP0JO1N2p7Eq3AD48odNkxCYqk4qCHpApcI7/H/QEj8UWI+skBsOFf05xVN43iHMW/VNHrtqtMwtCjLTlXVKxQlOGSGAw8AGsZcfQnDiZ4g6kB0C0nCAgsoih5A60u+4IBWdX3ZncAeYJAnYZC7uQDnrdIz+JHMs+ZaIuBRgpUkdmmzluWlxQRu8yIJtjr3G4kWuCShJ3toyNJ8Yv7vShADPFVRFhxpQDyTfMgfWFFEGd8C++sAAAAASUVORK5CYII="></img></button>)}
+           
+
+
+        
+          {/* </div> */}
+        </div>
+
+        
+      </div>
       
-          htmlPresent={htmlPresent}
-          
-          daynighttoggle={daynighttoggle}
-          arrowText={arrowText}
-          arrowPresent={arrowPresent}
-          arrowTextShadow={arrowTextShadow}
-        />
+    </div>
+    
         <CanvasWrapper >
         
         
@@ -129,15 +166,14 @@ const handleArrowPresent = () =>
 
 
 
-              <group ref={modelRef}>
-                <OfficeModel
+              
+               <PCModel  
                   handleHTMLPresent={handleHTMLPresent}
                   htmlPresent={htmlPresent}
                   handleArrowPresent = {handleArrowPresent}
                   arrowPresent = {arrowPresent}
-                 
-                />
-              </group>
+                  animationLocation = {animationLocation}/>
+             
             
               
               <Sky daynighttogglestate={daynighttoggle} />

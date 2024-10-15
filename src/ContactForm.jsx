@@ -15,22 +15,22 @@ export default function Component() {
 
   const [publicKey, setPublicKey] = useState('');
 
-  useEffect(() => {
-    const web3form = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/post-form');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setPublicKey(data.publicKey);
-      } catch (error) {
-        console.error('Error fetching the public key:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const web3form = async () => {
+  //     try {
+  //       const response = await fetch('http://localhost:3000/post-form');
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       const data = await response.json();
+  //       setPublicKey(data.publicKey);
+  //     } catch (error) {
+  //       console.error('Error fetching the public key:', error);
+  //     }
+  //   };
 
-    web3form();
-  }, []);
+  //   web3form();
+  // }, []);
 
 
 

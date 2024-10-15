@@ -137,7 +137,7 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+                  window.open("https://ai-api-clone.netlify.app/", "_blank")
                 }
               >
                 <meshStandardMaterial color={"white"} />

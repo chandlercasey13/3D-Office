@@ -8,38 +8,387 @@ import { Html } from "@react-three/drei";
 
 import { useGLTF } from "@react-three/drei";
 import Corkboard from "./Corkboard";
-import { useRef,useEffect, useState } from "react";
-import { useFrame } from '@react-three/fiber';
+import { useRef, useEffect, useState } from "react";
+import { useFrame } from "@react-three/fiber";
 import VaporEffect from "./VaporEffect";
 import * as THREE from "three";
 
-import { Text3D } from "@react-three/drei";
-import {  useThree } from "@react-three/fiber";
 
-
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { Text3D, PivotControls } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { TextPlugin } from "gsap/TextPlugin";
 import Component from "./ContactForm";
 
-export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComplete  }) {
-  const { nodes: nodes, materials: materials } = useGLTF("compressedOffice.glb",true);
-  const { nodes: nodes2, materials: materials2 } = useGLTF("OfficeProps.glb",true );
+export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, handleArrowPresent, animationLocation
+  
+}) {
+  const { nodes: nodes, materials: materials } = useGLTF(
+    "compressedOffice.glb",
+    true
+  );
+  const { nodes: nodes2, materials: materials2 } = useGLTF(
+    "OfficeProps.glb",
+    true
+  );
   const modelRef = useRef();
   const { camera, viewport } = useThree();
 
-  const meshRef = useRef();
-  useEffect(() => {
-    if (meshRef.current) {
-      // Log the transformation matrix of the mesh
-      console.log(meshRef.current);
-    }
-  }, []);
+  gsap.registerPlugin(useGSAP);
+  gsap.registerPlugin(TextPlugin);
+  gsap.registerPlugin(ScrollTrigger);
 
-  const scaleFactor= Math.min(viewport.width, viewport.height) / 9;
- 
-  const toproughness = 1;
-  const topmetalness = .55;
-  const topcolor = '#a3a3a2'
+  const [animationEnded, setAnimationEnded] = useState(true);
+  const [deskchairtransparent, setdeskchairtransparent] = useState(false);
+  const [scrollProgtoMonitorComplete, setScrollProgtoMonitorComplete]=useState(false);
+  
+
+
 
   
+
+  const [mousePos, setMousePos] = useState({ x: 0 });
+
+  const handleMouseMove = (event) => {
+    {
+      htmlPresent &&
+        setMousePos({
+          x: event.clientX / window.innerWidth,
+        });
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+  }, [htmlPresent]);
+
+  useFrame(() => {
+    if (modelRef.current && htmlPresent) {
+      const sensitivity = 0.1;
+      const lerpFactor = 0.05;
+      const initialRotation = -0.0 * Math.PI;
+      modelRef.current.rotation.y = THREE.MathUtils.lerp(
+        modelRef.current.rotation.y,
+        mousePos.x === 0
+          ? initialRotation
+          : (mousePos.x - 0.5) * Math.PI * sensitivity,
+        lerpFactor
+      );
+    }
+  });
+
+
+
+
+  useGSAP(
+    () => {
+      gsap.from(".title-text", {
+        y: 0,
+
+        duration: 1,
+        ease: "power1.in",
+        opacity: 0,
+        delay: 1,
+      });
+      gsap.from(".subtitle-text", {
+        x: 0,
+
+        duration: 1.5,
+        ease: "power1.in",
+        opacity: 0,
+      });
+       
+setTimeout(() => {
+
+  const aboutMe = gsap.timeline({ repeat: 0 });
+
+  aboutMe.fromTo(
+    ".about-me-header",
+
+    {
+     
+      y: -5,
+      ease: "back.inOut",
+
+      duration: .5,
+
+      opacity: 0,
+      delay: 0.5,
+    },
+    {
+      y: 0,
+      ease: "back.inOut",
+
+      duration: 2.0,
+
+      opacity: 1,
+      delay: 0,
+    },2
+  );
+
+  aboutMe.from(".about-me-section", {
+    y: 10,
+   
+
+    duration: 1,
+
+    opacity: 0,
+    delay: 0,
+  },3);
+  aboutMe.from(".chandler-pic", {
+    x: -10,
+   
+
+    duration: 2,
+
+    opacity: 0,
+    delay: 0,
+  } ,3);
+},0)
+
+    },
+    { dependencies: [deskchairtransparent], revertOnUpdate: true }
+  );
+
+  useGSAP(() => {
+    const intro = gsap.timeline({ repeat: 0 });
+
+
+
+
+    
+
+
+    intro.from(modelRef.current.scale, {
+      x: 0.01,
+      y: 0.01,
+      z: 0.01,
+      duration: 1.5,
+      delay: 0.5,
+      ease: "elastic.out",
+    });
+
+    intro.to(
+      modelRef.current.rotation,
+      {
+        x: 0,
+        y: 0,
+        z: 0,
+        duration: 2,
+        delay: 0.5,
+        ease: "elastic.out",
+      },
+      0
+    );},[])
+
+
+
+  useGSAP(() => {
+
+    const homeCamera = gsap.timeline({
+      paused: true,
+      repeat: 0,
+     
+    });
+
+    homeCamera.to(
+      camera.rotation,
+      { 
+        x: -0.4,
+        y: 0.003,
+        z: 0,
+        duration: 0.5,
+        delay: 0,
+      },
+      0
+    );
+    homeCamera.to(
+      camera.position,
+      {
+        x: 0,
+        y: 2.25,
+        z: 5.55,
+        duration: 0.5,
+        delay: 0,
+        
+      },
+      0
+    );
+
+
+
+   
+    const monitorCamera = gsap.timeline({
+      paused: true,
+      repeat: 0,
+      
+       
+        onEnter: () => {
+          
+
+
+
+
+
+        },
+
+        onLeaveBack: () => {
+          handleHTMLPresent();
+          setdeskchairtransparent(false);
+          setAnimationEnded(true);
+          
+        },
+      
+    });
+
+    monitorCamera.to(
+      camera.rotation,
+      {
+        x: -0.055,
+        y: 0.795,
+        z: 0.0375,
+        duration: 1,
+        delay: 0,
+        onEnter: () => {},
+        onComplete: () => {
+         
+        },
+      },
+      0
+    );
+    monitorCamera.to(
+      camera.position,
+      {
+        x: 0.469, 
+        y: -0.1, 
+        z: 0.1, 
+        duration: 1,
+        delay: 0,
+      },
+      0
+    );
+   
+
+    const projectsCamera = gsap.timeline({
+      paused: true,
+      repeat: 0,
+     
+    });
+
+    projectsCamera.to(
+      camera.rotation,
+      {
+        x: 0,
+        y: -0.77,
+        z: 0,
+        duration: 1,
+        delay: 0,
+      },
+      0
+    );
+    projectsCamera.to(
+      camera.position,
+      {
+        x: -0.9,
+        y: 0.075,
+        z: .457,
+        duration: 1,
+        delay: 0,
+        
+      },
+      0
+    );
+
+    const contactCamera = gsap.timeline({
+      paused: true,
+      repeat: 0,
+      
+    });
+
+    contactCamera.to(
+      camera.rotation,
+      {
+        x: -1.4,
+        y: 0,
+        z: -.55,
+        duration: 1,
+        delay: 0,
+      },
+      0
+    );
+    contactCamera.to(
+      camera.position,
+      {
+        x: 0.1,
+        y: 0.65,
+        z: -0.15,
+        duration: 1,
+        delay: 0,
+        
+      },
+      0
+    );
+   
+
+    if (animationLocation === 'About') {
+      monitorCamera.play() 
+
+
+
+      setdeskchairtransparent(true);
+      setScrollProgtoMonitorComplete(false)
+        
+      setAnimationEnded(false);
+      modelRef.current.rotation.set(0, 0, 0);
+
+      handleHTMLPresent();
+      handleArrowPresent();
+      setTimeout(() => {
+        setScrollProgtoMonitorComplete(true)
+      }, 1000);
+    }
+    if (animationLocation === 'Projects') {
+      projectsCamera.play()
+      handleHTMLPresent();
+      handleArrowPresent();
+      modelRef.current.rotation.set(0, 0, 0);
+    }
+    if (animationLocation === 'Contact') {
+     contactCamera.play()
+     handleHTMLPresent();
+     handleArrowPresent();
+     setTimeout(() => {
+      setScrollProgtoMonitorComplete(true)
+     }, 500);
+     modelRef.current.rotation.set(0, 0, 0);
+     
+    }
+    if (animationLocation=='Home') {
+homeCamera.play();
+
+handleArrowPresent();
+setTimeout(() => {
+  handleHTMLPresent();
+  setdeskchairtransparent(false)
+  setScrollProgtoMonitorComplete(false)
+}, 400);
+setScrollProgtoMonitorComplete(false)
+
+    }
+
+  }, [animationLocation]);
+
+
+
+
+
+
+
+
+
+
   function GlowingText() {
     const glowingTextRef = useRef();
 
@@ -49,12 +398,12 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
           ref={glowingTextRef}
           font={"fonts/3dfont3.json"}
           size={0.05}
-          scale={[0.35, 0.3, 0.2]}
+          scale={[0.375, 0.3, 0.2]}
           rotation={[Math.PI / 2, 0, 0]}
           height={0.011}
           width={0.01}
           curveSegments={10}
-          position={[-0.095, 0.05, 0.14]}
+          position={[-0.1, 0.05, 0.1525]}
         >
           {`Chandler Casey\nFull-Stack Developer`}
 
@@ -62,7 +411,7 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
             attach="material"
             color="#9af4fc"
             emissive="#9af4fc"
-            emissiveIntensity={.7}
+            emissiveIntensity={0.7}
           />
         </Text3D>
       </>
@@ -71,29 +420,25 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
 
   return (
     <>
-    
+    <group ref={modelRef}  position={[0,0,-1]}>
       <group
-        ref={modelRef}
+        
         dispose={null}
         position={[-0.045, -0.35, -0]}
         rotation-y={[0.79]}
         // rotation-x={[.1]}
         rotation-x={[0]}
-        scale={[.19,.24,.19]}
-       
+        scale={[0.19, 0.24, 0.19]}
       >
-
-
-<mesh
-                position={[0, -0.65, 0]}
-                rotation-x={[-Math.PI / 2]}
-                scale={[400, 400, 1]}
-                receiveShadow
-              >
-                <planeGeometry args={[1, 1]} />
-                <shadowMaterial opacity={0.2} />
-              </mesh>
-
+        <mesh
+          position={[0, -0.65, 0]}
+          rotation-x={[-Math.PI / 2]}
+          scale={[400, 400, 1]}
+          receiveShadow
+        >
+          <planeGeometry args={[1, 1]} />
+          <shadowMaterial opacity={0.2} />
+        </mesh>
 
         <group
           position={[-2.237, 0.576, 0.969]}
@@ -102,6 +447,145 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
         >
           <GlowingText />
 
+<group position={[0,0,-.00]} scale={[.95,1,1]}>
+          <mesh
+            material={materials["Material.023"]}
+            scale={[0.5, 0.2, 0.2]}
+            position={[-0.0, 0.05, 0.0725]}
+          >
+            <boxGeometry args={[0.3, 0.15, 0.01]} />
+           
+          </mesh>
+
+<group position={[-.01,0,0]} scale={[.9,1,1]}>
+          <mesh rotation={[-Math.PI / 1.65,-Math.PI / 1,0]} scale={[0.1, 0.15, 0.2]}  position={[-0.05, 0.05, 0.0845]}>
+            <boxGeometry args={[0.3, 0.15, 0.01]}/>
+            <meshStandardMaterial  color={"#ffffff"}
+            metalness={0.65}
+            roughness={1}/>
+             
+            <Html position={[-.001,-.003,0]} scale={[.1,.05,.05]} transform> 
+            <div
+                    className="shelflogo"
+                    style={{
+                      width: "80px",
+                      height: "80px",
+
+                      position: "relative",
+                      zIndex: 1,
+                      transform: "rotate(180deg)",
+                    }}
+                  >
+                    <img
+                      src="images/typescript.png"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+
+                        position: "absolute",
+                        zIndex: 1,
+                      }}
+                    />
+                  </div>
+
+            </Html>
+            </mesh>
+        
+          <mesh rotation={[-Math.PI / 1.65,-Math.PI / 1,0]} scale={[0.1, 0.15, 0.2]}  position={[-0.01, 0.05, 0.0845]}>
+            <boxGeometry args={[0.3, 0.15, 0.01]}/>
+            <meshStandardMaterial  color={"#ffffff"}
+            metalness={0.65}
+            roughness={1}/>
+              <Html position={[-.001,-.003,0]} scale={[.1,.05,.05]} transform> 
+            <div
+                    className="shelflogo"
+                    style={{
+                      width: "80px",
+                      height: "80px",
+
+                      position: "relative",
+                      zIndex: 1,
+                      transform: "rotate(180deg)",
+                    }}
+                  >
+                    <img
+                      src="images/react.svg"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+
+                        position: "absolute",
+                        zIndex: 1,
+                      }}
+                    />
+                  </div>
+
+            </Html>
+          </mesh>
+          <mesh rotation={[-Math.PI / 1.65,-Math.PI / 1,0]} scale={[0.1, 0.15, 0.2]}  position={[0.03, 0.05, 0.0845]}>
+            <boxGeometry args={[0.3, 0.15, 0.01]}/>
+            <meshStandardMaterial  color={"#ffffff"}
+            metalness={0.65}
+            roughness={1}/>
+              <Html position={[-.001,-.003,0]} scale={[.1,.05,.05]} transform> 
+            <div
+                    className="shelflogo"
+                    style={{
+                      width: "80px",
+                      height: "80px",
+
+                      position: "relative",
+                      zIndex: 1,
+                      transform: "rotate(180deg)",
+                    }}
+                  >
+                    <img
+                      src="images/nodejs.png"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+
+                        position: "absolute",
+                        zIndex: 1,
+                      }}
+                    />
+                  </div>
+
+            </Html>
+          </mesh>
+          <mesh rotation={[-Math.PI / 1.65,-Math.PI / 1,0]} scale={[0.1, 0.15, 0.2]}  position={[0.07, 0.05, 0.0845]}>
+            <boxGeometry args={[0.3, 0.15, 0.01]}/>
+            <meshStandardMaterial  color={"#ffffff"}
+            metalness={0.65}
+            roughness={1}/>
+              <Html position={[-.001,-.003,0]} scale={[.1,.05,.05]} transform> 
+            <div
+                    className="shelflogo"
+                    style={{
+                      width: "80px",
+                      height: "80px",
+
+                      position: "relative",
+                      zIndex: 1,
+                      transform: "rotate(180deg)",
+                    }}
+                  >
+                    <img
+                      src="images/postgres.svg"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+
+                        position: "absolute",
+                        zIndex: 1,
+                      }}
+                    />
+                  </div>
+
+            </Html>
+          </mesh>
+          </group>
+          </group>
           <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
             <group position={[0, 0.171, 0]}>
               <mesh
@@ -140,7 +624,7 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
                 position={[0.8, 0, 0]}
               />
             </group>
-            <group 
+            <group
               position={[-0.023, 3.798, -3.962]}
               rotation={[-Math.PI, 0, -Math.PI]}
               scale={[9.223, 4.632, 0.268]}
@@ -167,63 +651,54 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
                 material={materials["Material.035"]}
               />
               <mesh
-              
                 emissive="black"
                 castShadow
                 receiveShadow
                 geometry={nodes.tvpCube1_tvtela_da_tv_0.geometry}
                 material={materials["tvtela_da_tv.002"]}
               >
-                
-                 
-                  <Html
-                    className="computer-monitor"
-                    position={  deskchairtransparent ? [0.364, -100, -.7] : [0.364, -0.0, -0.7] }
-                    scale={[0.08, 0.58, 0.01]}
-                    rotation={[Math.PI, 0, 0]}
-                    transform
-                    occlude
-                    
-                    pointerEvents="none"
-                  >
-                    <div
-                      className="monitor-screen"
-                      style={{
-                        width: "68px",
-                        height: "120px",
-                        
-                        position: "relative",
-                        zIndex: 1,
-                        transform: "rotate(90deg)",
-                      }}
-                    >
-                     
-                     <img
-          src="images/lava.gif" 
-          style={{
-            width: "400%",
-            height: "400%",
-            
-            position: "absolute",
-            zIndex: 1,
-           
-          }}
-        />
-                    </div>
-                   
-                  </Html>
-                  
-                
                 <Html
+                  className="computer-monitor"
                   position={
-                    deskchairtransparent ? [0, 0, -0.7] : [0, 100, 0]
+                    deskchairtransparent
+                      ? [0.364, -100, -0.7]
+                      : [0.364, -0.0, -0.7]
                   }
+                  scale={[0.08, 0.58, 0.01]}
+                  rotation={[Math.PI, 0, 0]}
+                  transform
+                  occlude
+                  pointerEvents="none"
+                >
+                  <div
+                    className="monitor-screen"
+                    style={{
+                      width: "68px",
+                      height: "120px",
+
+                      position: "relative",
+                      zIndex: 1,
+                      transform: "rotate(90deg)",
+                    }}
+                  >
+                    <img
+                      src="images/lava.gif"
+                      style={{
+                        width: "400%",
+                        height: "400%",
+
+                        position: "absolute",
+                        zIndex: 1,
+                      }}
+                    />
+                  </div>
+                </Html>
+
+                <Html
+                  position={deskchairtransparent ? [0, 0, -0.7] : [0, 100, 0]}
                   rotation-y={[Math.PI]}
                   scale={0.045}
                   transform
-                  
-                  
-                  
                 >
                   <div
                     style={{
@@ -250,12 +725,17 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
                             <div className="about-me-section">
                               {" "}
                               <p className="pb-1">
-                              I’m a creative, solutions-driven full-stack software engineer focused on intuitive design and functionality. Proficient in the MERN stack, TypeScript, PostgreSQL, Next.js, Python, and Three.js, I build efficient applications that emphasize user experience. 
+                                I’m a creative, solutions-driven full-stack
+                                software engineer focused on intuitive design
+                                and functionality. Proficient in the MERN stack,
+                                TypeScript, PostgreSQL, Next.js, Python, and
+                                Three.js, I build efficient applications that
+                                emphasize user experience.
                               </p>
                               <p className="pb-0.5">
-                            Outside of coding, I enjoy baking, playing the trumpet, and building PCs.
+                                Outside of coding, I enjoy baking, playing the
+                                trumpet, and building PCs.
                               </p>
-                              
                             </div>
                           </div>
                         </div>
@@ -263,7 +743,6 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
                     </div>
                   </div>
                 </Html>
-                
               </mesh>
             </group>
           </group>
@@ -368,39 +847,35 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
             scale={[0.131, 0.183, 0.067]}
           >
             <mesh
-              
               geometry={nodes.Cube002_0.geometry}
               material={materials["Material.035"]}
-              
               position={[-0.0, -13.5, -8.932]}
               scale={[2.2, 1.9, 1]}
             >
               <Html
-              className="contact"
-              position={scrollProgtoMonitorComplete ? [0,0,0]: [0, 0, 0.01]}
-                rotation={[0, 0, Math.PI/1]}
-                scale={scrollProgtoMonitorComplete ? [.01,.01,10]: [.19, .15, 1]}
+                className="contact"
+                position={
+                  scrollProgtoMonitorComplete ? [0, 0, 0] : [0, 0, 0.01]
+                }
+                rotation={[0, 0, Math.PI / 1]}
+                scale={
+                  scrollProgtoMonitorComplete
+                    ? [0.01, 0.01, 10]
+                    : [0.19, 0.15, 1]
+                }
                 sprite={scrollProgtoMonitorComplete}
                 transform
-                
-                
-              
-                
-                
-                
               >
-                
                 <div
                   className="contact"
                   style={{
                     transform: scrollProgtoMonitorComplete
-            ? 'rotate3d(0, 0, 1, -0deg)' 
-            : 'rotate3d(0, 1, 1, 0deg)',
+                      ? "rotate3d(0, 0, 1, -0deg)"
+                      : "rotate3d(0, 1, 1, 0deg)",
                     width: "80px",
                     height: "80px",
 
                     position: "relative",
-                    
                   }}
                 >
                   <div
@@ -410,12 +885,15 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
                       position: "absolute",
                     }}
                   >
-                    
-                    <div className="contact-html" style={{
-                        transform: scrollProgtoMonitorComplete 
-                        ? 'scale(5.2,6)': 'scale(5.2,6)'
-                    }}>
-                    <Component />
+                    <div
+                      className="contact-html"
+                      style={{
+                        transform: scrollProgtoMonitorComplete
+                          ? "scale(5.2,6)"
+                          : "scale(5.2,6)",
+                      }}
+                    >
+                      <Component />
                     </div>
                   </div>
                 </div>
@@ -641,12 +1119,13 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
               />
               <mesh
                 castShadow
-               
                 geometry={nodes.Cube021_4.geometry}
                 material={materials["Material.017"]}
                 material-roughness={0}
-            material-metalness={.3}
-              >  </mesh>
+                material-metalness={0.3}
+              >
+                {" "}
+              </mesh>
               <mesh
                 castShadow
                 receiveShadow
@@ -732,14 +1211,20 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
           </group>
         </group>
         <mesh
-          
           receiveShadow
           geometry={nodes.Cylinder012.geometry}
           material={materials["Material.040"]}
           position={[-2.149, -0.188, 2.947]}
           rotation={[-Math.PI, 0, -Math.PI]}
           scale={[-1, -0.006, -1]}
-        > <meshStandardMaterial color={"#adaba8"} metalness={.5} roughness={1} /></mesh>
+        >
+          {" "}
+          <meshStandardMaterial
+            color={"#adaba8"}
+            metalness={0.5}
+            roughness={1}
+          />
+        </mesh>
         <mesh
           castShadow
           geometry={nodes.Cylinder011.geometry}
@@ -749,9 +1234,6 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
           scale={[-0.574, -0.019, -0.574]}
         />
 
-
-
-       
         <group
           position={[-1.9, 0.2, 2.6]}
           rotation={[-Math.PI / 2, 0, 0]}
@@ -760,44 +1242,48 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
           <mesh
             geometry={nodes2.Cylinder007_0.geometry}
             material={materials2["Material.027"]}
-          > 
-          
-          
-          <VaporEffect/>
+          >
+            <VaporEffect />
           </mesh>
           <mesh
             geometry={nodes2.Cylinder007_1.geometry}
             material={materials2["Material.026"]}
           />
         </group>
-       
-       
-        <group>
-      
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane004.geometry}
-          material={nodes.Plane004.material}
-          position={[0.08, 1.453, 3.99]}
-          rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-          scale={[1.66, 0.094, 0.1]}
-          
-          
-        ><meshStandardMaterial color={'#b5f4ff'} roughness={0} metalness={.9}  /></mesh>
-        
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane006.geometry}
-          material={nodes.Plane006.material}
-          position={[0.08, 3.11, 2.07]}
-          scale={[0.1, 1, 1.92]}
-          
-          
-        ><meshStandardMaterial color={"#b5f4ff"} roughness={0} metalness={.9} /> </mesh>
 
-{/* <mesh
+        <group>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane004.geometry}
+            material={nodes.Plane004.material}
+            position={[0.08, 1.453, 3.99]}
+            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
+            scale={[1.66, 0.094, 0.1]}
+          >
+            <meshStandardMaterial
+              color={"#b5f4ff"}
+              roughness={0}
+              metalness={0.9}
+            />
+          </mesh>
+
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane006.geometry}
+            material={nodes.Plane006.material}
+            position={[0.08, 3.11, 2.07]}
+            scale={[0.1, 1, 1.92]}
+          >
+            <meshStandardMaterial
+              color={"#b5f4ff"}
+              roughness={0}
+              metalness={0.9}
+            />{" "}
+          </mesh>
+
+          {/* <mesh
           castShadow
           receiveShadow
           geometry={nodes.Plane001.geometry}
@@ -818,14 +1304,13 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
           scale={[1.66, 0.094, 0.141]}
           
         ><meshStandardMaterial color={"#0f383b"} roughness={0} metalness={0} /></mesh> */}
-</group>
-        
+        </group>
+
         <group
           position={[-1.835, 1.435, 0.06]}
           rotation={[0, -Math.PI / 2, 0]}
           scale={[0.095, 1.676, 2.003]}
         >
-        
           <mesh
             castShadow
             receiveShadow
@@ -836,22 +1321,21 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
           >
             <meshStandardMaterial color={"#0f383b"} />
           </mesh>
-
         </group>
         <group
           position={[0.049, 1.433, 2.116]}
           scale={[0.144, 1.676, 1.873]}
         ></group>
-       
-       <group position={[0.08, 1.433, 2.07]} scale={[0.1, 1.676, 1.91]}>
-        <mesh
+
+        <group position={[0.08, 1.433, 2.07]} scale={[0.1, 1.676, 1.91]}>
+          <mesh
             geometry={nodes.Cube002_1.geometry}
             material={materials["Material.007"]}
             material-roughness={1}
             material-metalness={0.9}
           />
 
-        <group
+          <group
             position={[-2.354, 0.3, -0.1]}
             rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
             scale={0.32}
@@ -860,53 +1344,55 @@ export default function PCModel({ deskchairtransparent,scrollProgtoMonitorComple
           </group>
         </group>
 
+        <group position={[0, -0.1, 0]} scale={[1, 0.69, 1]}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cube.geometry}
+            material={materials["Material.004"]}
+            position={[-1.854, -0.297, 1.994]}
+            scale={[1.969, 0.095, 1.997]}
+          >
+            <meshStandardMaterial
+              color={"#adaba8"}
+              roughness={0}
+              metalness={0.98}
+            />
+          </mesh>
 
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane002.geometry}
+            material={nodes.Plane002.material}
+            position={[-1.825, -0.303, 3.992]}
+            rotation={[Math.PI / 2, 0, 0]}
+            scale={[2.02, 0.094, 0.101]}
+          >
+            {" "}
+            <meshStandardMaterial
+              color={"#adaba8"}
+              roughness={0}
+              metalness={0.98}
+            />
+          </mesh>
 
-
-       <group position={[0,-.1,0]} scale={[1,.69,1]}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube.geometry}
-          material={materials["Material.004"]}
-          position={[-1.854, -0.297, 1.994]}
-          scale={[1.969, 0.095, 1.997]}
-        >
-          <meshStandardMaterial
-            color={"#adaba8"}
-            roughness={0}
-            metalness={.98}
-          />
-        </mesh>
-         
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane002.geometry}
-          material={nodes.Plane002.material}
-          position={[-1.825, -0.303, 3.992]}
-          rotation={[Math.PI / 2, 0, 0]}
-          scale={[2.02, 0.094, 0.101]}
-         
-          
-        > <meshStandardMaterial color={"#adaba8"}
-        roughness={0}
-        metalness={.98}  /></mesh>
-        
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane003.geometry}
-          
-          position={[-3.844, -0.303, 1.972]}
-          rotation={[Math.PI / 2, 0, Math.PI / 2]}
-          scale={[2.02, 0.094, 0.101]}
-
-          
-        ><meshStandardMaterial color={"#adaba8"}
-        roughness={0}
-        metalness={.98} /></mesh>
-     </group>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane003.geometry}
+            position={[-3.844, -0.303, 1.972]}
+            rotation={[Math.PI / 2, 0, Math.PI / 2]}
+            scale={[2.02, 0.094, 0.101]}
+          >
+            <meshStandardMaterial
+              color={"#adaba8"}
+              roughness={0}
+              metalness={0.98}
+            />
+          </mesh>
+        </group>
+      </group>
       </group>
     </>
   );

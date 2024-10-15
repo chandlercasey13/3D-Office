@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const CanvasWrapper = ({ children, heightElement }) => {
-  const [height, setHeight] = useState('100lvh');
+  const [height, setHeight] = useState('100svh');
   const [width, setWidth] = useState('100%');
   const canvasRef = useRef(null);
   const resizeTimeout = useRef(null);
@@ -51,7 +51,7 @@ const CanvasWrapper = ({ children, heightElement }) => {
 
 
   return (
-    <div style={{ height: `${height}`,  width: `${width}`, position: 'fixed' } } ref={canvasRef}>
+    <div style={{ height: height,  width: width, position: 'fixed' } } ref={canvasRef}>
       {children}
     </div>
   );
