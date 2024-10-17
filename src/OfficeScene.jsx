@@ -22,6 +22,10 @@ import { useGSAP } from "@gsap/react";
 import { TextPlugin } from "gsap/TextPlugin";
 import Component from "./ContactForm";
 
+
+
+
+
 export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, handleArrowPresent, animationLocation
   
 }) {
@@ -34,7 +38,8 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
     true
   );
   const modelRef = useRef();
-  const { camera, viewport } = useThree();
+
+  const { camera, viewport, size  } = useThree();
 
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(TextPlugin);
@@ -92,12 +97,13 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
         opacity: 0,
         delay: 1,
       });
-      gsap.from(".subtitle-text", {
+      gsap.from(".navbar", {
         x: 0,
 
-        duration: 1.5,
+        duration: 1,
         ease: "power1.in",
         opacity: 0,
+        delay:1,
       });
        
 setTimeout(() => {
@@ -204,18 +210,37 @@ setTimeout(() => {
       },
       0
     );
-    homeCamera.to(
-      camera.position,
-      {
-        x: 0,
-        y: 2.25,
-        z: 5.55,
-        duration: 0.5,
-        delay: 0,
-        
-      },
-      0
-    );
+    
+    if (size.width >= 1920) {
+      homeCamera.to(
+        camera.position,
+        {
+          x: 0,
+          y: 2.4,
+          z: 5.55,
+          duration: 0.5,
+          delay: 0,
+          ease: "power1.in",
+          
+        },
+        0
+      );
+    }
+    else {
+      homeCamera.to(
+        camera.position,
+        {
+          x: 0,
+          y: 2.25,
+          z: 5.55,
+          duration: 0.5,
+          delay: 0,
+          ease: "power1.in",
+          
+        },
+        0
+      );
+    }
 
 
 
@@ -223,23 +248,10 @@ setTimeout(() => {
     const monitorCamera = gsap.timeline({
       paused: true,
       repeat: 0,
+     
       
        
-        onEnter: () => {
-          
-
-
-
-
-
-        },
-
-        onLeaveBack: () => {
-          handleHTMLPresent();
-          setdeskchairtransparent(false);
-          setAnimationEnded(true);
-          
-        },
+        
       
     });
 
@@ -251,10 +263,7 @@ setTimeout(() => {
         z: 0.0375,
         duration: 1,
         delay: 0,
-        onEnter: () => {},
-        onComplete: () => {
-         
-        },
+        
       },
       0
     );
@@ -266,6 +275,7 @@ setTimeout(() => {
         z: 0.1, 
         duration: 1,
         delay: 0,
+        ease: "power1.out",
       },
       0
     );
@@ -313,8 +323,9 @@ setTimeout(() => {
         x: -1.4,
         y: 0,
         z: -.55,
-        duration: 1,
+        duration: 1.1,
         delay: 0,
+         ease: "power1.out",
       },
       0
     );
@@ -326,7 +337,7 @@ setTimeout(() => {
         z: -0.15,
         duration: 1,
         delay: 0,
-        
+        ease: "power1.out",
       },
       0
     );
@@ -409,9 +420,9 @@ setScrollProgtoMonitorComplete(false)
 
           <meshStandardMaterial
             attach="material"
-            color="#9af4fc"
-            emissive="#9af4fc"
-            emissiveIntensity={0.7}
+            color="#fafa8c"
+            emissive="#fafa8c"
+            emissiveIntensity={.3}
           />
         </Text3D>
       </>
@@ -720,10 +731,10 @@ setScrollProgtoMonitorComplete(false)
                           <div className="about-me-column">
                             <h1 className="about-me-header">
                               Hey! I'm Chandler, a Full-Stack Developer, working
-                              remotely from College Station, Texas.{" "}
+                              remotely from College Station, Texas.
                             </h1>
                             <div className="about-me-section">
-                              {" "}
+                              
                               <p className="pb-1">
                                 I’m a creative, solutions-driven full-stack
                                 software engineer focused on intuitive design
@@ -1124,7 +1135,7 @@ setScrollProgtoMonitorComplete(false)
                 material-roughness={0}
                 material-metalness={0.3}
               >
-                {" "}
+                
               </mesh>
               <mesh
                 castShadow
@@ -1218,7 +1229,7 @@ setScrollProgtoMonitorComplete(false)
           rotation={[-Math.PI, 0, -Math.PI]}
           scale={[-1, -0.006, -1]}
         >
-          {" "}
+          
           <meshStandardMaterial
             color={"#adaba8"}
             metalness={0.5}
@@ -1262,9 +1273,9 @@ setScrollProgtoMonitorComplete(false)
             scale={[1.66, 0.094, 0.1]}
           >
             <meshStandardMaterial
-              color={"#b5f4ff"}
+              color={"#114035"}
               roughness={0}
-              metalness={0.9}
+              metalness={0.6}
             />
           </mesh>
 
@@ -1277,10 +1288,10 @@ setScrollProgtoMonitorComplete(false)
             scale={[0.1, 1, 1.92]}
           >
             <meshStandardMaterial
-              color={"#b5f4ff"}
+              color={"#114035"}
               roughness={0}
-              metalness={0.9}
-            />{" "}
+              metalness={0.6}
+            />
           </mesh>
 
           {/* <mesh
@@ -1317,9 +1328,9 @@ setScrollProgtoMonitorComplete(false)
             geometry={nodes.Cube004_1.geometry}
             material={materials["Material.005"]}
             material-roughness={1}
-            material-metalness={1}
+            material-metalness={.9}
           >
-            <meshStandardMaterial color={"#0f383b"} />
+            <meshStandardMaterial color={"#061713"} metalness={0} />
           </mesh>
         </group>
         <group
@@ -1333,7 +1344,9 @@ setScrollProgtoMonitorComplete(false)
             material={materials["Material.007"]}
             material-roughness={1}
             material-metalness={0.9}
-          />
+          >
+            <meshStandardMaterial color={"#061713"} />
+          </mesh>
 
           <group
             position={[-2.354, 0.3, -0.1]}
@@ -1369,7 +1382,7 @@ setScrollProgtoMonitorComplete(false)
             rotation={[Math.PI / 2, 0, 0]}
             scale={[2.02, 0.094, 0.101]}
           >
-            {" "}
+            
             <meshStandardMaterial
               color={"#adaba8"}
               roughness={0}

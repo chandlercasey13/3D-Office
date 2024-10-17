@@ -45,7 +45,7 @@ const Sky = ({ daynighttogglestate }) => {
       <sphereGeometry args={[radius, 50, 50]} />
       
       <meshStandardMaterial
-        color={daynighttogglestate ? "#0f3839" : "#b3997b"}
+        color={daynighttogglestate ? "#061713" : "#b3997b"}
         side={THREE.BackSide}
       />
     </mesh>
