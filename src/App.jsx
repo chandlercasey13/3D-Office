@@ -93,7 +93,7 @@ const handleArrowPresent = () =>
         {htmlPresent && (
 <>
 <div className='navbar'>
-<button onClick={() => setAnimationLocation('About')} className='navbar-button border-solid border-white  border-t-0 border-l-0 border-r border-b-0'>About Me</button> <button className='navbar-button'onClick={() => setAnimationLocation('Projects')}> Projects</button> <button className='navbar-button border-solid border-white  border-t-0 border-l border-r-0 border-b-0 ' onClick={() => setAnimationLocation('Contact')}> Contact</button>
+<button onClick={() => setAnimationLocation('About')} className='navbar-button  '>About Me</button> <button className='navbar-button'onClick={() => setAnimationLocation('Projects')}> Projects</button> <button className='navbar-button  ' onClick={() => setAnimationLocation('Contact')}> Contact</button>
 </div>
 
 
@@ -157,7 +157,8 @@ const handleArrowPresent = () =>
               <ambientLight intensity={daynighttoggle ? 5.5 : 5.5} />
               <directionalLight
                 castShadow
-                position={[-2, 10, 3]}
+                //position={[-2, 10, 3]}
+                 position={[-5, 10, 0]}
                 intensity={[2.5]}
               />
 <ResponsiveCamera/>

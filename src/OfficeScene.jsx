@@ -1263,7 +1263,7 @@ setScrollProgtoMonitorComplete(false)
         </group>
 
         <group>
-          <mesh
+          {/* <mesh
             castShadow
             receiveShadow
             geometry={nodes.Plane004.geometry}
@@ -1277,9 +1277,9 @@ setScrollProgtoMonitorComplete(false)
               roughness={0}
               metalness={0.6}
             />
-          </mesh>
+          </mesh> */}
 
-          <mesh
+          {/* <mesh
             castShadow
             receiveShadow
             geometry={nodes.Plane006.geometry}
@@ -1292,7 +1292,7 @@ setScrollProgtoMonitorComplete(false)
               roughness={0}
               metalness={0.6}
             />
-          </mesh>
+          </mesh> */}
 
           {/* <mesh
           castShadow
