@@ -17,7 +17,7 @@ import ResponsiveCamera from "./ResponsiveCamera";
 import { CanvasWrapper } from "./CanvasWrapper"
 
 import { Loader, useGLTF,PivotControls } from '@react-three/drei';
-
+import { FlyControls } from '@react-three/drei';
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
@@ -166,6 +166,9 @@ const handleArrowPresent = () =>
 <ResponsiveCamera/>
 
 
+{/* <FlyControls
+                
+            /> */}
 
 
 

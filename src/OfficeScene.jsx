@@ -21,7 +21,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { TextPlugin } from "gsap/TextPlugin";
 import Component from "./ContactForm";
-
+import Glasses from "@/Glasses";
 
 
 
@@ -37,6 +37,8 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
     "OfficeProps.glb",
     true
   );
+
+  
   const modelRef = useRef();
 
   const { camera, viewport, size  } = useThree();
@@ -899,7 +901,7 @@ setScrollProgtoMonitorComplete(false)
           </group>
 
           <group
-            position={[-4.355, -3.5, 0.738]}
+            position={[-4.355, -3.6, 0.738]}
             rotation={[0, 0, 1.751]}
             scale={[0.131, 0.183, 0.067]}
           >
@@ -1282,17 +1284,34 @@ setScrollProgtoMonitorComplete(false)
             roughness={1}
           />
         </mesh>
+
+
+
+
+
+///
+
+
+
+
+
+
+
         <mesh
           castShadow
           geometry={nodes.Cylinder011.geometry}
           material={materials["Material.023"]}
           position={[-1.976, 0.117, 2.956]}
           rotation={[-Math.PI, 0, -Math.PI]}
-          scale={[-0.574, -0.019, -0.574]}
-        />
+          scale={[-0.674, -0.019, -0.674]}
+        >
+
+<Glasses/>
+
+        </mesh>
 
         <group
-          position={[-1.9, 0.2, 2.6]}
+          position={[-1.8, 0.2, 2.6]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={0.08}
         >
