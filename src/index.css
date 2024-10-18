@@ -225,7 +225,7 @@ img {
   position: absolute;
   z-index: 1;
 
-   /* pointer-events: none;  */
+   pointer-events: none; 
 }
 
 .html-overlay-organization-container {
@@ -236,7 +236,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* pointer-events: none;  */
+  pointer-events: none; 
 }
 
 
@@ -247,6 +247,7 @@ img {
   font-size: 30px;
   position: fixed;
   bottom: 17%;
+  pointer-events: all;
 }
 
 .navbar-button {
@@ -334,6 +335,7 @@ img {
   justify-content: end;
   align-items: center;
   flex-direction: column;
+  pointer-events: all;
 }
 
 .arrow-text {

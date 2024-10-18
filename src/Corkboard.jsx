@@ -26,10 +26,11 @@ export default function Model(props) {
    
 
     <group {...props} dispose={null}>
-      <group>
+      <group
+     >
 
 
-        <group scale={1}>
+        <group scale={1} >
           <mesh
             geometry={nodes.Cube11647_1.geometry}
             material={materials["Material.023"]}
@@ -122,7 +123,7 @@ export default function Model(props) {
               />
             </group>
 
-            <group ref={project2}>
+            <group ref={project2} >
               <mesh
                 geometry={nodes.Plane002.geometry}
                 position={[-2.247, 1.915, 0.1]}

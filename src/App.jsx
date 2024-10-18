@@ -158,9 +158,11 @@ const handleArrowPresent = () =>
               <directionalLight
                 castShadow
                 //position={[-2, 10, 3]}
-                 position={[-5, 10, 0]}
-                intensity={[2.5]}
+                 position={[-3, 7, 3]}
+                intensity={[2]}
               />
+              
+            
 <ResponsiveCamera/>
 
 
@@ -179,7 +181,7 @@ const handleArrowPresent = () =>
               
               <Sky daynighttogglestate={daynighttoggle} />
       
-              <Environment preset="city">
+              <Environment preset="warehouse">
                 <mesh>
                   <boxGeometry args={[100, 32, 32]} />
                   <meshStandardMaterial
@@ -202,8 +204,8 @@ const handleArrowPresent = () =>
         
         </CanvasWrapper>
       </div>
-      <Loader containerStyles={{ background: "#0f383b", display:'flex', justifyContent:'center', alignItems:'center' }} 
-      innerStyles={{background: "#0f383b", height: '40px', textAlign:'center', width:'100%' }}     
+      <Loader containerStyles={{ background: "#061713", display:'flex', justifyContent:'center', alignItems:'center' }} 
+      innerStyles={{background: "#061713", height: '40px', textAlign:'center', width:'100%' }}     
   barStyles={{  height: '30px',
     borderRadius: '5px'
   }}

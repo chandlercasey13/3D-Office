@@ -56,33 +56,33 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
 
   const [mousePos, setMousePos] = useState({ x: 0 });
 
-  const handleMouseMove = (event) => {
-    {
-      htmlPresent &&
-        setMousePos({
-          x: event.clientX / window.innerWidth,
-        });
-    }
-  };
+  // const handleMouseMove = (event) => {
+  //   {
+  //     htmlPresent &&
+  //       setMousePos({
+  //         x: event.clientX / window.innerWidth,
+  //       });
+  //   }
+  // };
 
-  useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove);
-  }, [htmlPresent]);
+  // useEffect(() => {
+  //   window.addEventListener("mousemove", handleMouseMove);
+  // }, [htmlPresent]);
 
-  useFrame(() => {
-    if (modelRef.current && htmlPresent) {
-      const sensitivity = 0.1;
-      const lerpFactor = 0.05;
-      const initialRotation = -0.0 * Math.PI;
-      modelRef.current.rotation.y = THREE.MathUtils.lerp(
-        modelRef.current.rotation.y,
-        mousePos.x === 0
-          ? initialRotation
-          : (mousePos.x - 0.5) * Math.PI * sensitivity,
-        lerpFactor
-      );
-    }
-  });
+  // useFrame(() => {
+  //   if (modelRef.current && htmlPresent) {
+  //     const sensitivity = 0.1;
+  //     const lerpFactor = 0.05;
+  //     const initialRotation = -0.0 * Math.PI;
+  //     modelRef.current.rotation.y = THREE.MathUtils.lerp(
+  //       modelRef.current.rotation.y,
+  //       mousePos.x === 0
+  //         ? initialRotation
+  //         : (mousePos.x - 0.5) * Math.PI * sensitivity,
+  //       lerpFactor
+  //     );
+  //   }
+  // });
 
 
 
@@ -261,8 +261,9 @@ setTimeout(() => {
         x: -0.055,
         y: 0.795,
         z: 0.0375,
-        duration: 1,
+        duration: .75,
         delay: 0,
+        ease: "power1.out",
         
       },
       0
@@ -273,7 +274,7 @@ setTimeout(() => {
         x: 0.469, 
         y: -0.1, 
         z: 0.1, 
-        duration: 1,
+        duration: .75,
         delay: 0,
         ease: "power1.out",
       },
@@ -293,8 +294,9 @@ setTimeout(() => {
         x: 0,
         y: -0.77,
         z: 0,
-        duration: 1,
+        duration: .75,
         delay: 0,
+        ease: "power1.out",
       },
       0
     );
@@ -304,8 +306,9 @@ setTimeout(() => {
         x: -0.9,
         y: 0.075,
         z: .457,
-        duration: 1,
+        duration: .75,
         delay: 0,
+        ease: "power1.out",
         
       },
       0
@@ -323,7 +326,7 @@ setTimeout(() => {
         x: -1.4,
         y: 0,
         z: -.55,
-        duration: 1.1,
+        duration: .75,
         delay: 0,
          ease: "power1.out",
       },
@@ -335,7 +338,7 @@ setTimeout(() => {
         x: 0.1,
         y: 0.65,
         z: -0.15,
-        duration: 1,
+        duration: .75,
         delay: 0,
         ease: "power1.out",
       },
@@ -412,16 +415,16 @@ setScrollProgtoMonitorComplete(false)
           scale={[0.375, 0.3, 0.2]}
           rotation={[Math.PI / 2, 0, 0]}
           height={0.011}
-          width={0.01}
+          width={0.1}
           curveSegments={10}
           position={[-0.1, 0.05, 0.1525]}
         >
           {`Chandler Casey\nFull-Stack Developer`}
-
+          <pointLight position={[-0.02, 0.025, 0]} decay={6}  intensity={.03} color="#98fac1" />
           <meshStandardMaterial
             attach="material"
-            color="#fafa8c"
-            emissive="#fafa8c"
+            color="#98fac1"
+            emissive="#98fac1"
             emissiveIntensity={.3}
           />
         </Text3D>
@@ -438,8 +441,50 @@ setScrollProgtoMonitorComplete(false)
         position={[-0.045, -0.35, -0]}
         rotation-y={[0.79]}
         // rotation-x={[.1]}
+        
         rotation-x={[0]}
         scale={[0.19, 0.24, 0.19]}
+        onPointerDown={(e) => { const intro = gsap.timeline({ repeat: 0 });
+        
+
+
+
+    
+
+
+        intro.to(modelRef.current.scale, {
+          x: 0.98,
+          y: 0.98,
+          z: 0.98,
+          duration: 1,
+          delay: 0,
+          ease: "elastic.out",
+        },
+        );
+       
+        intro.to(modelRef.current.scale, {
+          x: 1,
+          y: 1,
+          z: 1,
+          duration: 1,
+          delay: 0,
+          ease: "elastic.out",
+        },
+        0.2);
+    
+        intro.to(
+          modelRef.current.rotation,
+          {
+            x: 0,
+            y: 0,
+            z: 0,
+            duration: 2,
+            delay: 0.5,
+            ease: "elastic.out",
+          },
+          0
+        );}
+        }
       >
         <mesh
           position={[0, -0.65, 0]}
@@ -447,18 +492,19 @@ setScrollProgtoMonitorComplete(false)
           scale={[400, 400, 1]}
           receiveShadow
         >
-          <planeGeometry args={[1, 1]} />
-          <shadowMaterial opacity={0.2} />
+          <planeGeometry args={[10, 10]} />
+          <shadowMaterial opacity={.1} />
         </mesh>
 
         <group
           position={[-2.237, 0.576, 0.969]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={12.089}
+          
         >
           <GlowingText />
 
-<group position={[0,0,-.00]} scale={[.95,1,1]}>
+<group position={[0,0,-.00]} scale={[.95,1,1]} >
           <mesh
             material={materials["Material.023"]}
             scale={[0.5, 0.2, 0.2]}
@@ -965,7 +1011,7 @@ setScrollProgtoMonitorComplete(false)
             scale={0.805}
           >
             <group
-              position={[-0.5, -4.4, 0.5]}
+              position={[-0.5, -4.235, 0.5]}
               rotation={[0, 0, 0]}
               scale={0.805}
             >
@@ -1340,6 +1386,8 @@ setScrollProgtoMonitorComplete(false)
 
         <group position={[0.08, 1.433, 2.07]} scale={[0.1, 1.676, 1.91]}>
           <mesh
+          castShadow
+          receiveShadow
             geometry={nodes.Cube002_1.geometry}
             material={materials["Material.007"]}
             material-roughness={1}
