@@ -14,7 +14,7 @@ export default function Glasses(props) {
   const { nodes, materials } = useGLTF('glasses.glb')
   return (
     <group {...props} dispose={null}>
-      <group position={[-.5, -.5, -.47]} rotation={[-Math.PI / 2, Math.PI/1, Math.PI / 2.1]} scale={[.2,.2,5]}>
+      <group position={[-.5, -.5, -.44]} rotation={[-Math.PI / 2, Math.PI/1, Math.PI / 2.1]} scale={[.2,.2,5]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group position={[-0.058, 0.874, -0.024]} rotation={[Math.PI / 2, 0, 0]} scale={0.073}>
             <mesh geometry={nodes.Object_6.geometry} material={materials.glass} />

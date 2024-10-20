@@ -22,7 +22,7 @@ import { useGSAP } from "@gsap/react";
 import { TextPlugin } from "gsap/TextPlugin";
 import Component from "./ContactForm";
 import Glasses from "@/Glasses";
-
+import Lamp from "./Lamp";
 
 
 
@@ -54,40 +54,6 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
 
 
 
-  
-
-  const [mousePos, setMousePos] = useState({ x: 0 });
-
-  // const handleMouseMove = (event) => {
-  //   {
-  //     htmlPresent &&
-  //       setMousePos({
-  //         x: event.clientX / window.innerWidth,
-  //       });
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("mousemove", handleMouseMove);
-  // }, [htmlPresent]);
-
-  // useFrame(() => {
-  //   if (modelRef.current && htmlPresent) {
-  //     const sensitivity = 0.1;
-  //     const lerpFactor = 0.05;
-  //     const initialRotation = -0.0 * Math.PI;
-  //     modelRef.current.rotation.y = THREE.MathUtils.lerp(
-  //       modelRef.current.rotation.y,
-  //       mousePos.x === 0
-  //         ? initialRotation
-  //         : (mousePos.x - 0.5) * Math.PI * sensitivity,
-  //       lerpFactor
-  //     );
-  //   }
-  // });
-
-
-
 
   useGSAP(
     () => {
@@ -108,53 +74,9 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
         delay:1,
       });
        
-setTimeout(() => {
 
-  const aboutMe = gsap.timeline({ repeat: 0 });
 
-  aboutMe.fromTo(
-    ".about-me-header",
 
-    {
-     
-      y: -5,
-      ease: "back.inOut",
-
-      duration: .5,
-
-      opacity: 0,
-      delay: 0.5,
-    },
-    {
-      y: 0,
-      ease: "back.inOut",
-
-      duration: 2.0,
-
-      opacity: 1,
-      delay: 0,
-    },2
-  );
-
-  aboutMe.from(".about-me-section", {
-    y: 10,
-   
-
-    duration: 1,
-
-    opacity: 0,
-    delay: 0,
-  },3);
-  aboutMe.from(".chandler-pic", {
-    x: -10,
-   
-
-    duration: 2,
-
-    opacity: 0,
-    delay: 0,
-  } ,3);
-},0)
 
     },
     { dependencies: [deskchairtransparent], revertOnUpdate: true }
@@ -273,9 +195,9 @@ setTimeout(() => {
     monitorCamera.to(
       camera.position,
       {
-        x: 0.469, 
+        x: 0.6, 
         y: -0.1, 
-        z: 0.1, 
+        z: 0.23, 
         duration: .75,
         delay: 0,
         ease: "power1.out",
@@ -305,9 +227,9 @@ setTimeout(() => {
     projectsCamera.to(
       camera.position,
       {
-        x: -0.9,
+        x: -1,
         y: 0.075,
-        z: .457,
+        z: .6,
         duration: .75,
         delay: 0,
         ease: "power1.out",
@@ -337,9 +259,9 @@ setTimeout(() => {
     contactCamera.to(
       camera.position,
       {
-        x: 0.1,
-        y: 0.65,
-        z: -0.15,
+        x: 0.115,
+        y: 0.6,
+        z: -0.14,
         duration: .75,
         delay: 0,
         ease: "power1.out",
@@ -353,6 +275,7 @@ setTimeout(() => {
 
 
 
+
       setdeskchairtransparent(true);
       setScrollProgtoMonitorComplete(false)
         
@@ -361,15 +284,90 @@ setTimeout(() => {
 
       handleHTMLPresent();
       handleArrowPresent();
-      setTimeout(() => {
-        setScrollProgtoMonitorComplete(true)
-      }, 1000);
+      
+
+
+      const aboutMe = gsap.timeline({ repeat: 0 });
+
+      aboutMe.fromTo(
+        ".about-me-header",
+    
+        {
+         
+          y: -5,
+          ease: "back.inOut",
+    
+          duration: .5,
+    
+          opacity: 0,
+          delay: 0,
+        },
+        {
+          y: 0,
+          ease: "back.inOut",
+    
+          duration: 1.0,
+    
+          opacity: 1,
+          delay: 0,
+        },1
+      );
+
+      aboutMe.fromTo(
+        ".chandler-link-bar",
+    
+        {
+         
+          y: 5,
+          ease: "back.inOut",
+    
+          duration: 1,
+    
+          opacity: 0,
+          delay: 0,
+        },
+        {
+          y: 0,
+          ease: "back.inOut",
+    
+          duration: 1.0,
+    
+          opacity: 1,
+          delay: 0,
+        },1
+      );
+    
+      aboutMe.from(".about-me-section", {
+        y: 10,
+       
+    
+        duration: 1,
+    
+        opacity: 0,
+        delay: 0,
+      },1);
+      aboutMe.from(".chandler-pic", {
+        x: -10,
+       
+    
+        duration: 1,
+    
+        opacity: 0,
+        delay: 0,
+      } ,1);
+
+
+
+
+
     }
     if (animationLocation === 'Projects') {
+      setdeskchairtransparent(true);
       projectsCamera.play()
       handleHTMLPresent();
       handleArrowPresent();
       modelRef.current.rotation.set(0, 0, 0);
+      
     }
     if (animationLocation === 'Contact') {
      contactCamera.play()
@@ -414,20 +412,20 @@ setScrollProgtoMonitorComplete(false)
           ref={glowingTextRef}
           font={"fonts/3dfont3.json"}
           size={0.05}
-          scale={[0.375, 0.3, 0.2]}
+          scale={[0.4, 0.3, .3]}
           rotation={[Math.PI / 2, 0, 0]}
           height={0.011}
           width={0.1}
           curveSegments={10}
-          position={[-0.1, 0.05, 0.1525]}
+          position={[-0.09, 0.06, 0.1625]}
         >
           {`Chandler Casey\nFull-Stack Developer`}
-          <pointLight position={[-0.02, 0.025, 0]} decay={6}  intensity={.03} color="#98fac1" />
+          <pointLight position={[-0.05, 0.025, 0]} decay={8}  intensity={.015} color="#98fac1" />
           <meshStandardMaterial
             attach="material"
             color="#98fac1"
             emissive="#98fac1"
-            emissiveIntensity={.3}
+            emissiveIntensity={.2}
           />
         </Text3D>
       </>
@@ -446,7 +444,7 @@ setScrollProgtoMonitorComplete(false)
         
         rotation-x={[0]}
         scale={[0.19, 0.24, 0.19]}
-        onPointerDown={(e) => { const intro = gsap.timeline({ repeat: 0 });
+        onPointerDown={(e) => { if(animationLocation==="Home" ||animationLocation === "") {const intro = gsap.timeline({ repeat: 0 });
         
 
 
@@ -485,8 +483,14 @@ setScrollProgtoMonitorComplete(false)
             ease: "elastic.out",
           },
           0
-        );}
-        }
+        );
+      
+        
+      
+      
+      }
+    }
+  }
       >
         <mesh
           position={[0, -0.65, 0]}
@@ -506,7 +510,7 @@ setScrollProgtoMonitorComplete(false)
         >
           <GlowingText />
 
-<group position={[0,0,-.00]} scale={[.95,1,1]} >
+<group position={[0,0,.01]} scale={[.95,1,1]} >
           <mesh
             material={materials["Material.023"]}
             scale={[0.5, 0.2, 0.2]}
@@ -695,19 +699,23 @@ setScrollProgtoMonitorComplete(false)
                 geometry={nodes.tvpCube1_tvcorpo2_tv_0.geometry}
                 material={materials["Material.035"]}
               />
-              <mesh
-                emissive="black"
-                castShadow
-                receiveShadow
-                geometry={nodes.tvpCube1_tvcorpo_da_tv_0.geometry}
-                material={materials["Material.035"]}
-              />
+             
               <mesh
                 emissive="black"
                 castShadow
                 receiveShadow
                 geometry={nodes.tvpCube1_tvpes_da_tv1_0.geometry}
                 material={materials["Material.035"]}
+                
+              />
+               <mesh
+                emissive="black"
+                castShadow
+                receiveShadow
+                geometry={nodes.tvpCube1_tvcorpo_da_tv_0.geometry}
+                material={materials["Material.035"]}
+                position={[0,.025,0]}
+                scale={1.15}
               />
               <mesh
                 emissive="black"
@@ -715,6 +723,8 @@ setScrollProgtoMonitorComplete(false)
                 receiveShadow
                 geometry={nodes.tvpCube1_tvtela_da_tv_0.geometry}
                 material={materials["tvtela_da_tv.002"]}
+                position={[0,.025,0]}
+                scale={1.15}
               >
                 <Html
                   className="computer-monitor"
@@ -775,11 +785,18 @@ setScrollProgtoMonitorComplete(false)
                               className="chandler-pic"
                               src="images/chandler-pic.jpg"
                             />
+                            <div className="chandler-link-bar">
+                            <div className="chandler-links-container">
+                            <a className="chandler-links" href="images/Resume.pdf" target="_blank"><img className="boxicon-pdf" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAeRJREFUaEPtmY1tAjEMhe1J2tuknaR0ksIk0ElKJymbuPciG0VVuETklyonIQHJJf5sJ/G9Y3rwix/cfpoAvSOYFAEReSaiDyJ6ISJ8z7n2zHzIGcC/Nwqgxv+UmlDHKQaRAnAkol1hAAxXBCIFQCoYb0NmQ7QE2MPrAWdkQTQDWBcuiwg2gqIQTQHg/dIQzQFKQ3QBKAnRDaAURFeAEhDdAXIhhgDYgsD2u3WQDgNwC2IYgHvLkQmwnpw1i7loYGYEZgSiSbLdYabQTKGZQvVKiQXOZeaLSi9vnnrxiv+1PICOhA/UDdOUFmu3AN1K1WqLWJ9xTfD6ZuaTPi7umHnxxLBPZj4rDPQl3OPgiQjQV4UilG21AaDUfa2ev6jR+H30vqMNl1MeRAT6EiJhAFHBrAUADDoEImBwAPABAeVSSIHQ/gTI5hHwJ/S8+9dY181LOXjdAGxNuMg1BxARf2IzJgRwYuZ3T1IZKoUsz82BPgCErLPmPwAt58cHCKQXYK7bqLb3W8QJByzOgdx3CW7tbM3V7Jk4ATjYZQL8h2rUjv97syDnPrej5a6BWq+YUsDc+ZELgJ0Ee332jpJisdcn6n13wqcMqpWllcMtQE5aX7mSPCsCsQF6tydFoLeRMwIjR+AXuEldQDRZKqkAAAAASUVORK5CYII="/> Resume</a>
+                            </div>
+                            <div className="chandler-links-container">
+                            <a className="chandler-links" href="https://www.linkedin.com/in/chandler-casey1/" target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAa1JREFUaEPtme1xwjAMhqVNyiQtkxQmKUxSNimdBDZR8/acXuqz4oTKlXMn/+HggqJHb/ThmGnjizfuPwWAt4KhQLcKiMgLEb0T0ZOzk3ciOjLzteSH+giJyAcRAaKHdWfm3VoA6cHz0QdmLgZ7ToEAsFTQUoHTYOwsIkju18HJk6Wjmi0rAFSDy/QmInJI1aophwlAyUhS4tbUeyKyAFBLmYg0T3gLAAR5248QEaErXpDEoEndGg2v+bJSYHQUIP86YlgDNI94fgMrAJRQRH+6MC9NZ6ZSXxh/w3/x+OFztIP/Pg/fUY7VZQVQTWKl1KLMnvMekvWTt7mm6A1wmHN+BBnKsQrhCrA0YeaaYjcAcJKZ8zz6YdT2Ie4A2cz0q58syQVXAKXhFUcTbTj0BtCSc5/vdXsFwMuBUp3fPEC1r1jvias3VBqZpkDVXgBkTagasVBA2WN7l9HIgVAgJTM2NJ9ZYuebkWNh+sQLsNKL4iX2vs1ZKbB0Mja/LgDMQ7rS4CMK9HTAcWXmfYl57nwASYcx2PuU5rEjppUKu10ex6xuoU83DgVCgT9G4AsukZtAqVJVsQAAAABJRU5ErkJggg=="/> LinkedIn</a>
+                            </div>
+                            </div>
                           </div>
                           <div className="about-me-column">
                             <h1 className="about-me-header">
-                              Hey! I'm Chandler, a Full-Stack Developer, working
-                              remotely from College Station, Texas.
+                               I'm Chandler, a Full-Stack Developer.
                             </h1>
                             <div className="about-me-section">
                               
@@ -791,7 +808,7 @@ setScrollProgtoMonitorComplete(false)
                                 Three.js, I build efficient applications that
                                 emphasize user experience.
                               </p>
-                              <p className="pb-0.5">
+                              <p className="pb-1">
                                 Outside of coding, I enjoy baking, playing the
                                 trumpet, and building PCs.
                               </p>
@@ -807,9 +824,9 @@ setScrollProgtoMonitorComplete(false)
           </group>
         </group>
         <group
-          position={[-3.053, 0.522, 3.848]}
+          position={[-3.053, 0.522, 4]}
           rotation={[-Math.PI / 2, 0, 0]}
-          scale={0.009}
+          scale={[0.01,.01,.009]}
         >
           <group rotation={[Math.PI / 2, 0, 0]}>
             <group
@@ -817,6 +834,8 @@ setScrollProgtoMonitorComplete(false)
               rotation={[-Math.PI / 2, 0, 1.543]}
               scale={125.659}
             >
+
+              ///couch
               <group
                 position={[-0.138, -0.611, -0.031]}
                 rotation={[0, 1.294, 0]}
@@ -824,7 +843,7 @@ setScrollProgtoMonitorComplete(false)
               >
                 <mesh
                   castShadow
-                  receiveShadow
+                  
                   geometry={nodes.Plane_fabric_0.geometry}
                   material={materials["Material.017"]}
                   position={[0.94, -3.326, 2.611]}
@@ -832,7 +851,7 @@ setScrollProgtoMonitorComplete(false)
                 >
                   <mesh
                     castShadow
-                    receiveShadow
+                    
                     geometry={nodes.Cube004_fabric_0.geometry}
                     material={materials["Material.017"]}
                     position={[0.611, 0, 0.183]}
@@ -841,7 +860,7 @@ setScrollProgtoMonitorComplete(false)
                   />
                   <mesh
                     castShadow
-                    receiveShadow
+                    
                     geometry={nodes.Cube005_fabric_0.geometry}
                     material={materials["Material.017"]}
                     position={[0.517, -0.002, 0.286]}
@@ -850,7 +869,7 @@ setScrollProgtoMonitorComplete(false)
                   />
                   <mesh
                     castShadow
-                    receiveShadow
+                   
                     geometry={nodes.Cube_fabric_0.geometry}
                     material={materials["Material.004"]}
                     position={[0.732, 0.09, 0.152]}
@@ -859,7 +878,7 @@ setScrollProgtoMonitorComplete(false)
                   />
                   <mesh
                     castShadow
-                    receiveShadow
+                    
                     geometry={nodes.Cylinder_Wood_0.geometry}
                     material={materials["Material.023"]}
                     position={[0.733, 0, 0.154]}
@@ -960,6 +979,10 @@ setScrollProgtoMonitorComplete(false)
             </mesh>
           </group>
 
+
+//drawers
+
+
           <group
             position={[-1.313, -0.417, 0.12]}
             rotation={[0, 0, -0.018]}
@@ -984,6 +1007,8 @@ setScrollProgtoMonitorComplete(false)
               />
             </mesh>
           </group>
+
+          
           <group
             position={[-4.135, -0.484, 1.088]}
             rotation={[0, 0, 0.059]}
@@ -1012,7 +1037,13 @@ setScrollProgtoMonitorComplete(false)
             rotation={[0, 0, -1.551]}
             scale={0.805}
           >
-            <group
+
+
+
+
+//exit
+
+            {/* <group
               position={[-0.5, -4.235, 0.5]}
               rotation={[0, 0, 0]}
               scale={0.805}
@@ -1033,7 +1064,7 @@ setScrollProgtoMonitorComplete(false)
                 geometry={nodes2.Cube006_3.geometry}
                 material={materials2["Material.002"]}
               />
-            </group>
+            </group> */}
           </group>
           <group
             position={[-3.853, -0.896, 1.087]}
@@ -1063,7 +1094,33 @@ setScrollProgtoMonitorComplete(false)
               scale={-0.637}
             />
           </group>
-          <group
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//coffee maker
+
+
+
+
+
+          {/* <group
             position={[-1.443, -0.487, 1.57]}
             rotation={[0, 0, -0.826]}
             scale={0.765}
@@ -1103,8 +1160,13 @@ setScrollProgtoMonitorComplete(false)
               material={materials["Material.022"]}
               position={[0.774, 0.649, -0.184]}
             />
-          </group>
+          </group> */}
 
+
+
+
+
+///desk
           <group position={[-2.88, -0.702, 0.565]} scale={0.306}>
             <mesh
               castShadow
@@ -1193,7 +1255,7 @@ setScrollProgtoMonitorComplete(false)
               />
             </group>
           )}
-          <group
+          {/* <group
             position={[-0.346, -3.7, 0.1]}
             rotation={[0, 0, -1.559]}
             scale={0.232}
@@ -1241,7 +1303,12 @@ setScrollProgtoMonitorComplete(false)
                 </mesh>
               </mesh>
             </mesh>
-          </group>
+          </group> */}
+
+
+
+//plant
+
           <group
             position={[-3.7, -0.762, 0.068]}
             rotation={[0, 0, -1.4]}
@@ -1289,12 +1356,38 @@ setScrollProgtoMonitorComplete(false)
 
 
 
-///
+///table small
 
 
 
 
 
+
+<Lamp/>
+
+///table legs       
+        <group position={[-.8, .2, 3.9]} scale={0.35} >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Cube020_1.geometry}
+              material={materials["Material.024"]}
+              position={[0,-.1,0]}
+              rotation={[-Math.PI/2,0,0]}
+              scale={[0.25, 0.6, 0.322]}
+            />
+            <mesh
+          castShadow
+          
+          material={materials["Material.023"]}
+          position={[0,0,0]}
+          rotation={[-Math.PI, 0, -Math.PI]}
+          scale={[-2, -0.1, -2]}
+        >
+          <boxGeometry args={[1,1]}/>
+        </mesh>
+
+          </group>
 
 
         <mesh
@@ -1307,6 +1400,7 @@ setScrollProgtoMonitorComplete(false)
         >
 
 <Glasses/>
+
 
         </mesh>
 
@@ -1391,9 +1485,8 @@ setScrollProgtoMonitorComplete(false)
             castShadow
             receiveShadow
             geometry={nodes.Cube004_1.geometry}
-            material={materials["Material.005"]}
-            material-roughness={1}
-            material-metalness={.9}
+            material={materials["Material.007"]}
+            
           >
             <meshStandardMaterial color={"#061713"} metalness={0} />
           </mesh>
@@ -1410,15 +1503,15 @@ setScrollProgtoMonitorComplete(false)
             geometry={nodes.Cube002_1.geometry}
             material={materials["Material.007"]}
             material-roughness={1}
-            material-metalness={0.9}
+            material-metalness={0}
           >
             <meshStandardMaterial color={"#061713"} />
           </mesh>
 
           <group
-            position={[-2.354, 0.3, -0.1]}
+            position={[-2.354, 0.3, -0]}
             rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-            scale={0.32}
+            scale={0.37}
           >
             <Corkboard />
           </group>

@@ -97,8 +97,9 @@ h2 {
 }
 
 .html-container-wrapper{
-height: 90%;
-width: 90%;
+height: 100%;
+width: 100%;
+padding: 5px;
 display: flex;
 
 
@@ -111,9 +112,10 @@ height: 100%;
 width: 50%;
 display: flex;
 flex-direction: column;
-justify-content: center;
+justify-content: start;
+
 align-items: center;
-padding: 4px;
+padding: 4px 4px 0px 0px;
 }
 
 
@@ -122,14 +124,49 @@ img {
 }
 
 .chandler-pic {
-  height: 95%;
+  height: 80%;
   width: 95%;
   border-radius: 2px;
-  
+
+
+}
+
+.chandler-link-bar{
+  display: flex;
+  height: 20%;
+  width: 100%;
 
 }
 
 
+
+.chandler-links-container {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.chandler-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5px;
+  color:white;
+  height: 100%;
+  width: 50%;
+  padding: 1px;
+  gap: 1px;
+}
+
+
+
+
+.boxicon-pdf{
+  width: 95%;
+}
 
 .about-me-column {
   display: flex;
@@ -137,7 +174,7 @@ img {
   color: white;
   align-items: start;
 
-  width: 50%;
+  width: 75%;
   height: 100%;
   position: relative;
 }
@@ -148,9 +185,9 @@ img {
  
   height: 35%;
   width: 100%;
-  font-size: 4px;
+  font-size: 4.5px;
   
-  font-weight: 500;
+  font-weight: 700;
   padding: 1px;
   margin-top: 2px;
   line-height: 200%;
@@ -159,7 +196,7 @@ img {
 
 .about-me-section {
  height: 100%;
-  font-size: 3.5px;
+  font-size: 4px;
   font-weight: 350;
   padding: 1px;
   padding-top: 1px;
@@ -243,6 +280,7 @@ img {
 .navbar {
 
   display: flex;
+  
   width: 70%;
   font-size: 30px;
   position: fixed;
@@ -404,7 +442,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* pointer-events: none; */
+  pointer-events: none;
 }
 
 .project-html-container {
@@ -414,7 +452,7 @@ button {
   align-items: center;
   width: 100%;
   height: 100%;
-  /* pointer-events: none; */
+  /* pointer-events: all; */
   font-family: "Inter";
 }
 
@@ -446,7 +484,7 @@ button {
   width: 100%;
   padding: 3px;
 
-  font-size: 4.5px;
+  font-size: 4px;
   font-weight: 400;
 }
 
@@ -716,8 +754,24 @@ button {
     
   }
 
+  .navbar {
 
-
+    
+    height:5%;
+    
+    
+  }
+  .navbar-button {
+    font-family: "Inter";
+    color: white;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1px; 
+    
+  }
 
 
 }
@@ -750,7 +804,24 @@ button {
     
   }
 
-  
+  .navbar {
+
+    
+    height:5%;
+    
+    
+  }
+  .navbar-button {
+    font-family: "Inter";
+    color: white;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1px; 
+    
+  }
   }
 
   @media (max-width: 600px) {
@@ -776,6 +847,25 @@ button {
       
     }
   
+
+    .navbar {
+
+    
+      height:5%;
+      
+      
+    }
+    .navbar-button {
+      font-family: "Inter";
+      color: white;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 1px; 
+      
+    }
 
     
     
@@ -813,7 +903,24 @@ button {
   
     
   }
+  .navbar {
 
+    
+    height:10%;
+    
+    
+  }
+  .navbar-button {
+    font-family: "Inter";
+    color: white;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1px; 
+    
+  }
     
     }
 

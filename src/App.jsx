@@ -61,7 +61,7 @@ function App() {
   const [arrowText, setArrowText] = useState();
   const [arrowTextShadow, setArrowTextShadow] = useState(false);
  
-  const [animationLocation,setAnimationLocation] = useState('')
+  const [animationLocation,setAnimationLocation] = useState("")
 
 
 const handleArrowPresent = () => 

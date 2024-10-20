@@ -30,7 +30,7 @@ export default function Model(props) {
      >
 
 
-        <group scale={1} >
+        <group scale={1.05} position={[-0.05,0,0]} >
           <mesh
             geometry={nodes.Cube11647_1.geometry}
             material={materials["Material.023"]}
@@ -51,9 +51,9 @@ export default function Model(props) {
             <group ref={project1}>
               <mesh
                 geometry={nodes.Plane001.geometry}
-                position={[-2.575, 1.915, 0.1]}
+                position={[-2.575, 1.925, 0.1]}
                 rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                scale={[0.172, 0.095, 0.139]}
+                scale={[0.185, 0.095, 0.155]}
                 onPointerOver={(e) => {
                   gsap.to(project1.current.position, { z: 3.5, duration: 0.3 });
                   document.body.style.cursor = "pointer";
@@ -63,10 +63,10 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+                  window.open("https://surelock-password-app-fcf68c8b901a.herokuapp.com/", "_blank")
                 }
               >
-                <meshStandardMaterial color={"white"} />
+                <meshStandardMaterial color={"#ebebeb"} emissive={0.1} />
                 <Html
                   position={[-0.0, 0.05, 0.0]}
                   scale={1}
@@ -99,9 +99,7 @@ export default function Model(props) {
                             <img src="images/surelock.png" />
                           </div>
                           <div className="project-description">
-                            Surelock is a secure, user-friendly password manager
-                            that safely stores and auto-fills passwords,
-                            ensuring strong encryption and privacy.
+                          SureLock is a secure password manager built with Django and Python, featuring encryption, easy password generation, and safe sharing for your sensitive data.
                           </div>
                         </div>
                       </div>
@@ -112,13 +110,14 @@ export default function Model(props) {
               <mesh
                 geometry={nodes.Sphere.geometry}
                 material={materials["Material.001"]}
-                position={[-2.681, 2.062, 0.1]}
+                position={[-2.681, 2.08, 0.1]}
                 scale={-0.013}
+                
               />
               <mesh
                 geometry={nodes.Sphere002.geometry}
                 material={materials["Material.017"]}
-                position={[-2.476, 2.062, 0.1]}
+                position={[-2.476, 2.08, 0.1]}
                 scale={-0.013}
               />
             </group>
@@ -126,9 +125,9 @@ export default function Model(props) {
             <group ref={project2} >
               <mesh
                 geometry={nodes.Plane002.geometry}
-                position={[-2.247, 1.915, 0.1]}
+                position={[-2.247,  1.925, 0.1]}
                 rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                scale={[0.172, 0.095, 0.141]}
+                scale={[0.185, 0.095, 0.155]}
                 onPointerOver={(e) => {
                   gsap.to(project2.current.position, { z: 3.5, duration: 0.3 });
                   document.body.style.cursor = "pointer";
@@ -141,7 +140,7 @@ export default function Model(props) {
                   window.open("https://ai-api-clone.netlify.app/", "_blank")
                 }
               >
-                <meshStandardMaterial color={"white"} />
+                 <meshStandardMaterial color={"#ebebeb"} emissive={0.1} />
                 <Html
                   position={[0.0, 0.05, 0.0]}
                   scale={1}
@@ -174,9 +173,9 @@ export default function Model(props) {
                             <img src="images/AIPIC.png" />
                           </div>
                           <div className="project-description">
-                            A ChatGPT clone is an AI-powered chatbot that
-                            generates human-like responses, enabling natural
-                            conversations and efficient information retrieval.
+                          
+
+                          ChatGPT Clone is a conversational AI app built with React and Node.js, using the ChatGPT API for real-time, personalized responses in a user-friendly interface.
                           </div>
                         </div>
                       </div>
@@ -187,14 +186,14 @@ export default function Model(props) {
               <mesh
                 geometry={nodes.Sphere001.geometry}
                 material={materials["Material.001"]}
-                position={[-2.144, 2.062, 0.1]}
+                position={[-2.144, 2.08, 0.1]}
                 scale={-0.013}
               />
 
               <mesh
                 geometry={nodes.Sphere003.geometry}
                 material={materials["Material.018"]}
-                position={[-2.354, 2.062, 0.1]}
+                position={[-2.354, 2.08, 0.1]}
                 scale={-0.013}
               />
             </group>
@@ -202,9 +201,9 @@ export default function Model(props) {
             <group ref={project3}>
               <mesh
                 geometry={nodes.Plane003.geometry}
-                position={[-1.913, 1.915, 0.1]}
+                position={[-1.913,  1.925, 0.1]}
                 rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                scale={[0.172, 0.095, 0.139]}
+                scale={[0.185, 0.095, 0.155]}
                 onPointerOver={(e) => {
                   gsap.to(project3.current.position, { z: 3.5, duration: 0.3 });
                   document.body.style.cursor = "pointer";
@@ -217,6 +216,7 @@ export default function Model(props) {
                   window.open("https://monthly-expense-tracker-2324e228fac8.herokuapp.com/", "_blank")
                 }
               >
+                 <meshStandardMaterial color={"#ebebeb"} emissive={0.1} />
                 <Html
                   position={[0.0, 0.05, 0]}
                   scale={1}
@@ -244,14 +244,12 @@ export default function Model(props) {
                     >
                       <div className="project-html">
                         <div className="project-html-container">
-                          <div className="project-header">Expense Tracker</div>
+                          <div className="project-header">Wallet Wise</div>
                           <div className="project-picture">
                             <img src="images/financial-tracker.png" />
                           </div>
                           <div className="project-description">
-                            A Google Keep clone is a note-taking app that lets
-                            users create, organize, and sync notes, lists, and
-                            reminders across devices.
+                          Wallet Wise is a user-friendly expense tracker app built with JavaScript and Node.js, helping users manage, track, and analyze expenses for better financial control.
                           </div>
                         </div>
                       </div>
@@ -262,13 +260,13 @@ export default function Model(props) {
               <mesh
                 geometry={nodes.Sphere004.geometry}
                 material={materials["Material.022"]}
-                position={[-2.015, 2.062, 0.1]}
+                position={[-2.015, 2.08, 0.1]}
                 scale={-0.013}
               />
               <mesh
                 geometry={nodes.Sphere005.geometry}
                 material={materials["Material.024"]}
-                position={[-1.814, 2.062, 0.1]}
+                position={[-1.814, 2.08, 0.1]}
                 scale={-0.013}
               />
             </group>
@@ -276,9 +274,9 @@ export default function Model(props) {
             <group ref={project4}>
               <mesh
                 geometry={nodes.Plane004.geometry}
-                position={[-2.575, 1.547, 0.1]}
+                position={[-2.575, 1.537, 0.1]}
                 rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                scale={[0.176, 0.095, 0.141]}
+                scale={[0.185, 0.095, 0.155]}
                 onPointerOver={(e) => {
                   gsap.to(project4.current.position, { z: 3.5, duration: 0.3 });
                   document.body.style.cursor = "pointer";
@@ -291,6 +289,7 @@ export default function Model(props) {
                   window.open("https://chandlercasey13.github.io/snake-clone-project/", "_blank")
                 }
               >
+                 <meshStandardMaterial color={"#ebebeb"} emissive={0.1} />
                 <Html
                   position={[0.0, 0.05, 0]}
                   scale={1}
@@ -318,14 +317,12 @@ export default function Model(props) {
                     >
                       <div className="project-html">
                         <div className="project-html-container">
-                          <div className="project-header">JavaScript Game</div>
+                          <div className="project-header">Worm</div>
                           <div className="project-picture">
                             <img src="images/wormgame.png" />
                           </div>
                           <div className="project-description">
-                            A Google Keep clone is a note-taking app that lets
-                            users create, organize, and sync notes, lists, and
-                            reminders across devices.
+                          Worm is a fun reskin of the classic Snake game, built with JavaScript, CSS, and HTML. Navigate a growing worm to collect food and avoid obstacles.
                           </div>
                         </div>
                       </div>
@@ -351,9 +348,9 @@ export default function Model(props) {
             <group ref={project5}>
               <mesh
                 geometry={nodes.Plane005.geometry}
-                position={[-2.247, 1.547, 0.1]}
+                position={[-2.247, 1.537, 0.1]}
                 rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                scale={[0.176, 0.095, 0.142]}
+                scale={[0.185, 0.095, 0.155]}
                 onPointerOver={(e) => {
                   gsap.to(project5.current.position, { z: 3.5, duration: 0.3 });
                   document.body.style.cursor = "pointer";
@@ -362,10 +359,9 @@ export default function Model(props) {
                   gsap.to(project5.current.position, { z: 0.1, duration: 0.3 });
                   document.body.style.cursor = "auto";
                 }}
-                onPointerDown={(e) =>
-                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
-                }
+               
               >
+                 <meshStandardMaterial color={"#ebebeb"}  />
                 <Html
                   position={[0, 0.05, 0]}
                   scale={1}
@@ -393,12 +389,10 @@ export default function Model(props) {
                     >
                       <div className="project-html">
                         <div className="project-html-container">
-                          <div className="project-header">JavaScript Game</div>
-                          <div className="project-picture"></div>
+                          <div className="project-header">Chatter</div>
+                          <div className="project-picture"><img src="images/chatterapp.png" /></div>
                           <div className="project-description">
-                            Surelock is a secure, user-friendly password manager
-                            that safely stores and auto-fills passwords,
-                            ensuring strong encryption and privacy.
+                          Chatter is a dynamic chat app built with React, Node.js, and Tailwind CSS. It offers real-time messaging and an intuitive interface for seamless conversations.
                           </div>
                         </div>
                       </div>
@@ -409,35 +403,36 @@ export default function Model(props) {
               <mesh
                 geometry={nodes.Sphere010.geometry}
                 material={materials["Material.042"]}
-                position={[-2.35, 1.692, 0.1]}
+                position={[-2.35, 1.69, 0.1]}
                 scale={-0.013}
+             
               />
               <mesh
                 geometry={nodes.Sphere011.geometry}
                 material={materials["Material.043"]}
                 position={[-2.15, 1.692, 0.1]}
                 scale={-0.013}
+                
               />
             </group>
 
             <group ref={project6}>
               <mesh
                 geometry={nodes.Plane006.geometry}
-                position={[-1.913, 1.547, 0.1]}
+                position={[-1.913, 1.537, 0.1]}
                 rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                scale={[0.176, 0.095, 0.141]}
-                onPointerOver={(e) => {
-                  gsap.to(project6.current.position, { z: 3.5, duration: 0.3 });
-                  document.body.style.cursor = "pointer";
-                }}
-                onPointerOut={(e) => {
-                  gsap.to(project6.current.position, { z: 0.1, duration: 0.3 });
-                  document.body.style.cursor = "auto";
-                }}
-                onPointerDown={(e) =>
-                  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
-                }
+                scale={[0.185, 0.095, 0.155]}
+                // onPointerOver={(e) => {
+                //   gsap.to(project6.current.position, { z: 3.5, duration: 0.3 });
+                //   document.body.style.cursor = "pointer";
+                // }}
+                // onPointerOut={(e) => {
+                //   gsap.to(project6.current.position, { z: 0.1, duration: 0.3 });
+                //   document.body.style.cursor = "auto";
+                // }}
+                
               >
+                 <meshStandardMaterial color={"#ebebeb"} emissive={0.1} />
                 <Html
                   position={[0, 0.05, 0]}
                   scale={1}
@@ -465,12 +460,10 @@ export default function Model(props) {
                     >
                       <div className="project-html">
                         <div className="project-html-container">
-                          <div className="project-header">JavaScript Game</div>
+                          <div className="project-header"></div>
                           <div className="project-picture"></div>
                           <div className="project-description">
-                            Surelock is a secure, user-friendly password manager
-                            that safely stores and auto-fills passwords,
-                            ensuring strong encryption and privacy.
+                          
                           </div>
                         </div>
                       </div>
