@@ -15,6 +15,20 @@
 
 
 
+.fallback-div{
+  background-color: #061713;
+  font-family: "Inter";
+  font-size:30px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100vw;
+  height: 100vh;
+}
+
+
+
 h2 {
   font-family: "Inter";
 }
@@ -78,6 +92,7 @@ h2 {
   justify-content: center;
   align-items: center;
   background-image: url("/images/gradient.png");
+ 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -146,7 +161,8 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  pointer-events: all;
+  z-index: 10;
 }
 .chandler-links {
   display: flex;
@@ -260,9 +276,23 @@ img {
   justify-content: center;
   align-items: center;
   position: absolute;
-  z-index: 1;
+  z-index: 0;
+ 
 
-   pointer-events: none; 
+   pointer-events:none; 
+   /* background-image: url('public/images/lines.svg');  */
+  
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+   
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Center content */
+    align-items: center; /* Vertical center */
+    justify-content: center; /* Horizontal center */
+    color: white; /* Text color */
+    background-color: #061713;
+    opacity: .925;
 }
 
 .html-overlay-organization-container {

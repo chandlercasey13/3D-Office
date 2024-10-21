@@ -412,12 +412,12 @@ setScrollProgtoMonitorComplete(false)
           ref={glowingTextRef}
           font={"fonts/3dfont3.json"}
           size={0.05}
-          scale={[0.4, 0.3, .3]}
+          scale={[0.4, 0.3, .25]}
           rotation={[Math.PI / 2, 0, 0]}
           height={0.011}
           width={0.1}
           curveSegments={10}
-          position={[-0.09, 0.06, 0.1625]}
+          position={[-0.095, 0.06, 0.1625]}
         >
           {`Chandler Casey\nFull-Stack Developer`}
           <pointLight position={[-0.05, 0.025, 0]} decay={8}  intensity={.015} color="#98fac1" />

@@ -18,6 +18,10 @@ import { CanvasWrapper } from "./CanvasWrapper"
 
 import { Loader, useGLTF,PivotControls } from '@react-three/drei';
 import { FlyControls } from '@react-three/drei';
+import { useErrorBoundary } from 'use-error-boundary'
+
+
+
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
@@ -53,6 +57,16 @@ const Sky = ({ daynighttogglestate }) => {
 };
 
 function App() {
+
+
+  const canvasRef = useRef(null);
+
+
+
+
+
+
+
   const [htmlPresent, sethtmlPresent] = useState(true);
   const [arrowPresent, setarrowPresent] = useState(false);
 
@@ -80,11 +94,10 @@ const handleArrowPresent = () =>
       behavior: 'smooth' // Smooth scrolling
     });
   };
- 
 
-
-
-  return (
+  const { ErrorBoundary, didCatch, error } = useErrorBoundary()
+  return didCatch ? (
+    <div className="fallback-div">{error.message}</div>) : (
     <>
     
       <div className="App">
@@ -132,15 +145,15 @@ const handleArrowPresent = () =>
       </div>
       
     </div>
-    
+   
         <CanvasWrapper >
-        
+        <ErrorBoundary>
         
           <Canvas
           
-        
-          
-           
+        ref={canvasRef}
+      
+           gl={{alpha:true, preserveDrawingBuffer:true}}
           
             shadows
             antialias="true"
@@ -182,7 +195,7 @@ const handleArrowPresent = () =>
              
             
               
-              <Sky daynighttogglestate={daynighttoggle} />
+              
       
               <Environment preset="warehouse">
                 <mesh>
@@ -204,8 +217,9 @@ const handleArrowPresent = () =>
           </Canvas>
 
           
-        
+          </ErrorBoundary>
         </CanvasWrapper>
+       
       </div>
       <Loader containerStyles={{ background: "#061713", display:'flex', justifyContent:'center', alignItems:'center' }} 
       innerStyles={{background: "#061713", height: '40px', textAlign:'center', width:'100%' }}     
@@ -214,8 +228,8 @@ const handleArrowPresent = () =>
   }}
   dataStyles={{ color: 'white',fontSize: '18px',  }}           
   dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`} />
-    </>
-  );
+    </>)
+
 }
 
 export default App;
