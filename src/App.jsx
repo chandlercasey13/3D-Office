@@ -63,6 +63,20 @@ function App() {
 
 
 
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const gl = canvas.getContext('webgl');
+
+    // Check if the extension is available
+    const loseContextExt = gl.getExtension('WEBGL_lose_context');
+    if (loseContextExt) {
+      // Simulate context loss after a short delay
+      setTimeout(() => {
+        loseContextExt.loseContext();
+        console.log('Context lost');
+      }, 2000); // Adjust the delay as needed
+    }
+  }, []);
 
 
 
@@ -88,20 +102,32 @@ const handleArrowPresent = () =>
   };
  
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // Smooth scrolling
-    });
-  };
+ 
 
   const { ErrorBoundary, didCatch, error } = useErrorBoundary()
   return didCatch ? (
-    <div className="fallback-div">{error.message}</div>) : (
+    <section className="fallback-html-wrapper">
+    <div className="fallback-html-container"><div className="fallback-error-message">It looks like WEBGL isn't supported on your device, but here's the short rundown:</div> 
+    <div className="fallback-headers">I'm Chandler, a Full-Stack Developer</div>
+    <div className="fallback-about-me-description">  I’m a creative, solutions-driven full-stack
+                                software engineer focused on intuitive design
+                                and functionality. Proficient in the MERN stack,
+                                TypeScript, PostgreSQL, Next.js, Python, and
+                                Three.js, I build efficient applications that
+                                emphasize user experience.</div>
+                                <div className="fallback-headers">Here are some of my projects:</div>
+                                <div className="fallback-project-container"> <a className="fallback-project" href="https://surelock-password-app-fcf68c8b901a.herokuapp.com/" target="_blank" >SureLock</a> 
+                                <a className="fallback-project" href="https://ai-api-clone.netlify.app/" target="_blank">ChatGPT Clone</a> 
+                                <a className="fallback-project" href="https://monthly-expense-tracker-2324e228fac8.herokuapp.com/" target="_blank">WalletWise</a></div>
+                                <div className="fallback-headers">Get in touch:</div>
+                                <div className="fallback-contact-me-container">Email: chandlercasey13@gmail.com</div>
+                                <div className="fallback-contact-me-container">LinkedIn: <a href="https://www.linkedin.com/in/chandler-casey1/" target="_blank">https://www.linkedin.com/in/chandler-casey1/</a></div>
+                                </div>
+   </section>) : (
     <>
-    
+    <div className="html-overlay-behind"></div>
       <div className="App">
-      <div className="html-overlay">
+      <div className="html-overlay-front">
       <div className="html-overlay-organization-container">
         {htmlPresent && (
 <>
