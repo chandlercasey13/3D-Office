@@ -63,20 +63,20 @@ function App() {
 
 
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const gl = canvas.getContext('webgl');
+  // useEffect(() => {
+  //   const canvas = canvasRef.current;
+  //   const gl = canvas.getContext('webgl');
 
-    // Check if the extension is available
-    const loseContextExt = gl.getExtension('WEBGL_lose_context');
-    if (loseContextExt) {
-      // Simulate context loss after a short delay
-      setTimeout(() => {
-        loseContextExt.loseContext();
-        console.log('Context lost');
-      }, 2000); // Adjust the delay as needed
-    }
-  }, []);
+  //   // Check if the extension is available
+  //   const loseContextExt = gl.getExtension('WEBGL_lose_context');
+  //   if (loseContextExt) {
+  //     // Simulate context loss after a short delay
+  //     setTimeout(() => {
+  //       loseContextExt.loseContext();
+  //       console.log('Context lost');
+  //     }, 2000); // Adjust the delay as needed
+  //   }
+  // }, []);
 
 
 
