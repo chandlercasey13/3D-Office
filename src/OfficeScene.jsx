@@ -57,24 +57,7 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
 
   useGSAP(
     () => {
-      gsap.from(".title-text", {
-        y: 0,
-
-        duration: 1,
-        ease: "power1.in",
-        opacity: 0,
-        delay: 1,
-      });
-      gsap.from(".navbar", {
-        x: 0,
-
-        duration: 1,
-        ease: "power1.in",
-        opacity: 0,
-        delay:1,
-      });
-       
-
+     
 
 
 
@@ -111,7 +94,41 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
         ease: "elastic.out",
       },
       0
-    );},[])
+    );
+  
+  //  intro.to(".overlay-text-container", {
+  //     y: 0,
+
+  //     duration: 1,
+  //     ease: "power1.in",
+  //     opacity: 1,
+      
+  //   },1);
+  //   intro.to(".title-text", {
+  //     y: 0,
+
+  //     duration: 1,
+  //     ease: "power1.in",
+  //     opacity: 1,
+      
+  //   },1);
+  //   intro.to(".navbar", {
+  //     x: 0,
+
+  //     duration: 1,
+  //     ease: "power1.in",
+  //     opacity: 1,
+      
+  //   },1);
+     
+
+  
+  
+  
+  
+  
+  
+  },[])
 
 
 
@@ -362,7 +379,7 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
 
     }
     if (animationLocation === 'Projects') {
-      setdeskchairtransparent(true);
+      // setdeskchairtransparent(true);
       projectsCamera.play()
       handleHTMLPresent();
       handleArrowPresent();
