@@ -78,7 +78,7 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
       x: 0.01,
       y: 0.01,
       z: 0.01,
-      duration: 1.5,
+      duration: 2.0,
       delay: 0.5,
       ease: "elastic.out",
     });
@@ -89,8 +89,8 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
         x: 0,
         y: 0,
         z: 0,
-        duration: 2,
-        delay: 0.5,
+        duration: 1,
+        delay: 0,
         ease: "elastic.out",
       },
       0
@@ -806,9 +806,9 @@ setScrollProgtoMonitorComplete(false)
                             <div className="chandler-links-container">
                             <a className="chandler-links" href="images/Resume.pdf" target="_blank"><img className="boxicon-pdf" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAeRJREFUaEPtmY1tAjEMhe1J2tuknaR0ksIk0ElKJymbuPciG0VVuETklyonIQHJJf5sJ/G9Y3rwix/cfpoAvSOYFAEReSaiDyJ6ISJ8z7n2zHzIGcC/Nwqgxv+UmlDHKQaRAnAkol1hAAxXBCIFQCoYb0NmQ7QE2MPrAWdkQTQDWBcuiwg2gqIQTQHg/dIQzQFKQ3QBKAnRDaAURFeAEhDdAXIhhgDYgsD2u3WQDgNwC2IYgHvLkQmwnpw1i7loYGYEZgSiSbLdYabQTKGZQvVKiQXOZeaLSi9vnnrxiv+1PICOhA/UDdOUFmu3AN1K1WqLWJ9xTfD6ZuaTPi7umHnxxLBPZj4rDPQl3OPgiQjQV4UilG21AaDUfa2ev6jR+H30vqMNl1MeRAT6EiJhAFHBrAUADDoEImBwAPABAeVSSIHQ/gTI5hHwJ/S8+9dY181LOXjdAGxNuMg1BxARf2IzJgRwYuZ3T1IZKoUsz82BPgCErLPmPwAt58cHCKQXYK7bqLb3W8QJByzOgdx3CW7tbM3V7Jk4ATjYZQL8h2rUjv97syDnPrej5a6BWq+YUsDc+ZELgJ0Ee332jpJisdcn6n13wqcMqpWllcMtQE5aX7mSPCsCsQF6tydFoLeRMwIjR+AXuEldQDRZKqkAAAAASUVORK5CYII="/> Resume</a>
                             </div>
-                            <div className="chandler-links-container">
-                            <a className="chandler-links" href="https://www.linkedin.com/in/chandler-casey1/" target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAa1JREFUaEPtme1xwjAMhqVNyiQtkxQmKUxSNimdBDZR8/acXuqz4oTKlXMn/+HggqJHb/ThmGnjizfuPwWAt4KhQLcKiMgLEb0T0ZOzk3ciOjLzteSH+giJyAcRAaKHdWfm3VoA6cHz0QdmLgZ7ToEAsFTQUoHTYOwsIkju18HJk6Wjmi0rAFSDy/QmInJI1aophwlAyUhS4tbUeyKyAFBLmYg0T3gLAAR5248QEaErXpDEoEndGg2v+bJSYHQUIP86YlgDNI94fgMrAJRQRH+6MC9NZ6ZSXxh/w3/x+OFztIP/Pg/fUY7VZQVQTWKl1KLMnvMekvWTt7mm6A1wmHN+BBnKsQrhCrA0YeaaYjcAcJKZ8zz6YdT2Ie4A2cz0q58syQVXAKXhFUcTbTj0BtCSc5/vdXsFwMuBUp3fPEC1r1jvias3VBqZpkDVXgBkTagasVBA2WN7l9HIgVAgJTM2NJ9ZYuebkWNh+sQLsNKL4iX2vs1ZKbB0Mja/LgDMQ7rS4CMK9HTAcWXmfYl57nwASYcx2PuU5rEjppUKu10ex6xuoU83DgVCgT9G4AsukZtAqVJVsQAAAABJRU5ErkJggg=="/> LinkedIn</a>
-                            </div>
+                            <a className="chandler-links-container" href="https://www.linkedin.com/in/chandler-casey1/" target="_blank">
+                            <div className="chandler-links" ><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAa1JREFUaEPtme1xwjAMhqVNyiQtkxQmKUxSNimdBDZR8/acXuqz4oTKlXMn/+HggqJHb/ThmGnjizfuPwWAt4KhQLcKiMgLEb0T0ZOzk3ciOjLzteSH+giJyAcRAaKHdWfm3VoA6cHz0QdmLgZ7ToEAsFTQUoHTYOwsIkju18HJk6Wjmi0rAFSDy/QmInJI1aophwlAyUhS4tbUeyKyAFBLmYg0T3gLAAR5248QEaErXpDEoEndGg2v+bJSYHQUIP86YlgDNI94fgMrAJRQRH+6MC9NZ6ZSXxh/w3/x+OFztIP/Pg/fUY7VZQVQTWKl1KLMnvMekvWTt7mm6A1wmHN+BBnKsQrhCrA0YeaaYjcAcJKZ8zz6YdT2Ie4A2cz0q58syQVXAKXhFUcTbTj0BtCSc5/vdXsFwMuBUp3fPEC1r1jvias3VBqZpkDVXgBkTagasVBA2WN7l9HIgVAgJTM2NJ9ZYuebkWNh+sQLsNKL4iX2vs1ZKbB0Mja/LgDMQ7rS4CMK9HTAcWXmfYl57nwASYcx2PuU5rEjppUKu10ex6xuoU83DgVCgT9G4AsukZtAqVJVsQAAAABJRU5ErkJggg=="/> LinkedIn</div>
+                            </a>
                             </div>
                           </div>
                           <div className="about-me-column">
