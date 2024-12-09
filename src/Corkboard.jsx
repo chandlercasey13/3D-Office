@@ -63,7 +63,10 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://surelock-password-app-fcf68c8b901a.herokuapp.com/", "_blank")
+
+
+                  
+                  window.open("https://chatter-messaging.netlify.app//", "_blank")
                 }
               >
                 <meshStandardMaterial color={"#ebebeb"} emissive={0.1} />
@@ -140,7 +143,10 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://ai-api-clone.netlify.app/", "_blank")
+
+
+                  
+                  window.open("https://surelock-password-app-fcf68c8b901a.herokuapp.com/", "_blank")
                 }
               >
                  <meshStandardMaterial color={"#ebebeb"} emissive={0.1} />
@@ -219,8 +225,9 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://monthly-expense-tracker-2324e228fac8.herokuapp.com/", "_blank")
+                   window.open("https://ai-api-clone.netlify.app/", "_blank")
                 }
+                 
               >
                  <meshStandardMaterial color={"#ebebeb"} emissive={0.1} />
                
@@ -296,8 +303,10 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://chandlercasey13.github.io/snake-clone-project/", "_blank")
+                  window.open("https://monthly-expense-tracker-2324e228fac8.herokuapp.com/", "_blank")
                 }
+                
+                 
               >
                  <meshStandardMaterial color={"#ebebeb"} emissive={0.1} />
                
@@ -371,8 +380,9 @@ export default function Model(props) {
                   document.body.style.cursor = "auto";
                 }}
                 onPointerDown={(e) =>
-                  window.open("https://chatter-messaging.netlify.app/", "_blank")
+                  window.open("https://chandlercasey13.github.io/snake-clone-project/", "_blank")
                 }
+                  
               >
                  <meshStandardMaterial color={"#ebebeb"}  />
  
