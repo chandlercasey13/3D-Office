@@ -276,8 +276,8 @@ export default function PCModel({htmlPresent,handleHTMLPresent,arrowPresent, han
     contactCamera.to(
       camera.position,
       {
-        x: 0.115,
-        y: 0.6,
+        x: 0.1,
+        y: 0.8,
         z: -0.14,
         duration: .75,
         delay: 0,
