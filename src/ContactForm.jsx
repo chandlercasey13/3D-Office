@@ -42,15 +42,16 @@ export default function Component() {
     event.preventDefault();
     setResult("Sending....");
     const formData = new FormData(event.target);
- console.log(event.target)
+ console.log(formData)
     formData.append("access_key", '7f9089b8-5508-4c21-b3c2-cf0cd3c0e0cd');
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       body: formData
     });
+  
     const data = await response.json();
-
+    console.log(response)
     if (data.success) {
       setResult("Sent!");
       event.target.reset();

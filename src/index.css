@@ -9,11 +9,16 @@
 
 * {
   box-sizing: border-box;
-  touch-action: none;
+
 
  
   
 } 
+
+
+.projects {
+  z-index: 100; /* Ensure it's high enough */
+}
 
 
 
